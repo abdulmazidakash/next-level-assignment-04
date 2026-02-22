@@ -17,6 +17,7 @@ enum Status {
   ACTIVE
   SUSPENDED
 }
+
 model User {
   id        String   @id @default(uuid())
   name      String
@@ -27,6 +28,31 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  meals Meal[]
+
   @@index([status])
   @@map("users")
+}
+
+// ---------------- MEALS ----------------
+model Meal {
+  id          String  @id @default(uuid())
+  name        String
+  description String?
+  price       Float
+
+  imageUrl  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  // category Category
+  // @relation(fields: [categoryId], references: [id])
+  // provider ProviderProfile @relation(fields: [providerId], references: [id])
+  // orders Order[]reviews Review[]
+
+  providerId String
+  provider   User   @relation(fields: [providerId], references: [id])
+
+  @@map("meals")
 }

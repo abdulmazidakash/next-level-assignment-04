@@ -1,16 +1,18 @@
 import { Request, Response } from "express";
 import { AuthService } from "./auth.service";
+import sendResponse from "../../utils/sendResponse";
 
 const createUser = async (req: Request, res: Response) => {
   // console.log(req)
   try {
     const result = await AuthService.createUserIntoDB(req.body);
 
-    res.status(201).json({
+    sendResponse(res, {
+      statusCode: 201,
       success: true,
-      message: "user created successfully",
+      message: "User created",
       data: result,
-    })
+    });
   } catch (error: any) {
     console.log(error)
   }
@@ -21,11 +23,18 @@ const loginUser = async (req: Request, res: Response) => {
   try {
     const result = await AuthService.loginUserIntoDB(req.body);
 
-    res.status(200).json({
+    res.cookie("token", result.token, {
+      secure: false,
+      httpOnly: true,
+      sameSite: "strict", // none / strict / lax
+    });
+
+    sendResponse(res, {
+      statusCode: 201,
       success: true,
-      message: "user logged in successfully",
+      message: "User logged in successfully",
       data: result,
-    })
+    });
   } catch (error: any) {
     console.log(error)
   }
