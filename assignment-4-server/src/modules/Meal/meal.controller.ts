@@ -12,7 +12,7 @@ const createMeals = async (req: Request, res: Response) => {
     sendResponse(res, {
       statusCode: 201,
       success: true,
-      message: "Meal created",
+      message: "Meal created successfully",
       data: result,
     });
   } catch (error: any) {

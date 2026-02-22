@@ -10,7 +10,7 @@ const createMealIntoDB = async (payload: any, userId: string) => {
         throw new Error("Invalid user");
     }
 
-    const result = await prisma.user.create({
+    const result = await prisma.meal.create({
         data: {
             ...payload,
             providerId: userId
