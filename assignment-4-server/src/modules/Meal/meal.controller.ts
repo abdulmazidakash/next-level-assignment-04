@@ -18,9 +18,31 @@ const createMeals = async (req: Request, res: Response) => {
   } catch (error: any) {
     console.log(error)
   }
-}
+};
+
+const getAllMeals = async (req: Request, res: Response) => {
+  try {
+    const result = await mealService.getAllMealsIntoDB(req.user?.id);
+
+    sendResponse(res, {
+      statusCode: 201,
+      success: true,
+      message: "Meals retrieved Successfully.",
+      data: result,
+    });
+  } catch (error: any) {
+    sendResponse(res, {
+      statusCode: 201,
+      success: true,
+      message: error?.message || "Something went wrong!!",
+      data: null,
+    });
+  }
+};
+
 
 export const mealController = {
   createMeals,
+  getAllMeals,
     // Add controller methods here
     };
