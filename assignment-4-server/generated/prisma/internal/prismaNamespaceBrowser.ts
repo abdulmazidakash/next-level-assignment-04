@@ -94,7 +94,7 @@ export const MealScalarFieldEnum = {
   imageUrl: 'imageUrl',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  providerId: 'providerId'
+  customerId: 'customerId'
 } as const
 
 export type MealScalarFieldEnum = (typeof MealScalarFieldEnum)[keyof typeof MealScalarFieldEnum]

@@ -42,7 +42,7 @@ export type MealMinAggregateOutputType = {
   imageUrl: string | null
   createdAt: Date | null
   updatedAt: Date | null
-  providerId: string | null
+  customerId: string | null
 }
 
 export type MealMaxAggregateOutputType = {
@@ -53,7 +53,7 @@ export type MealMaxAggregateOutputType = {
   imageUrl: string | null
   createdAt: Date | null
   updatedAt: Date | null
-  providerId: string | null
+  customerId: string | null
 }
 
 export type MealCountAggregateOutputType = {
@@ -64,7 +64,7 @@ export type MealCountAggregateOutputType = {
   imageUrl: number
   createdAt: number
   updatedAt: number
-  providerId: number
+  customerId: number
   _all: number
 }
 
@@ -85,7 +85,7 @@ export type MealMinAggregateInputType = {
   imageUrl?: true
   createdAt?: true
   updatedAt?: true
-  providerId?: true
+  customerId?: true
 }
 
 export type MealMaxAggregateInputType = {
@@ -96,7 +96,7 @@ export type MealMaxAggregateInputType = {
   imageUrl?: true
   createdAt?: true
   updatedAt?: true
-  providerId?: true
+  customerId?: true
 }
 
 export type MealCountAggregateInputType = {
@@ -107,7 +107,7 @@ export type MealCountAggregateInputType = {
   imageUrl?: true
   createdAt?: true
   updatedAt?: true
-  providerId?: true
+  customerId?: true
   _all?: true
 }
 
@@ -205,7 +205,7 @@ export type MealGroupByOutputType = {
   imageUrl: string | null
   createdAt: Date
   updatedAt: Date
-  providerId: string
+  customerId: string
   _count: MealCountAggregateOutputType | null
   _avg: MealAvgAggregateOutputType | null
   _sum: MealSumAggregateOutputType | null
@@ -239,8 +239,8 @@ export type MealWhereInput = {
   imageUrl?: Prisma.StringNullableFilter<"Meal"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Meal"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Meal"> | Date | string
-  providerId?: Prisma.StringFilter<"Meal"> | string
-  provider?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  customerId?: Prisma.StringFilter<"Meal"> | string
+  customer?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type MealOrderByWithRelationInput = {
@@ -251,8 +251,8 @@ export type MealOrderByWithRelationInput = {
   imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  providerId?: Prisma.SortOrder
-  provider?: Prisma.UserOrderByWithRelationInput
+  customerId?: Prisma.SortOrder
+  customer?: Prisma.UserOrderByWithRelationInput
 }
 
 export type MealWhereUniqueInput = Prisma.AtLeast<{
@@ -266,8 +266,8 @@ export type MealWhereUniqueInput = Prisma.AtLeast<{
   imageUrl?: Prisma.StringNullableFilter<"Meal"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Meal"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Meal"> | Date | string
-  providerId?: Prisma.StringFilter<"Meal"> | string
-  provider?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  customerId?: Prisma.StringFilter<"Meal"> | string
+  customer?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
 
 export type MealOrderByWithAggregationInput = {
@@ -278,7 +278,7 @@ export type MealOrderByWithAggregationInput = {
   imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  providerId?: Prisma.SortOrder
+  customerId?: Prisma.SortOrder
   _count?: Prisma.MealCountOrderByAggregateInput
   _avg?: Prisma.MealAvgOrderByAggregateInput
   _max?: Prisma.MealMaxOrderByAggregateInput
@@ -297,7 +297,7 @@ export type MealScalarWhereWithAggregatesInput = {
   imageUrl?: Prisma.StringNullableWithAggregatesFilter<"Meal"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Meal"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Meal"> | Date | string
-  providerId?: Prisma.StringWithAggregatesFilter<"Meal"> | string
+  customerId?: Prisma.StringWithAggregatesFilter<"Meal"> | string
 }
 
 export type MealCreateInput = {
@@ -308,7 +308,7 @@ export type MealCreateInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  provider: Prisma.UserCreateNestedOneWithoutMealsInput
+  customer: Prisma.UserCreateNestedOneWithoutMealsInput
 }
 
 export type MealUncheckedCreateInput = {
@@ -319,7 +319,7 @@ export type MealUncheckedCreateInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  providerId: string
+  customerId: string
 }
 
 export type MealUpdateInput = {
@@ -330,7 +330,7 @@ export type MealUpdateInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  provider?: Prisma.UserUpdateOneRequiredWithoutMealsNestedInput
+  customer?: Prisma.UserUpdateOneRequiredWithoutMealsNestedInput
 }
 
 export type MealUncheckedUpdateInput = {
@@ -341,7 +341,7 @@ export type MealUncheckedUpdateInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  providerId?: Prisma.StringFieldUpdateOperationsInput | string
+  customerId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type MealCreateManyInput = {
@@ -352,7 +352,7 @@ export type MealCreateManyInput = {
   imageUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  providerId: string
+  customerId: string
 }
 
 export type MealUpdateManyMutationInput = {
@@ -373,7 +373,7 @@ export type MealUncheckedUpdateManyInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  providerId?: Prisma.StringFieldUpdateOperationsInput | string
+  customerId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type MealListRelationFilter = {
@@ -394,7 +394,7 @@ export type MealCountOrderByAggregateInput = {
   imageUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  providerId?: Prisma.SortOrder
+  customerId?: Prisma.SortOrder
 }
 
 export type MealAvgOrderByAggregateInput = {
@@ -409,7 +409,7 @@ export type MealMaxOrderByAggregateInput = {
   imageUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  providerId?: Prisma.SortOrder
+  customerId?: Prisma.SortOrder
 }
 
 export type MealMinOrderByAggregateInput = {
@@ -420,52 +420,52 @@ export type MealMinOrderByAggregateInput = {
   imageUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  providerId?: Prisma.SortOrder
+  customerId?: Prisma.SortOrder
 }
 
 export type MealSumOrderByAggregateInput = {
   price?: Prisma.SortOrder
 }
 
-export type MealCreateNestedManyWithoutProviderInput = {
-  create?: Prisma.XOR<Prisma.MealCreateWithoutProviderInput, Prisma.MealUncheckedCreateWithoutProviderInput> | Prisma.MealCreateWithoutProviderInput[] | Prisma.MealUncheckedCreateWithoutProviderInput[]
-  connectOrCreate?: Prisma.MealCreateOrConnectWithoutProviderInput | Prisma.MealCreateOrConnectWithoutProviderInput[]
-  createMany?: Prisma.MealCreateManyProviderInputEnvelope
+export type MealCreateNestedManyWithoutCustomerInput = {
+  create?: Prisma.XOR<Prisma.MealCreateWithoutCustomerInput, Prisma.MealUncheckedCreateWithoutCustomerInput> | Prisma.MealCreateWithoutCustomerInput[] | Prisma.MealUncheckedCreateWithoutCustomerInput[]
+  connectOrCreate?: Prisma.MealCreateOrConnectWithoutCustomerInput | Prisma.MealCreateOrConnectWithoutCustomerInput[]
+  createMany?: Prisma.MealCreateManyCustomerInputEnvelope
   connect?: Prisma.MealWhereUniqueInput | Prisma.MealWhereUniqueInput[]
 }
 
-export type MealUncheckedCreateNestedManyWithoutProviderInput = {
-  create?: Prisma.XOR<Prisma.MealCreateWithoutProviderInput, Prisma.MealUncheckedCreateWithoutProviderInput> | Prisma.MealCreateWithoutProviderInput[] | Prisma.MealUncheckedCreateWithoutProviderInput[]
-  connectOrCreate?: Prisma.MealCreateOrConnectWithoutProviderInput | Prisma.MealCreateOrConnectWithoutProviderInput[]
-  createMany?: Prisma.MealCreateManyProviderInputEnvelope
+export type MealUncheckedCreateNestedManyWithoutCustomerInput = {
+  create?: Prisma.XOR<Prisma.MealCreateWithoutCustomerInput, Prisma.MealUncheckedCreateWithoutCustomerInput> | Prisma.MealCreateWithoutCustomerInput[] | Prisma.MealUncheckedCreateWithoutCustomerInput[]
+  connectOrCreate?: Prisma.MealCreateOrConnectWithoutCustomerInput | Prisma.MealCreateOrConnectWithoutCustomerInput[]
+  createMany?: Prisma.MealCreateManyCustomerInputEnvelope
   connect?: Prisma.MealWhereUniqueInput | Prisma.MealWhereUniqueInput[]
 }
 
-export type MealUpdateManyWithoutProviderNestedInput = {
-  create?: Prisma.XOR<Prisma.MealCreateWithoutProviderInput, Prisma.MealUncheckedCreateWithoutProviderInput> | Prisma.MealCreateWithoutProviderInput[] | Prisma.MealUncheckedCreateWithoutProviderInput[]
-  connectOrCreate?: Prisma.MealCreateOrConnectWithoutProviderInput | Prisma.MealCreateOrConnectWithoutProviderInput[]
-  upsert?: Prisma.MealUpsertWithWhereUniqueWithoutProviderInput | Prisma.MealUpsertWithWhereUniqueWithoutProviderInput[]
-  createMany?: Prisma.MealCreateManyProviderInputEnvelope
+export type MealUpdateManyWithoutCustomerNestedInput = {
+  create?: Prisma.XOR<Prisma.MealCreateWithoutCustomerInput, Prisma.MealUncheckedCreateWithoutCustomerInput> | Prisma.MealCreateWithoutCustomerInput[] | Prisma.MealUncheckedCreateWithoutCustomerInput[]
+  connectOrCreate?: Prisma.MealCreateOrConnectWithoutCustomerInput | Prisma.MealCreateOrConnectWithoutCustomerInput[]
+  upsert?: Prisma.MealUpsertWithWhereUniqueWithoutCustomerInput | Prisma.MealUpsertWithWhereUniqueWithoutCustomerInput[]
+  createMany?: Prisma.MealCreateManyCustomerInputEnvelope
   set?: Prisma.MealWhereUniqueInput | Prisma.MealWhereUniqueInput[]
   disconnect?: Prisma.MealWhereUniqueInput | Prisma.MealWhereUniqueInput[]
   delete?: Prisma.MealWhereUniqueInput | Prisma.MealWhereUniqueInput[]
   connect?: Prisma.MealWhereUniqueInput | Prisma.MealWhereUniqueInput[]
-  update?: Prisma.MealUpdateWithWhereUniqueWithoutProviderInput | Prisma.MealUpdateWithWhereUniqueWithoutProviderInput[]
-  updateMany?: Prisma.MealUpdateManyWithWhereWithoutProviderInput | Prisma.MealUpdateManyWithWhereWithoutProviderInput[]
+  update?: Prisma.MealUpdateWithWhereUniqueWithoutCustomerInput | Prisma.MealUpdateWithWhereUniqueWithoutCustomerInput[]
+  updateMany?: Prisma.MealUpdateManyWithWhereWithoutCustomerInput | Prisma.MealUpdateManyWithWhereWithoutCustomerInput[]
   deleteMany?: Prisma.MealScalarWhereInput | Prisma.MealScalarWhereInput[]
 }
 
-export type MealUncheckedUpdateManyWithoutProviderNestedInput = {
-  create?: Prisma.XOR<Prisma.MealCreateWithoutProviderInput, Prisma.MealUncheckedCreateWithoutProviderInput> | Prisma.MealCreateWithoutProviderInput[] | Prisma.MealUncheckedCreateWithoutProviderInput[]
-  connectOrCreate?: Prisma.MealCreateOrConnectWithoutProviderInput | Prisma.MealCreateOrConnectWithoutProviderInput[]
-  upsert?: Prisma.MealUpsertWithWhereUniqueWithoutProviderInput | Prisma.MealUpsertWithWhereUniqueWithoutProviderInput[]
-  createMany?: Prisma.MealCreateManyProviderInputEnvelope
+export type MealUncheckedUpdateManyWithoutCustomerNestedInput = {
+  create?: Prisma.XOR<Prisma.MealCreateWithoutCustomerInput, Prisma.MealUncheckedCreateWithoutCustomerInput> | Prisma.MealCreateWithoutCustomerInput[] | Prisma.MealUncheckedCreateWithoutCustomerInput[]
+  connectOrCreate?: Prisma.MealCreateOrConnectWithoutCustomerInput | Prisma.MealCreateOrConnectWithoutCustomerInput[]
+  upsert?: Prisma.MealUpsertWithWhereUniqueWithoutCustomerInput | Prisma.MealUpsertWithWhereUniqueWithoutCustomerInput[]
+  createMany?: Prisma.MealCreateManyCustomerInputEnvelope
   set?: Prisma.MealWhereUniqueInput | Prisma.MealWhereUniqueInput[]
   disconnect?: Prisma.MealWhereUniqueInput | Prisma.MealWhereUniqueInput[]
   delete?: Prisma.MealWhereUniqueInput | Prisma.MealWhereUniqueInput[]
   connect?: Prisma.MealWhereUniqueInput | Prisma.MealWhereUniqueInput[]
-  update?: Prisma.MealUpdateWithWhereUniqueWithoutProviderInput | Prisma.MealUpdateWithWhereUniqueWithoutProviderInput[]
-  updateMany?: Prisma.MealUpdateManyWithWhereWithoutProviderInput | Prisma.MealUpdateManyWithWhereWithoutProviderInput[]
+  update?: Prisma.MealUpdateWithWhereUniqueWithoutCustomerInput | Prisma.MealUpdateWithWhereUniqueWithoutCustomerInput[]
+  updateMany?: Prisma.MealUpdateManyWithWhereWithoutCustomerInput | Prisma.MealUpdateManyWithWhereWithoutCustomerInput[]
   deleteMany?: Prisma.MealScalarWhereInput | Prisma.MealScalarWhereInput[]
 }
 
@@ -481,7 +481,7 @@ export type FloatFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type MealCreateWithoutProviderInput = {
+export type MealCreateWithoutCustomerInput = {
   id?: string
   name: string
   description?: string | null
@@ -491,7 +491,7 @@ export type MealCreateWithoutProviderInput = {
   updatedAt?: Date | string
 }
 
-export type MealUncheckedCreateWithoutProviderInput = {
+export type MealUncheckedCreateWithoutCustomerInput = {
   id?: string
   name: string
   description?: string | null
@@ -501,30 +501,30 @@ export type MealUncheckedCreateWithoutProviderInput = {
   updatedAt?: Date | string
 }
 
-export type MealCreateOrConnectWithoutProviderInput = {
+export type MealCreateOrConnectWithoutCustomerInput = {
   where: Prisma.MealWhereUniqueInput
-  create: Prisma.XOR<Prisma.MealCreateWithoutProviderInput, Prisma.MealUncheckedCreateWithoutProviderInput>
+  create: Prisma.XOR<Prisma.MealCreateWithoutCustomerInput, Prisma.MealUncheckedCreateWithoutCustomerInput>
 }
 
-export type MealCreateManyProviderInputEnvelope = {
-  data: Prisma.MealCreateManyProviderInput | Prisma.MealCreateManyProviderInput[]
+export type MealCreateManyCustomerInputEnvelope = {
+  data: Prisma.MealCreateManyCustomerInput | Prisma.MealCreateManyCustomerInput[]
   skipDuplicates?: boolean
 }
 
-export type MealUpsertWithWhereUniqueWithoutProviderInput = {
+export type MealUpsertWithWhereUniqueWithoutCustomerInput = {
   where: Prisma.MealWhereUniqueInput
-  update: Prisma.XOR<Prisma.MealUpdateWithoutProviderInput, Prisma.MealUncheckedUpdateWithoutProviderInput>
-  create: Prisma.XOR<Prisma.MealCreateWithoutProviderInput, Prisma.MealUncheckedCreateWithoutProviderInput>
+  update: Prisma.XOR<Prisma.MealUpdateWithoutCustomerInput, Prisma.MealUncheckedUpdateWithoutCustomerInput>
+  create: Prisma.XOR<Prisma.MealCreateWithoutCustomerInput, Prisma.MealUncheckedCreateWithoutCustomerInput>
 }
 
-export type MealUpdateWithWhereUniqueWithoutProviderInput = {
+export type MealUpdateWithWhereUniqueWithoutCustomerInput = {
   where: Prisma.MealWhereUniqueInput
-  data: Prisma.XOR<Prisma.MealUpdateWithoutProviderInput, Prisma.MealUncheckedUpdateWithoutProviderInput>
+  data: Prisma.XOR<Prisma.MealUpdateWithoutCustomerInput, Prisma.MealUncheckedUpdateWithoutCustomerInput>
 }
 
-export type MealUpdateManyWithWhereWithoutProviderInput = {
+export type MealUpdateManyWithWhereWithoutCustomerInput = {
   where: Prisma.MealScalarWhereInput
-  data: Prisma.XOR<Prisma.MealUpdateManyMutationInput, Prisma.MealUncheckedUpdateManyWithoutProviderInput>
+  data: Prisma.XOR<Prisma.MealUpdateManyMutationInput, Prisma.MealUncheckedUpdateManyWithoutCustomerInput>
 }
 
 export type MealScalarWhereInput = {
@@ -538,10 +538,10 @@ export type MealScalarWhereInput = {
   imageUrl?: Prisma.StringNullableFilter<"Meal"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Meal"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Meal"> | Date | string
-  providerId?: Prisma.StringFilter<"Meal"> | string
+  customerId?: Prisma.StringFilter<"Meal"> | string
 }
 
-export type MealCreateManyProviderInput = {
+export type MealCreateManyCustomerInput = {
   id?: string
   name: string
   description?: string | null
@@ -551,7 +551,7 @@ export type MealCreateManyProviderInput = {
   updatedAt?: Date | string
 }
 
-export type MealUpdateWithoutProviderInput = {
+export type MealUpdateWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -561,7 +561,7 @@ export type MealUpdateWithoutProviderInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type MealUncheckedUpdateWithoutProviderInput = {
+export type MealUncheckedUpdateWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -571,7 +571,7 @@ export type MealUncheckedUpdateWithoutProviderInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type MealUncheckedUpdateManyWithoutProviderInput = {
+export type MealUncheckedUpdateManyWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -591,8 +591,8 @@ export type MealSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   imageUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  providerId?: boolean
-  provider?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  customerId?: boolean
+  customer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["meal"]>
 
 export type MealSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -603,8 +603,8 @@ export type MealSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   imageUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  providerId?: boolean
-  provider?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  customerId?: boolean
+  customer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["meal"]>
 
 export type MealSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -615,8 +615,8 @@ export type MealSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   imageUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  providerId?: boolean
-  provider?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  customerId?: boolean
+  customer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["meal"]>
 
 export type MealSelectScalar = {
@@ -627,24 +627,24 @@ export type MealSelectScalar = {
   imageUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  providerId?: boolean
+  customerId?: boolean
 }
 
-export type MealOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "price" | "imageUrl" | "createdAt" | "updatedAt" | "providerId", ExtArgs["result"]["meal"]>
+export type MealOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "price" | "imageUrl" | "createdAt" | "updatedAt" | "customerId", ExtArgs["result"]["meal"]>
 export type MealInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  provider?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  customer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type MealIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  provider?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  customer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type MealIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  provider?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  customer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $MealPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Meal"
   objects: {
-    provider: Prisma.$UserPayload<ExtArgs>
+    customer: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -654,7 +654,7 @@ export type $MealPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     imageUrl: string | null
     createdAt: Date
     updatedAt: Date
-    providerId: string
+    customerId: string
   }, ExtArgs["result"]["meal"]>
   composites: {}
 }
@@ -1049,7 +1049,7 @@ readonly fields: MealFieldRefs;
  */
 export interface Prisma__MealClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  provider<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  customer<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1086,7 +1086,7 @@ export interface MealFieldRefs {
   readonly imageUrl: Prisma.FieldRef<"Meal", 'String'>
   readonly createdAt: Prisma.FieldRef<"Meal", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Meal", 'DateTime'>
-  readonly providerId: Prisma.FieldRef<"Meal", 'String'>
+  readonly customerId: Prisma.FieldRef<"Meal", 'String'>
 }
     
 

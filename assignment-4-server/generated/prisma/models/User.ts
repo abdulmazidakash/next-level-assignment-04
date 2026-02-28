@@ -276,7 +276,7 @@ export type UserCreateInput = {
   status?: $Enums.Status
   createdAt?: Date | string
   updatedAt?: Date | string
-  meals?: Prisma.MealCreateNestedManyWithoutProviderInput
+  meals?: Prisma.MealCreateNestedManyWithoutCustomerInput
   providerProfiles?: Prisma.ProviderProfilesCreateNestedOneWithoutUserInput
 }
 
@@ -289,7 +289,7 @@ export type UserUncheckedCreateInput = {
   status?: $Enums.Status
   createdAt?: Date | string
   updatedAt?: Date | string
-  meals?: Prisma.MealUncheckedCreateNestedManyWithoutProviderInput
+  meals?: Prisma.MealUncheckedCreateNestedManyWithoutCustomerInput
   providerProfiles?: Prisma.ProviderProfilesUncheckedCreateNestedOneWithoutUserInput
 }
 
@@ -302,7 +302,7 @@ export type UserUpdateInput = {
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  meals?: Prisma.MealUpdateManyWithoutProviderNestedInput
+  meals?: Prisma.MealUpdateManyWithoutCustomerNestedInput
   providerProfiles?: Prisma.ProviderProfilesUpdateOneWithoutUserNestedInput
 }
 
@@ -315,7 +315,7 @@ export type UserUncheckedUpdateInput = {
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  meals?: Prisma.MealUncheckedUpdateManyWithoutProviderNestedInput
+  meals?: Prisma.MealUncheckedUpdateManyWithoutCustomerNestedInput
   providerProfiles?: Prisma.ProviderProfilesUncheckedUpdateOneWithoutUserNestedInput
 }
 
@@ -507,7 +507,7 @@ export type UserCreateWithoutProviderProfilesInput = {
   status?: $Enums.Status
   createdAt?: Date | string
   updatedAt?: Date | string
-  meals?: Prisma.MealCreateNestedManyWithoutProviderInput
+  meals?: Prisma.MealCreateNestedManyWithoutCustomerInput
 }
 
 export type UserUncheckedCreateWithoutProviderProfilesInput = {
@@ -519,7 +519,7 @@ export type UserUncheckedCreateWithoutProviderProfilesInput = {
   status?: $Enums.Status
   createdAt?: Date | string
   updatedAt?: Date | string
-  meals?: Prisma.MealUncheckedCreateNestedManyWithoutProviderInput
+  meals?: Prisma.MealUncheckedCreateNestedManyWithoutCustomerInput
 }
 
 export type UserCreateOrConnectWithoutProviderProfilesInput = {
@@ -547,7 +547,7 @@ export type UserUpdateWithoutProviderProfilesInput = {
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  meals?: Prisma.MealUpdateManyWithoutProviderNestedInput
+  meals?: Prisma.MealUpdateManyWithoutCustomerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProviderProfilesInput = {
@@ -559,7 +559,7 @@ export type UserUncheckedUpdateWithoutProviderProfilesInput = {
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  meals?: Prisma.MealUncheckedUpdateManyWithoutProviderNestedInput
+  meals?: Prisma.MealUncheckedUpdateManyWithoutCustomerNestedInput
 }
 
 

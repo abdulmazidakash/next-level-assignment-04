@@ -13,7 +13,7 @@ const createMealIntoDB = async (payload: any, userId: string) => {
     const result = await prisma.meal.create({
         data: {
             ...payload,
-            providerId: userId
+            customerId: userId
         },
     });
 
@@ -32,7 +32,7 @@ const getAllMealsIntoDB = async (userId: string) => {
 
   const result = await prisma.meal.findMany({
     where: {
-      providerId: user.id,
+      customerId: user.id,
     },
   });
 

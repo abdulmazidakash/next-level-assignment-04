@@ -52,8 +52,8 @@ model Meal {
   // provider ProviderProfile @relation(fields: [providerId], references: [id])
   // orders Order[]reviews Review[]
 
-  providerId String
-  provider   User   @relation(fields: [providerId], references: [id])
+  customerId String
+  customer   User   @relation(fields: [customerId], references: [id])
 
   @@map("meals")
 }

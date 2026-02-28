@@ -4,7 +4,8 @@ import { mealController } from './meal.controller';
 
 const router = express.Router();
 
-router.post('/', auth(UserRole.provider), mealController.createMeals);
-router.get("/", auth(UserRole.provider), mealController.getAllMeals);
-router.get("/:id", auth(UserRole.provider), mealController.getSingleMeals);
+router.post('/', auth(UserRole.customer), mealController.createMeals);
+router.get("/", auth(UserRole.customer), mealController.getAllMeals);
+router.get("/:id", auth(UserRole.customer), mealController.getSingleMeals);
+
 export const mealRoutes = router;
