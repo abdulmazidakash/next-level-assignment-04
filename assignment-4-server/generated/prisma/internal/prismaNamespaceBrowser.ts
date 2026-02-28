@@ -52,7 +52,8 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
-  Meal: 'Meal'
+  Meal: 'Meal',
+  ProviderProfiles: 'ProviderProfiles'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -97,6 +98,21 @@ export const MealScalarFieldEnum = {
 } as const
 
 export type MealScalarFieldEnum = (typeof MealScalarFieldEnum)[keyof typeof MealScalarFieldEnum]
+
+
+export const ProviderProfilesScalarFieldEnum = {
+  id: 'id',
+  restaurantName: 'restaurantName',
+  bio: 'bio',
+  address: 'address',
+  cuisineType: 'cuisineType',
+  isApproved: 'isApproved',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  providerId: 'providerId'
+} as const
+
+export type ProviderProfilesScalarFieldEnum = (typeof ProviderProfilesScalarFieldEnum)[keyof typeof ProviderProfilesScalarFieldEnum]
 
 
 export const SortOrder = {

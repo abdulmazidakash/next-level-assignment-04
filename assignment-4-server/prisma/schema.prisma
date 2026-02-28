@@ -28,7 +28,8 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  meals Meal[]
+  meals            Meal[]
+  providerProfiles ProviderProfiles?
 
   @@index([status])
   @@map("users")
@@ -55,4 +56,21 @@ model Meal {
   provider   User   @relation(fields: [providerId], references: [id])
 
   @@map("meals")
+}
+
+model ProviderProfiles {
+  id             String  @id @default(uuid())
+  restaurantName String
+  bio            String?
+  address        String?
+  cuisineType    String?
+  isApproved     Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  providerId String @unique
+  user       User   @relation(fields: [providerId], references: [id])
+
+  @@map("provider_profiles")
 }

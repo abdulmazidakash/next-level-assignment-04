@@ -27,3 +27,8 @@ export type User = Prisma.UserModel
  * 
  */
 export type Meal = Prisma.MealModel
+/**
+ * Model ProviderProfiles
+ * 
+ */
+export type ProviderProfiles = Prisma.ProviderProfilesModel

@@ -39,8 +39,19 @@ const getAllMealsIntoDB = async (userId: string) => {
   return result;
 };
 
+const getSingleMealIntoDB = async (mealId: string) => {
+  const result = await prisma.meal.findUnique({
+    where: {
+      id: mealId,
+    },
+  });
+
+  return result;
+};
+
 export const mealService = {
     // Add service methods here
     createMealIntoDB,
     getAllMealsIntoDB,
+    getSingleMealIntoDB,
 };

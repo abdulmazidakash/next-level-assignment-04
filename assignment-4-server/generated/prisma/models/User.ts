@@ -207,6 +207,7 @@ export type UserWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   meals?: Prisma.MealListRelationFilter
+  providerProfiles?: Prisma.XOR<Prisma.ProviderProfilesNullableScalarRelationFilter, Prisma.ProviderProfilesWhereInput> | null
 }
 
 export type UserOrderByWithRelationInput = {
@@ -219,6 +220,7 @@ export type UserOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   meals?: Prisma.MealOrderByRelationAggregateInput
+  providerProfiles?: Prisma.ProviderProfilesOrderByWithRelationInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -234,6 +236,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   meals?: Prisma.MealListRelationFilter
+  providerProfiles?: Prisma.XOR<Prisma.ProviderProfilesNullableScalarRelationFilter, Prisma.ProviderProfilesWhereInput> | null
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -274,6 +277,7 @@ export type UserCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   meals?: Prisma.MealCreateNestedManyWithoutProviderInput
+  providerProfiles?: Prisma.ProviderProfilesCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -286,6 +290,7 @@ export type UserUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   meals?: Prisma.MealUncheckedCreateNestedManyWithoutProviderInput
+  providerProfiles?: Prisma.ProviderProfilesUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -298,6 +303,7 @@ export type UserUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   meals?: Prisma.MealUpdateManyWithoutProviderNestedInput
+  providerProfiles?: Prisma.ProviderProfilesUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -310,6 +316,7 @@ export type UserUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   meals?: Prisma.MealUncheckedUpdateManyWithoutProviderNestedInput
+  providerProfiles?: Prisma.ProviderProfilesUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -413,6 +420,20 @@ export type UserUpdateOneRequiredWithoutMealsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMealsInput, Prisma.UserUpdateWithoutMealsInput>, Prisma.UserUncheckedUpdateWithoutMealsInput>
 }
 
+export type UserCreateNestedOneWithoutProviderProfilesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutProviderProfilesInput, Prisma.UserUncheckedCreateWithoutProviderProfilesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProviderProfilesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutProviderProfilesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutProviderProfilesInput, Prisma.UserUncheckedCreateWithoutProviderProfilesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProviderProfilesInput
+  upsert?: Prisma.UserUpsertWithoutProviderProfilesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutProviderProfilesInput, Prisma.UserUpdateWithoutProviderProfilesInput>, Prisma.UserUncheckedUpdateWithoutProviderProfilesInput>
+}
+
 export type UserCreateWithoutMealsInput = {
   id?: string
   name: string
@@ -422,6 +443,7 @@ export type UserCreateWithoutMealsInput = {
   status?: $Enums.Status
   createdAt?: Date | string
   updatedAt?: Date | string
+  providerProfiles?: Prisma.ProviderProfilesCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutMealsInput = {
@@ -433,6 +455,7 @@ export type UserUncheckedCreateWithoutMealsInput = {
   status?: $Enums.Status
   createdAt?: Date | string
   updatedAt?: Date | string
+  providerProfiles?: Prisma.ProviderProfilesUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutMealsInput = {
@@ -460,6 +483,7 @@ export type UserUpdateWithoutMealsInput = {
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  providerProfiles?: Prisma.ProviderProfilesUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMealsInput = {
@@ -471,6 +495,71 @@ export type UserUncheckedUpdateWithoutMealsInput = {
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  providerProfiles?: Prisma.ProviderProfilesUncheckedUpdateOneWithoutUserNestedInput
+}
+
+export type UserCreateWithoutProviderProfilesInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role: $Enums.Role
+  status?: $Enums.Status
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  meals?: Prisma.MealCreateNestedManyWithoutProviderInput
+}
+
+export type UserUncheckedCreateWithoutProviderProfilesInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role: $Enums.Role
+  status?: $Enums.Status
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  meals?: Prisma.MealUncheckedCreateNestedManyWithoutProviderInput
+}
+
+export type UserCreateOrConnectWithoutProviderProfilesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutProviderProfilesInput, Prisma.UserUncheckedCreateWithoutProviderProfilesInput>
+}
+
+export type UserUpsertWithoutProviderProfilesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutProviderProfilesInput, Prisma.UserUncheckedUpdateWithoutProviderProfilesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutProviderProfilesInput, Prisma.UserUncheckedCreateWithoutProviderProfilesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutProviderProfilesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutProviderProfilesInput, Prisma.UserUncheckedUpdateWithoutProviderProfilesInput>
+}
+
+export type UserUpdateWithoutProviderProfilesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  meals?: Prisma.MealUpdateManyWithoutProviderNestedInput
+}
+
+export type UserUncheckedUpdateWithoutProviderProfilesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  meals?: Prisma.MealUncheckedUpdateManyWithoutProviderNestedInput
 }
 
 
@@ -514,6 +603,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   createdAt?: boolean
   updatedAt?: boolean
   meals?: boolean | Prisma.User$mealsArgs<ExtArgs>
+  providerProfiles?: boolean | Prisma.User$providerProfilesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -553,6 +643,7 @@ export type UserSelectScalar = {
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "password" | "role" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   meals?: boolean | Prisma.User$mealsArgs<ExtArgs>
+  providerProfiles?: boolean | Prisma.User$providerProfilesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -562,6 +653,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "User"
   objects: {
     meals: Prisma.$MealPayload<ExtArgs>[]
+    providerProfiles: Prisma.$ProviderProfilesPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -967,6 +1059,7 @@ readonly fields: UserFieldRefs;
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   meals<T extends Prisma.User$mealsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$mealsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MealPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  providerProfiles<T extends Prisma.User$providerProfilesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$providerProfilesArgs<ExtArgs>>): Prisma.Prisma__ProviderProfilesClient<runtime.Types.Result.GetResult<Prisma.$ProviderProfilesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1413,6 +1506,25 @@ export type User$mealsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
   take?: number
   skip?: number
   distinct?: Prisma.MealScalarFieldEnum | Prisma.MealScalarFieldEnum[]
+}
+
+/**
+ * User.providerProfiles
+ */
+export type User$providerProfilesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProviderProfiles
+   */
+  select?: Prisma.ProviderProfilesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProviderProfiles
+   */
+  omit?: Prisma.ProviderProfilesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProviderProfilesInclude<ExtArgs> | null
+  where?: Prisma.ProviderProfilesWhereInput
 }
 
 /**

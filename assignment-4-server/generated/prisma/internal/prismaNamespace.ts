@@ -385,7 +385,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   User: 'User',
-  Meal: 'Meal'
+  Meal: 'Meal',
+  ProviderProfiles: 'ProviderProfiles'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -401,7 +402,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "meal"
+    modelProps: "user" | "meal" | "providerProfiles"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -553,6 +554,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ProviderProfiles: {
+      payload: Prisma.$ProviderProfilesPayload<ExtArgs>
+      fields: Prisma.ProviderProfilesFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ProviderProfilesFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderProfilesPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ProviderProfilesFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderProfilesPayload>
+        }
+        findFirst: {
+          args: Prisma.ProviderProfilesFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderProfilesPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ProviderProfilesFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderProfilesPayload>
+        }
+        findMany: {
+          args: Prisma.ProviderProfilesFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderProfilesPayload>[]
+        }
+        create: {
+          args: Prisma.ProviderProfilesCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderProfilesPayload>
+        }
+        createMany: {
+          args: Prisma.ProviderProfilesCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ProviderProfilesCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderProfilesPayload>[]
+        }
+        delete: {
+          args: Prisma.ProviderProfilesDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderProfilesPayload>
+        }
+        update: {
+          args: Prisma.ProviderProfilesUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderProfilesPayload>
+        }
+        deleteMany: {
+          args: Prisma.ProviderProfilesDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ProviderProfilesUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ProviderProfilesUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderProfilesPayload>[]
+        }
+        upsert: {
+          args: Prisma.ProviderProfilesUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProviderProfilesPayload>
+        }
+        aggregate: {
+          args: Prisma.ProviderProfilesAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateProviderProfiles>
+        }
+        groupBy: {
+          args: Prisma.ProviderProfilesGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProviderProfilesGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ProviderProfilesCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProviderProfilesCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -618,6 +693,21 @@ export const MealScalarFieldEnum = {
 } as const
 
 export type MealScalarFieldEnum = (typeof MealScalarFieldEnum)[keyof typeof MealScalarFieldEnum]
+
+
+export const ProviderProfilesScalarFieldEnum = {
+  id: 'id',
+  restaurantName: 'restaurantName',
+  bio: 'bio',
+  address: 'address',
+  cuisineType: 'cuisineType',
+  isApproved: 'isApproved',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  providerId: 'providerId'
+} as const
+
+export type ProviderProfilesScalarFieldEnum = (typeof ProviderProfilesScalarFieldEnum)[keyof typeof ProviderProfilesScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -717,6 +807,13 @@ export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, '
  * Reference to a field of type 'Float[]'
  */
 export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -830,6 +927,7 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
   meal?: Prisma.MealOmit
+  providerProfiles?: Prisma.ProviderProfilesOmit
 }
 
 /* Types for Logging */

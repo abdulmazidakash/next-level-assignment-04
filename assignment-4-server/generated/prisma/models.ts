@@ -10,4 +10,5 @@
  */
 export type * from './models/User'
 export type * from './models/Meal'
+export type * from './models/ProviderProfiles'
 export type * from './commonInputTypes'
