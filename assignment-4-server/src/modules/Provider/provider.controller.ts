@@ -2,13 +2,10 @@ import { Request, Response } from "express";
 import sendResponse from "../../utils/sendResponse";
 import { ProviderService } from "./provider.service";
 
-const createProviders = async (req: Request, res: Response) => {
-  // console.log(req)
+// -------- CREATE PROVIDER --------
+const createProvider = async (req: Request, res: Response) => {
   try {
-    const result = await ProviderService.createProviderIntoDB(req.body, req.user?.id);
-    // console.log('controller meal', req.body)
-    // const result ='';
-
+    const result = await ProviderService.createProviderIntoDB(req.body, req.user?.id!);
     sendResponse(res, {
       statusCode: 201,
       success: true,
@@ -16,54 +13,58 @@ const createProviders = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error: any) {
-    console.log(error)
-  }
-};
-
-const getAllProviders = async (req: Request, res: Response) => {
-  try {
-    const result = await ProviderService.getAllProvidersIntoDB(req.user?.id);
-
     sendResponse(res, {
-      statusCode: 201,
-      success: true,
-      message: "Providers retrieved Successfully.",
-      data: result,
-    });
-  } catch (error: any) {
-    sendResponse(res, {
-      statusCode: 201,
-      success: true,
-      message: error?.message || "Something went wrong!!",
+      statusCode: 400,
+      success: false,
+      message: error.message || "Something went wrong",
       data: null,
     });
   }
 };
 
-const getSingleProviders = async (req: Request, res: Response) => {
+// -------- GET ALL PROVIDERS --------
+const getAllProviders = async (_req: Request, res: Response) => {
   try {
-    const result = await ProviderService.getSingleProviderIntoDB(req.params?.id as string);
-
+    const result = await ProviderService.getAllProvidersIntoDB();
     sendResponse(res, {
-      statusCode: 201,
+      statusCode: 200,
       success: true,
-      message: "Providers retrieved Successfully.",
+      message: "Providers retrieved successfully",
       data: result,
     });
   } catch (error: any) {
     sendResponse(res, {
-      statusCode: 201,
-      success: true,
-      message: error?.message || "Something went wrong!!",
+      statusCode: 400,
+      success: false,
+      message: error.message || "Something went wrong",
       data: null,
     });
   }
 };
 
+// -------- GET SINGLE PROVIDER --------
+const getSingleProvider = async (req: Request, res: Response) => {
+  try {
+    const result = await ProviderService.getSingleProviderIntoDB(req.params.id as string);
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Provider retrieved successfully",
+      data: result,
+    });
+  } catch (error: any) {
+    sendResponse(res, {
+      statusCode: 404,
+      success: false,
+      message: error.message || "Provider not found",
+      data: null,
+    });
+  }
+};
+
+// -------- EXPORT CONTROLLER --------
 export const ProviderController = {
-    // Add controller methods here
-
-    createProviders,
-    getAllProviders,
-    getSingleProviders,
-    };
+  createProvider,
+  getAllProviders,
+  getSingleProvider,
+};

@@ -3,11 +3,15 @@ import sendResponse from "../../utils/sendResponse";
 import { mealService } from "./meal.service";
 
 const createMeals = async (req: Request, res: Response) => {
-  // console.log(req)
   try {
-    const result = await mealService.createMealIntoDB(req.body, req.user?.id);
-    // console.log('controller meal', req.body)
-    // const result ='';
+    if (!req.user?.id) {
+      throw new Error("Unauthorized user");
+    }
+
+    const result = await mealService.createMealIntoDB(
+      req.body,
+      req.user.id
+    );
 
     sendResponse(res, {
       statusCode: 201,
@@ -16,25 +20,30 @@ const createMeals = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error: any) {
-    console.log(error)
+    sendResponse(res, {
+      statusCode: 400,
+      success: false,
+      message: error?.message || "Failed to create meal",
+      data: null,
+    });
   }
 };
 
 const getAllMeals = async (req: Request, res: Response) => {
   try {
-    const result = await mealService.getAllMealsIntoDB(req.user?.id);
+    const result = await mealService.getAllMealsIntoDB();
 
     sendResponse(res, {
-      statusCode: 201,
+      statusCode: 200,
       success: true,
-      message: "Meals retrieved Successfully.",
+      message: "Meals retrieved successfully",
       data: result,
     });
   } catch (error: any) {
     sendResponse(res, {
-      statusCode: 201,
-      success: true,
-      message: error?.message || "Something went wrong!!",
+      statusCode: 400,
+      success: false,
+      message: error?.message || "Failed to retrieve meals",
       data: null,
     });
   }
@@ -42,19 +51,25 @@ const getAllMeals = async (req: Request, res: Response) => {
 
 const getSingleMeals = async (req: Request, res: Response) => {
   try {
-    const result = await mealService.getSingleMealIntoDB(req.params?.id as string);
+    const result = await mealService.getSingleMealIntoDB(
+      req.params.id as string
+    );
+
+    if (!result) {
+      throw new Error("Meal not found");
+    }
 
     sendResponse(res, {
-      statusCode: 201,
+      statusCode: 200,
       success: true,
-      message: "Meals retrieved Successfully.",
+      message: "Meal retrieved successfully",
       data: result,
     });
   } catch (error: any) {
     sendResponse(res, {
-      statusCode: 201,
-      success: true,
-      message: error?.message || "Something went wrong!!",
+      statusCode: 404,
+      success: false,
+      message: error?.message || "Meal not found",
       data: null,
     });
   }

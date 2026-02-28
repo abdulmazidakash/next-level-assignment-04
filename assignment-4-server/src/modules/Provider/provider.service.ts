@@ -1,55 +1,66 @@
 import { prisma } from "../../lib/prisma";
 
 const createProviderIntoDB = async (payload: any, userId: string) => {
-    const user = await prisma.user.findUnique({
-        where: {
-            id: userId,
-        },
-    });
-    if (!user) {
-        throw new Error("Invalid user");
-    }
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+  });
 
-    const result = await prisma.providerProfiles.create({
-        data: {
-            ...payload,
-            providerId: user?.id,
-        },
-    });
+  if (!user) {
+    throw new Error("Invalid user");
+  }
 
-    return result;
+  if (user.role !== "PROVIDER") {
+    throw new Error("Only providers can create provider profile");
+  }
+
+  const existingProfile = await prisma.providerProfiles.findUnique({
+    where: { providerId: userId },
+  });
+
+  if (existingProfile) {
+    throw new Error("Provider profile already exists");
+  }
+
+  const result = await prisma.providerProfiles.create({
+    data: {
+      ...payload,
+      providerId: userId,
+    },
+  });
+
+  return result;
 };
 
-const getAllProvidersIntoDB = async (userId: string) => {
-    const user = await prisma.user.findUnique({
-        where: {
-            id: userId,
-        },
-    });
-    if (!user) {
-        throw new Error("User not found!!");
-    }
+const getAllProvidersIntoDB = async () => {
+  const result = await prisma.providerProfiles.findMany({
+    where: {
+      isApproved: true,
+    },
+    include: {
+      user: true,
+      meals: true,
+    },
+  });
 
-    const result = await prisma.providerProfiles.findUniqueOrThrow({
-        where: {
-            providerId: user.id,
-        },
-        include: {
-            user: true,
-        },
-    });
-
-    return result;
+  return result;
 };
 
-const getSingleProviderIntoDB = async (mealId: string) => {
-    const result = await prisma.meal.findUnique({
-        where: {
-            id: mealId,
-        },
-    });
+const getSingleProviderIntoDB = async (providerId: string) => {
+  const result = await prisma.providerProfiles.findUnique({
+    where: {
+      id: providerId,
+    },
+    include: {
+      user: true,
+      meals: true,
+    },
+  });
 
-    return result;
+  if (!result) {
+    throw new Error("Provider not found");
+  }
+
+  return result;
 };
 
 export const ProviderService = {

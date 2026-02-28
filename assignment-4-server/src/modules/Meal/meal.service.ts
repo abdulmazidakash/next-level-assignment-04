@@ -1,38 +1,33 @@
 import { prisma } from "../../lib/prisma";
 
 const createMealIntoDB = async (payload: any, userId: string) => {
-    const user = await prisma.user.findUnique({
-        where: {
-            id: userId,
-        },
-    });
-    if (!user) {
-        throw new Error("Invalid user");
-    }
-
-    const result = await prisma.meal.create({
-        data: {
-            ...payload,
-            customerId: userId
-        },
-    });
-
-    return result;
-};
-
-const getAllMealsIntoDB = async (userId: string) => {
   const user = await prisma.user.findUnique({
-    where: {
-      id: userId,
-    },
+    where: { id: userId },
+    include: { providerProfile: true },
   });
-  if (!user) {
-    throw new Error("User not found!!");
+
+  if (!user || user.role !== "PROVIDER") {
+    throw new Error("Only providers can create meals");
   }
 
+  if (!user.providerProfile) {
+    throw new Error("Provider profile not found");
+  }
+
+  const result = await prisma.meal.create({
+    data: {
+      ...payload,
+      providerId: user.providerProfile.id,
+    },
+  });
+
+  return result;
+};
+const getAllMealsIntoDB = async () => {
   const result = await prisma.meal.findMany({
-    where: {
-      customerId: user.id,
+    include: {
+      provider: true,
+      category: true,
     },
   });
 
@@ -41,8 +36,11 @@ const getAllMealsIntoDB = async (userId: string) => {
 
 const getSingleMealIntoDB = async (mealId: string) => {
   const result = await prisma.meal.findUnique({
-    where: {
-      id: mealId,
+    where: { id: mealId },
+    include: {
+      provider: true,
+      category: true,
+      reviews: true,
     },
   });
 
@@ -50,8 +48,8 @@ const getSingleMealIntoDB = async (mealId: string) => {
 };
 
 export const mealService = {
-    // Add service methods here
-    createMealIntoDB,
-    getAllMealsIntoDB,
-    getSingleMealIntoDB,
+  // Add service methods here
+  createMealIntoDB,
+  getAllMealsIntoDB,
+  getSingleMealIntoDB,
 };
