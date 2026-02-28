@@ -18,6 +18,14 @@ enum Status {
   SUSPENDED
 }
 
+enum OrderStatus {
+  PLACED
+  PREPARING
+  READY
+  DELIVERED
+  CANCELLED
+}
+
 model User {
   id        String   @id @default(uuid())
   name      String
@@ -28,34 +36,12 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  meals            Meal[]
-  providerProfiles ProviderProfiles?
-
-  @@index([status])
-  @@map("users")
-}
-
-// ---------------- MEALS ----------------
-model Meal {
-  id          String  @id @default(uuid())
-  name        String
-  description String?
-  price       Float
-
-  imageUrl  String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
   // Relations
-  // category Category
-  // @relation(fields: [categoryId], references: [id])
-  // provider ProviderProfile @relation(fields: [providerId], references: [id])
-  // orders Order[]reviews Review[]
+  providerProfile ProviderProfiles?
+  orders          Order[]
+  reviews         Review[]
 
-  customerId String
-  customer   User   @relation(fields: [customerId], references: [id])
-
-  @@map("meals")
+  @@map("users")
 }
 
 model ProviderProfiles {
@@ -72,5 +58,90 @@ model ProviderProfiles {
   providerId String @unique
   user       User   @relation(fields: [providerId], references: [id])
 
+  meals Meal[]
+  orders Order[]
+
   @@map("provider_profiles")
+}
+
+model Category {
+  id   String @id @default(uuid())
+  name String @unique
+
+  meals Meal[]
+
+  @@map("categories")
+}
+
+model Meal {
+  id          String  @id @default(uuid())
+  name        String
+  description String?
+  price       Float
+  imageUrl    String?
+  isAvailable Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  providerId String
+  provider   ProviderProfiles @relation(fields: [providerId], references: [id])
+
+  orderItems OrderItem[]
+  reviews    Review[]
+
+  @@map("meals")
+}
+
+model Order {
+  id          String      @id @default(uuid())
+  totalPrice  Float
+  status      OrderStatus @default(PLACED)
+  address     String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  customerId String
+  customer   User @relation(fields: [customerId], references: [id])
+
+  providerId String
+  provider   ProviderProfiles @relation(fields: [providerId], references: [id])
+
+  items OrderItem[]
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id       String @id @default(uuid())
+  quantity Int
+  price    Float
+
+  orderId String
+  order   Order @relation(fields: [orderId], references: [id])
+
+  mealId String
+  meal   Meal @relation(fields: [mealId], references: [id])
+
+  @@map("order_items")
+}
+
+model Review {
+  id      String  @id @default(uuid())
+  rating  Int
+  comment String?
+
+  createdAt DateTime @default(now())
+
+  customerId String
+  customer   User @relation(fields: [customerId], references: [id])
+
+  mealId String
+  meal   Meal @relation(fields: [mealId], references: [id])
+
+  @@map("reviews")
 }
