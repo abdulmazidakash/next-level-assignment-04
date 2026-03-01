@@ -1,28 +1,43 @@
 import { prisma } from "../../lib/prisma";
 
 const createMealIntoDB = async (payload: any, userId: string) => {
-  const user = await prisma.user.findUnique({
-    where: { id: userId },
-    include: { providerProfile: true },
+  const providerProfile = await prisma.providerProfiles.findUnique({
+    where: {
+      providerId: userId,
+    }
   });
 
-  if (!user || user.role !== "PROVIDER") {
-    throw new Error("Only providers can create meals");
-  }
+  // if (!providerProfile || user.role !== "PROVIDER") {
+  //   throw new Error("Only providers can create meals");
+  // }
 
-  if (!user.providerProfile) {
+  if (!providerProfile) {
     throw new Error("Provider profile not found");
   }
+
+  // if (!payload.categoryId) {
+  //   throw new Error("Category is required");
+  // }
+
+  // const categoryExists = await prisma.category.findUnique({
+  //   where: { id: payload.categoryId }
+  // });
+
+  // if (!categoryExists) {
+  //   throw new Error("Invalid category");
+  // }
 
   const result = await prisma.meal.create({
     data: {
       ...payload,
-      providerId: user.providerProfile.id,
+      providerId: providerProfile.id,
     },
   });
 
   return result;
 };
+
+
 const getAllMealsIntoDB = async () => {
   const result = await prisma.meal.findMany({
     include: {

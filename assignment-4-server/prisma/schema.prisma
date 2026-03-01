@@ -56,7 +56,7 @@ model ProviderProfiles {
   updatedAt DateTime @updatedAt
 
   providerId String @unique
-  user       User   @relation(fields: [providerId], references: [id])
+  user       User   @relation(fields: [providerId], references: [id])  // one to one relation with User
 
   meals Meal[]
   orders Order[]

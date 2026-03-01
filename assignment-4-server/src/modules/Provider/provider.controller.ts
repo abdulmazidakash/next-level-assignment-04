@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import sendResponse from "../../utils/sendResponse";
 import { ProviderService } from "./provider.service";
 
-// -------- CREATE PROVIDER --------
+
 const createProvider = async (req: Request, res: Response) => {
   try {
     const result = await ProviderService.createProviderIntoDB(req.body, req.user?.id!);
@@ -22,14 +22,14 @@ const createProvider = async (req: Request, res: Response) => {
   }
 };
 
-// -------- GET ALL PROVIDERS --------
-const getAllProviders = async (_req: Request, res: Response) => {
+
+const getAllProviders = async (req: Request, res: Response) => {
   try {
-    const result = await ProviderService.getAllProvidersIntoDB();
+    const result = await ProviderService.getAllProvidersIntoDB(req.user?.id);
     sendResponse(res, {
       statusCode: 200,
       success: true,
-      message: "Providers retrieved successfully",
+      message: "Provider retrieved successfully",
       data: result,
     });
   } catch (error: any) {
@@ -42,7 +42,6 @@ const getAllProviders = async (_req: Request, res: Response) => {
   }
 };
 
-// -------- GET SINGLE PROVIDER --------
 const getSingleProvider = async (req: Request, res: Response) => {
   try {
     const result = await ProviderService.getSingleProviderIntoDB(req.params.id as string);
@@ -62,7 +61,7 @@ const getSingleProvider = async (req: Request, res: Response) => {
   }
 };
 
-// -------- EXPORT CONTROLLER --------
+
 export const ProviderController = {
   createProvider,
   getAllProviders,

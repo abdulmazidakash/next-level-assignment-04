@@ -4,13 +4,9 @@ import { mealService } from "./meal.service";
 
 const createMeals = async (req: Request, res: Response) => {
   try {
-    if (!req.user?.id) {
-      throw new Error("Unauthorized user");
-    }
-
     const result = await mealService.createMealIntoDB(
       req.body,
-      req.user.id
+      req.user?.id
     );
 
     sendResponse(res, {
@@ -80,5 +76,5 @@ export const mealController = {
   createMeals,
   getAllMeals,
   getSingleMeals,
-    // Add controller methods here
-    };
+  // Add controller methods here
+};

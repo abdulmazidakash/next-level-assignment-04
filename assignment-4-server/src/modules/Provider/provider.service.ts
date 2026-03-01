@@ -2,7 +2,9 @@ import { prisma } from "../../lib/prisma";
 
 const createProviderIntoDB = async (payload: any, userId: string) => {
   const user = await prisma.user.findUnique({
-    where: { id: userId },
+    where: {
+      id: userId
+    },
   });
 
   if (!user) {
@@ -31,14 +33,22 @@ const createProviderIntoDB = async (payload: any, userId: string) => {
   return result;
 };
 
-const getAllProvidersIntoDB = async () => {
-  const result = await prisma.providerProfiles.findMany({
+const getAllProvidersIntoDB = async (userId: string) => {
+  const user = await prisma.user.findUnique({
     where: {
-      isApproved: true,
+      id: userId,
+    },
+  });
+  if (!user) {
+    throw new Error("User not found!!");
+  }
+
+  const result = await prisma.providerProfiles.findUniqueOrThrow({
+    where: {
+      providerId: user.id,
     },
     include: {
       user: true,
-      meals: true,
     },
   });
 
@@ -64,8 +74,8 @@ const getSingleProviderIntoDB = async (providerId: string) => {
 };
 
 export const ProviderService = {
-    // Add service methods here
-    createProviderIntoDB,
-    getAllProvidersIntoDB,
-    getSingleProviderIntoDB,
+  // Add service methods here
+  createProviderIntoDB,
+  getAllProvidersIntoDB,
+  getSingleProviderIntoDB,
 };

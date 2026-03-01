@@ -15,7 +15,7 @@ const routerManager = [
         route: mealRoutes,
     },
     {
-        path: "/providers",
+        path: "/provider",
         route: ProviderRoutes,
     }
 ];
