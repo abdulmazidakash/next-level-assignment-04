@@ -1,6 +1,7 @@
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import router from './routes';
+import { notFound } from './middlewares/notFound';
 
 const app: Application = express();
 
@@ -16,5 +17,8 @@ app.use('/api/v1', router);
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello from FoodHub World!');
 });
+
+// not found route
+app.use(notFound);
 
 export default app;
