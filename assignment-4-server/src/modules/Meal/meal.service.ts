@@ -52,6 +52,7 @@ const getAllMealsIntoDB = async (userId: string) => {
   const result = await prisma.meal.findMany({
     where: {
       providerId: providerProfile.id,
+      isAvailable: true,
     },
     include: {
       provider: true,
@@ -63,7 +64,10 @@ const getAllMealsIntoDB = async (userId: string) => {
 
 const getSingleMealIntoDB = async (mealId: string) => {
   const result = await prisma.meal.findUnique({
-    where: { id: mealId },
+    where: {
+      id: mealId,
+      isAvailable: true
+    },
     include: {
       provider: true,
       category: true,
@@ -74,9 +78,82 @@ const getSingleMealIntoDB = async (mealId: string) => {
   return result;
 };
 
+
+const updateMealIntoDB = async (
+  mealId: string,
+  payload: any,
+  userId: string
+) => {
+  const providerProfile = await prisma.providerProfiles.findUnique({
+    where: {
+      providerId: userId,
+    },
+  });
+
+  if (!providerProfile) {
+    throw new Error("Provider profile not found");
+  }
+
+  const meal = await prisma.meal.findUnique({
+    where: { id: mealId },
+  });
+
+  if (!meal) {
+    throw new Error("Meal not found");
+  }
+
+  // 🔐 Ensure provider owns this meal
+  if (meal.providerId !== providerProfile.id) {
+    throw new Error("You are not allowed to update this meal");
+  }
+
+  const updatedMeal = await prisma.meal.update({
+    where: { id: mealId },
+    data: payload,
+  });
+
+  return updatedMeal;
+};
+
+const deleteMealFromDB = async (mealId: string, userId: string) => {
+  const providerProfile = await prisma.providerProfiles.findUnique({
+    where: {
+      providerId: userId,
+    },
+  });
+
+  if (!providerProfile) {
+    throw new Error("Provider profile not found");
+  }
+
+  const meal = await prisma.meal.findUnique({
+    where: { id: mealId },
+  });
+
+  if (!meal) {
+    throw new Error("Meal not found");
+  }
+
+  if (meal.providerId !== providerProfile.id) {
+    throw new Error("You are not allowed to delete this meal");
+  }
+
+  await prisma.meal.update({
+    where: { id: mealId },
+    data: {
+      isAvailable: false,
+    },
+  });
+
+  return null;
+};
+
 export const mealService = {
   // Add service methods here
   createMealIntoDB,
   getAllMealsIntoDB,
   getSingleMealIntoDB,
+  updateMealIntoDB,
+  deleteMealFromDB,
+
 };

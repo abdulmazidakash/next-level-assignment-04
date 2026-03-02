@@ -72,9 +72,59 @@ const getSingleMeals = async (req: Request, res: Response) => {
 };
 
 
+const updateMeal = async (req: Request, res: Response) => {
+  try {
+    const result = await mealService.updateMealIntoDB(
+      req.params.id as string,
+      req.body,
+      req.user?.id as string
+    );
+
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Meal updated successfully",
+      data: result,
+    });
+  } catch (error: any) {
+    sendResponse(res, {
+      statusCode: 400,
+      success: false,
+      message: error?.message || "Failed to update meal",
+      data: null,
+    });
+  }
+};
+
+const deleteMeal = async (req: Request, res: Response) => {
+  try {
+    await mealService.deleteMealFromDB(
+      req.params.id as string,
+      req.user?.id as string
+    );
+
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Meal deleted successfully",
+      data: null,
+    });
+  } catch (error: any) {
+    sendResponse(res, {
+      statusCode: 400,
+      success: false,
+      message: error?.message || "Failed to delete meal",
+      data: null,
+    });
+  }
+};
+
 export const mealController = {
   createMeals,
   getAllMeals,
   getSingleMeals,
+  updateMeal,
+  deleteMeal
+
   // Add controller methods here
 };
