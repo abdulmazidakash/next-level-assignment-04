@@ -4,6 +4,8 @@ import auth, { UserRole } from '../../middlewares/auth';
 
 const router = express.Router();
 
-router.post('/' ,auth(UserRole.customer), OrderController.createOrder)
+router.post('/' ,auth(UserRole.customer), OrderController.createOrder);
+router.get("/", auth(UserRole.customer), OrderController.getMyOrders);
+router.get("/:id", auth(UserRole.customer), OrderController.getSingleOrder);
 
 export const OrderRoutes = router;

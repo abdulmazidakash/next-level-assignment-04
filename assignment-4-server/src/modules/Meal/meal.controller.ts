@@ -52,20 +52,20 @@ const getSingleMeals = async (req: Request, res: Response) => {
     );
 
     if (!result) {
-      throw new Error("Meal not found");
+      throw new Error("Meal Details not found");
     }
 
     sendResponse(res, {
       statusCode: 200,
       success: true,
-      message: "Meal retrieved successfully",
+      message: "Meal Details retrieved successfully",
       data: result,
     });
   } catch (error: any) {
     sendResponse(res, {
       statusCode: 404,
       success: false,
-      message: error?.message || "Meal not found",
+      message: error?.message || "Meal Details not found",
       data: null,
     });
   }

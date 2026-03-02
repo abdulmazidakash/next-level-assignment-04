@@ -38,7 +38,7 @@ const getMyOrders = async (req: Request, res: Response) => {
     sendResponse(res, {
       statusCode: 200,
       success: true,
-      message: "Orders retrieved successfully",
+      message: "My Orders retrieved successfully",
       data: result,
     });
 
@@ -57,14 +57,14 @@ const getMyOrders = async (req: Request, res: Response) => {
 const getSingleOrder = async (req: Request, res: Response) => {
   try {
     const result = await OrderService.getSingleOrderFromDB(
-      req.params.id,
+      req.params.id as string,
       req.user?.id as string
     );
 
     sendResponse(res, {
       statusCode: 200,
       success: true,
-      message: "Order retrieved successfully",
+      message: "Order Details retrieved successfully",
       data: result,
     });
 
@@ -72,7 +72,7 @@ const getSingleOrder = async (req: Request, res: Response) => {
     sendResponse(res, {
       statusCode: 404,
       success: false,
-      message: error?.message || "Order not found",
+      message: error?.message || "Order Details not found",
       data: null,
     });
   }

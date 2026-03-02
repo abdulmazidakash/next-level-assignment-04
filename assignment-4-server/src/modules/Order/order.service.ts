@@ -14,16 +14,16 @@ const createOrderIntoDB = async (
   userId: string
 ) => {
 
-    //1. user exists
-    //2. user is customer
-    //3. address is provided
-    //4. items are provided
-    //5. quantity > 0
-    //6. meal exists and is available
-    //7. all meals are from same provider
-    //8. calculate total price
-    //9. create order and order items in transaction
-    
+  //1. user exists
+  //2. user is customer
+  //3. address is provided
+  //4. items are provided
+  //5. quantity > 0
+  //6. meal exists and is available
+  //7. all meals are from same provider
+  //8. calculate total price
+  //9. create order and order items in transaction
+
   // 1️⃣ Validate user
   if (!userId) {
     throw new Error("Unauthorized");
@@ -141,6 +141,79 @@ const createOrderIntoDB = async (
   return result;
 };
 
+
+const getMyOrdersFromDB = async (userId: string) => {
+  if (!userId) {
+    throw new Error("Unauthorized");
+  }
+
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+  });
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  if (user.role !== Role.CUSTOMER) {
+    throw new Error("Only customers can view their orders");
+  }
+
+  const orders = await prisma.order.findMany({
+    where: {
+      customerId: userId,
+    },
+    include: {
+      items: {
+        include: {
+          meal: true,
+        },
+      },
+      provider: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  return orders;
+};
+
+const getSingleOrderFromDB = async (
+  orderId: string,
+  userId: string
+) => {
+  if (!userId) {
+    throw new Error("Unauthorized");
+  }
+
+  const order = await prisma.order.findUnique({
+    where: { id: orderId },
+    include: {
+      items: {
+        include: {
+          meal: true,
+        },
+      },
+      provider: true,
+      customer: true,
+    },
+  });
+
+  if (!order) {
+    throw new Error("Order not found");
+  }
+
+  // Ensure customer can only see their own order
+  if (order.customerId !== userId) {
+    throw new Error("You are not allowed to view this order");
+  }
+
+  return order;
+};
+
 export const OrderService = {
   createOrderIntoDB,
+  getMyOrdersFromDB,
+  getSingleOrderFromDB
 };

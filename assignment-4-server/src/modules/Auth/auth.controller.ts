@@ -40,8 +40,22 @@ const loginUser = async (req: Request, res: Response) => {
   }
 };
 
+const getMe = async (req: any, res: Response) => {
+  try {
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "User fetched successfully",
+      data: req.user,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const AuthController = {
   // Add controller methods here
   createUser,
-  loginUser
+  loginUser,
+  getMe,
 };
