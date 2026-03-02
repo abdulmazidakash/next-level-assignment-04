@@ -38,11 +38,23 @@ const createMealIntoDB = async (payload: any, userId: string) => {
 };
 
 
-const getAllMealsIntoDB = async () => {
+const getAllMealsIntoDB = async (userId: string) => {
+  const providerProfile = await prisma.providerProfiles.findUnique({
+    where: {
+      providerId: userId,
+    },
+  });
+
+  if (!providerProfile) {
+    throw new Error("Provider Profile not found");
+  }
+
   const result = await prisma.meal.findMany({
+    where: {
+      providerId: providerProfile.id,
+    },
     include: {
       provider: true,
-      category: true,
     },
   });
 

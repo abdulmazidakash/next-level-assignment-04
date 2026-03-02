@@ -27,7 +27,7 @@ const createMeals = async (req: Request, res: Response) => {
 
 const getAllMeals = async (req: Request, res: Response) => {
   try {
-    const result = await mealService.getAllMealsIntoDB();
+    const result = await mealService.getAllMealsIntoDB(req.user?.id);
 
     sendResponse(res, {
       statusCode: 200,
