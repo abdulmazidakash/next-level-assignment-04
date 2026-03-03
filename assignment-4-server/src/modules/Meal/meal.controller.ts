@@ -45,6 +45,26 @@ const getAllMeals = async (req: Request, res: Response) => {
   }
 };
 
+const getPublicMeals = async (req: Request, res: Response) => {
+  try {
+    const result = await mealService.getPublicMealsIntoDB();
+
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Public Meals retrieved successfully",
+      data: result,
+    });
+  } catch (error: any) {
+    sendResponse(res, {
+      statusCode: 400,
+      success: false,
+      message: error?.message || "Failed to retrieve public meals",
+      data: null,
+    });
+  }
+};
+
 const getSingleMeals = async (req: Request, res: Response) => {
   try {
     const result = await mealService.getSingleMealIntoDB(
@@ -124,7 +144,8 @@ export const mealController = {
   getAllMeals,
   getSingleMeals,
   updateMeal,
-  deleteMeal
+  deleteMeal,
+  getPublicMeals
 
   // Add controller methods here
 };

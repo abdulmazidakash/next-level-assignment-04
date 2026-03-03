@@ -62,6 +62,18 @@ const getAllMealsIntoDB = async (userId: string) => {
   return result;
 };
 
+const getPublicMealsIntoDB = async () => {
+  return prisma.meal.findMany({
+    include: {
+      provider: {
+        include: {
+          user: true,
+        }
+      },
+    },
+  });
+};
+
 const getSingleMealIntoDB = async (mealId: string) => {
   const result = await prisma.meal.findUnique({
     where: {
@@ -155,5 +167,6 @@ export const mealService = {
   getSingleMealIntoDB,
   updateMealIntoDB,
   deleteMealFromDB,
+  getPublicMealsIntoDB
 
 };
