@@ -22,10 +22,10 @@ export const getAllMeals = async () => {
   }
 };
 
-export const getSingleService = async (id: string) => {
+export const getSinglePublicMeal = async (id: string) => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/meals/${id}`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/meals/public/${id}`,
       {
         method: "GET",
         headers: {
@@ -37,6 +37,7 @@ export const getSingleService = async (id: string) => {
       },
     );
     const result = await res.json();
+    console.log(result)
 
     return result;
   } catch (error: any) {

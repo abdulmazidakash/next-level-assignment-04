@@ -42,14 +42,27 @@ const loginUser = async (req: Request, res: Response) => {
 
 const getMe = async (req: any, res: Response) => {
   try {
+    if (!req.user?.id) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized",
+      });
+    }
+
+    const result = await AuthService.getMeIntoDB(req.user.id);
+
     sendResponse(res, {
       statusCode: 200,
       success: true,
       message: "User fetched successfully",
-      data: req.user,
+      data: result,
     });
   } catch (error) {
     console.log(error);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+    });
   }
 };
 

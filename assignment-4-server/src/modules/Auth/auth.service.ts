@@ -51,9 +51,20 @@ const loginUserIntoDB = async (payload: any) => {
     }
 };
 
+const getMeIntoDB = async (userId: string) => {
+
+    const result = await prisma.user.findUnique({
+        where: {
+            id: userId,
+        },
+    });
+    return result;
+};
+
 
 export const AuthService = {
     // Add service methods here
     createUserIntoDB,
     loginUserIntoDB,
+    getMeIntoDB,
 };

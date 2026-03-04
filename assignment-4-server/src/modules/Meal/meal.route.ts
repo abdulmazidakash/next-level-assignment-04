@@ -16,6 +16,10 @@ router.get(
   "/public",
   mealController.getPublicMeals
 );
+router.get(
+  "/public/:id",
+  mealController.getSingleMeals
+);
 router.get("/:id",
     auth(UserRole.provider),
     mealController.getSingleMeals

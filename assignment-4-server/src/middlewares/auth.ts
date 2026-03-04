@@ -18,8 +18,8 @@ const auth = (...roles: UserRole[]) => {
       // Is users status Active  .
       // check Role
 
-      // const token = req.headers.authorization;
-      const token = req.cookies?.token;
+      const token = req.headers.authorization;
+      // const token = req.cookies?.token;
 
       if (!token) {
         throw new Error("Token not found!!");

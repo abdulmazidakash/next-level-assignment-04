@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 interface MealCardProps {
   meal: {
@@ -62,10 +63,13 @@ export default function MealCard({ meal }: MealCardProps) {
         </div>
       </CardContent>
 
-      <CardFooter className="p-5 pt-0">
-        <Button className="w-full rounded-xl">
+      <CardFooter className="flex gap-2 p-5 pt-0">
+        <Button className=" rounded-xl">
           Order Now
         </Button>
+        <Link href={`/meals/${meal.id}`}><Button className=" rounded-xl">
+          View Details
+        </Button></Link>
       </CardFooter>
     </Card>
   );
