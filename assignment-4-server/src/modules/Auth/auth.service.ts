@@ -29,7 +29,7 @@ const loginUserIntoDB = async (payload: any) => {
         throw new Error("user not found!")
     }
 
-    const isPasswordValid = await bcrypt.compare(payload.password, user.password);
+    const isPasswordValid = await bcrypt.compare(payload.password, user?.password);
 
     if(!isPasswordValid){
         throw new Error("Invalid password!")
