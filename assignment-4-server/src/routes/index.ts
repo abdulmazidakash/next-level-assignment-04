@@ -6,6 +6,7 @@ import { OrderRoutes } from "../modules/Order/order.route";
 import { UserRoutes } from "../modules/User/user.route";
 import { CategoryRoutes } from "../modules/Category/category.route";
 import { ReviewRoutes } from "../modules/Review/review.route";
+import { AdminRoutes } from "../modules/Admin/admin.route";
 
 const router = Router();
 
@@ -38,7 +39,11 @@ const routerManager = [
         path: "/reviews",
         route: ReviewRoutes,
     },
-    
+    {
+        path: "/admin",
+        route: AdminRoutes,
+    }
+
 ];
 
 routerManager.forEach((r) => router.use(r.path, r.route));
