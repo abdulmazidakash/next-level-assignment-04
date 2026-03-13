@@ -1,3 +1,3 @@
-export const CustomerDefault = ()=>{
-    return null;
+export default function CustomerDefault() {
+  return null;
 }

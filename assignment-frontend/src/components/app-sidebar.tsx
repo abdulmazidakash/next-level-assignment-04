@@ -34,17 +34,17 @@ const ADMIN_navMain = [
 ];
 
 const CUSTOMER_navMain = [
-  { title: "My Orders", url: "/orders", icon: SquareTerminal },
+  { title: "My Orders", url: "/dashboard/my-orders", icon: SquareTerminal },
   { title: "Cart", url: "/cart", icon: Frame },
   { title: "Checkout", url: "/checkout", icon: Command },
-  { title: "Profile", url: "/profile", icon: Settings2 },
+  { title: "Profile", url: "/dashboard/profile", icon: Settings2 },
 ];
 
 const PROVIDER_navMain = [
   { title: "Dashboard", url: "/provider/dashboard", icon: PieChart },
   { title: "Manage Menu", url: "/provider/menu", icon: BookOpen },
   { title: "Orders", url: "/provider/orders", icon: SquareTerminal },
-  { title: "Profile", url: "/profile", icon: Settings2 },
+  { title: "Profile", url: "/dashboard/profile", icon: Settings2 },
 ];
 
 export function AppSidebar({ userRole, ...props }: AppSidebarProps) {

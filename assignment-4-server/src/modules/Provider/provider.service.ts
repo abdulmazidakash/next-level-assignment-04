@@ -34,28 +34,43 @@ const createProviderIntoDB = async (payload: any, userId: string) => {
   return result;
 };
 
-const getAllProvidersIntoDB = async (userId: string) => {
-  const user = await prisma.user.findUnique({
-    where: {
-      id: userId,
-    },
-  });
-  if (!user) {
-    throw new Error("User not found!!");
-  }
+// const getAllProvidersIntoDB = async (userId: string) => {
+//   const user = await prisma.user.findUnique({
+//     where: {
+//       id: userId,
+//     },
+//   });
+//   if (!user) {
+//     throw new Error("User not found!!");
+//   }
 
-  const result = await prisma.providerProfiles.findUniqueOrThrow({
-    where: {
-      providerId: user.id,
-    },
+//   const result = await prisma.providerProfiles.findUniqueOrThrow({
+//     where: {
+//       providerId: user.id,
+//     },
+//     include: {
+//       user: true,
+//     },
+//   });
+
+//   return result;
+// };
+const getAllProvidersIntoDB = async () => {
+  const result = await prisma.providerProfiles.findMany({
     include: {
-      user: true,
+      user: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+        },
+      },
+      meals: true,
     },
   });
 
   return result;
 };
-
 const getSingleProviderIntoDB = async (providerId: string) => {
   const result = await prisma.providerProfiles.findUnique({
     where: {
@@ -63,13 +78,50 @@ const getSingleProviderIntoDB = async (providerId: string) => {
     },
     include: {
       user: true,
-      meals: true,
+      meals: true, // all meals here
     },
   });
 
-  if (!result) {
-    throw new Error("Provider not found");
-  }
+  return result;
+};
+
+// const getSingleProviderIntoDB = async (providerId: string) => {
+//   const result = await prisma.providerProfiles.findUnique({
+//     where: {
+//       id: providerId,
+//     },
+//     include: {
+//       user: true,
+//       meals: true,
+//     },
+//   });
+
+//   if (!result) {
+//     throw new Error("Provider not found");
+//   }
+
+//   return result;
+// };
+
+const getPublicProvidersIntoDB = async () => {
+  const result = await prisma.providerProfiles.findMany({
+    include: {
+      user: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
+      // meals: {
+      //   take: 3,
+      // },
+       _count: {
+        select: {
+          meals: true,
+        },
+      },
+    },
+  });
 
   return result;
 };
@@ -129,4 +181,5 @@ export const ProviderService = {
   getAllProvidersIntoDB,
   getSingleProviderIntoDB,
   updateOrderStatusIntoDB,
+  getPublicProvidersIntoDB
 };

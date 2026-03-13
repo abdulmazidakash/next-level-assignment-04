@@ -1,3 +1,3 @@
-export const ProviderDefault = ()=>{
-    return null;
+export default function ProviderDefault() {
+  return null;
 }

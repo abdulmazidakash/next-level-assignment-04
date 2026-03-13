@@ -18,6 +18,7 @@ export default function Navbar() {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Meals", href: "/meals" },
+    { name: "Providers", href: "/providers" },
     { name: "About", href: "/about-us" },
     { name: "Contact", href: "/contact" },
   ];
@@ -56,7 +57,7 @@ export default function Navbar() {
   return (
     <header className="border-b bg-white sticky top-0 z-50">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        
+
         {/* LOGO */}
         <Link href="/" className="text-xl font-bold text-primary">
           FoodHub 🍱
