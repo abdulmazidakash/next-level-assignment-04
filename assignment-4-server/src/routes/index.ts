@@ -4,6 +4,8 @@ import { mealRoutes } from "../modules/Meal/meal.route";
 import { ProviderRoutes } from "../modules/Provider/provider.route";
 import { OrderRoutes } from "../modules/Order/order.route";
 import { UserRoutes } from "../modules/User/user.route";
+import { CategoryRoutes } from "../modules/Category/category.route";
+import { ReviewRoutes } from "../modules/Review/review.route";
 
 const router = Router();
 
@@ -27,7 +29,16 @@ const routerManager = [
     {
         path: "/users",
         route: UserRoutes,
-    }
+    },
+    {
+        path: "/categories",
+        route: CategoryRoutes,
+    },
+    {
+        path: "/reviews",
+        route: ReviewRoutes,
+    },
+    
 ];
 
 routerManager.forEach((r) => router.use(r.path, r.route));
