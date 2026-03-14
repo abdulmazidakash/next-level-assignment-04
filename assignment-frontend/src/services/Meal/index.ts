@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
 
+import { cookies } from "next/headers";
+
 export const getAllMeals = async () => {
   try {
     const res = await fetch(
@@ -34,6 +36,30 @@ export const getSinglePublicMeal = async (id: string) => {
         next: {
           revalidate: 3600,
         },
+      },
+    );
+    const result = await res.json();
+    console.log(result)
+
+    return result;
+  } catch (error: any) {
+    return Error(error);
+  }
+};
+
+export const getSingleMeal = async (id: string) => {
+  try {
+    const store = await cookies()
+    const token = store.get("token")?.value
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/meals/${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token!,
+        },
+        cache: "no-store",
       },
     );
     const result = await res.json();

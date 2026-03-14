@@ -34,27 +34,45 @@ const createProviderIntoDB = async (payload: any, userId: string) => {
   return result;
 };
 
-// const getAllProvidersIntoDB = async (userId: string) => {
-//   const user = await prisma.user.findUnique({
-//     where: {
-//       id: userId,
-//     },
-//   });
-//   if (!user) {
-//     throw new Error("User not found!!");
-//   }
+// get own provider profile with meals count
+const getOwnProvidersIntoDB = async (userId: string) => {
+  const user = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+  });
 
-//   const result = await prisma.providerProfiles.findUniqueOrThrow({
-//     where: {
-//       providerId: user.id,
-//     },
-//     include: {
-//       user: true,
-//     },
-//   });
+  if (!user) {
+    throw new Error("User not found!!");
+  }
 
-//   return result;
-// };
+  const result = await prisma.providerProfiles.findUniqueOrThrow({
+    where: {
+      providerId: user.id,
+    },
+    include: {
+      user: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+        },
+      },
+
+      meals: true, // all meals
+
+      _count: {
+        select: {
+          meals: true, // meal count
+        },
+      },
+    },
+  });
+
+  return result;
+};
+
+// all providers with meals count
 const getAllProvidersIntoDB = async () => {
   const result = await prisma.providerProfiles.findMany({
     include: {
@@ -71,6 +89,8 @@ const getAllProvidersIntoDB = async () => {
 
   return result;
 };
+
+// single provider with meals
 const getSingleProviderIntoDB = async (providerId: string) => {
   const result = await prisma.providerProfiles.findUnique({
     where: {
@@ -85,24 +105,8 @@ const getSingleProviderIntoDB = async (providerId: string) => {
   return result;
 };
 
-// const getSingleProviderIntoDB = async (providerId: string) => {
-//   const result = await prisma.providerProfiles.findUnique({
-//     where: {
-//       id: providerId,
-//     },
-//     include: {
-//       user: true,
-//       meals: true,
-//     },
-//   });
 
-//   if (!result) {
-//     throw new Error("Provider not found");
-//   }
-
-//   return result;
-// };
-
+// public providers with meals count
 const getPublicProvidersIntoDB = async () => {
   const result = await prisma.providerProfiles.findMany({
     include: {
@@ -112,10 +116,7 @@ const getPublicProvidersIntoDB = async () => {
           name: true,
         },
       },
-      // meals: {
-      //   take: 3,
-      // },
-       _count: {
+      _count: {
         select: {
           meals: true,
         },
@@ -126,6 +127,7 @@ const getPublicProvidersIntoDB = async () => {
   return result;
 };
 
+// Provider can update order status ready, preparing, delivered, etc
 const updateOrderStatusIntoDB = async (
   orderId: string,
   status: OrderStatus,
@@ -175,11 +177,38 @@ const updateOrderStatusIntoDB = async (
   return updatedOrder;
 };
 
+
+// get provider incoming orders
+const getProviderOrders = async (userId: string) => {
+  const providerProfile = await prisma.providerProfiles.findUnique({
+    where: { providerId: userId },
+  })
+
+  return prisma.order.findMany({
+    where: {
+      providerId: providerProfile!.id,
+    },
+    include: {
+      customer: true,
+      items: {
+        include: {
+          meal: true,
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  })
+}
+
 export const ProviderService = {
   // Add service methods here
   createProviderIntoDB,
   getAllProvidersIntoDB,
   getSingleProviderIntoDB,
   updateOrderStatusIntoDB,
-  getPublicProvidersIntoDB
+  getPublicProvidersIntoDB,
+  getProviderOrders,
+  getOwnProvidersIntoDB,
 };

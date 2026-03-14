@@ -1,7 +1,5 @@
-import React from 'react'
+import { redirect } from "next/navigation";
 
 export default function ProviderDashboard() {
-  return (
-    <div>ProviderDashboard</div>
-  )
+  redirect("/dashboard/profile");
 }

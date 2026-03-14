@@ -41,11 +41,29 @@ const getAllProviders = async (req: Request, res: Response) => {
     });
   }
 };
+const getOwnProviders = async (req: Request, res: Response) => {
+  try {
+    const result = await ProviderService.getOwnProvidersIntoDB(req.user?.id as string);
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Provider retrieved successfully",
+      data: result,
+    });
+  } catch (error: any) {
+    sendResponse(res, {
+      statusCode: 400,
+      success: false,
+      message: error.message || "Something went wrong",
+      data: null,
+    });
+  }
+};
 
 const getPublicProviders = async (req: Request, res: Response) => {
   try {
-     const result = await ProviderService.getPublicProvidersIntoDB();
-     sendResponse(res, {
+    const result = await ProviderService.getPublicProvidersIntoDB();
+    sendResponse(res, {
       statusCode: 200,
       success: true,
       message: "Public Provider retrieved successfully",
@@ -83,7 +101,7 @@ const getSingleProvider = async (req: Request, res: Response) => {
 
 const updateOrderStatus = async (req: Request, res: Response) => {
   try {
-    const result = await ProviderService.updateOrderStatusIntoDB( req.params.id as string, req.body.status, req.user?.id as string);
+    const result = await ProviderService.updateOrderStatusIntoDB(req.params.id as string, req.body.status, req.user?.id as string);
     sendResponse(res, {
       statusCode: 200,
       success: true,
@@ -100,11 +118,34 @@ const updateOrderStatus = async (req: Request, res: Response) => {
   }
 };
 
+const getProviderOrders = async (req: Request, res: Response) => {
+  try {
+    const userId = req?.user?.id as string;
+
+    const result = await ProviderService.getProviderOrders(userId)
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "ProviderOrders fetched successfully",
+      data: result,
+    })
+  } catch (error: any) {
+    sendResponse(res, {
+      statusCode: 404,
+      success: false,
+      message: error.message || "Provider not found",
+      data: null,
+    });
+  }
+}
+
 
 export const ProviderController = {
   createProvider,
   getAllProviders,
   getSingleProvider,
   updateOrderStatus,
-  getPublicProviders
+  getPublicProviders,
+  getProviderOrders,
+  getOwnProviders
 };

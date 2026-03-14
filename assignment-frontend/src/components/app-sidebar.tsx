@@ -42,8 +42,8 @@ const CUSTOMER_navMain = [
 
 const PROVIDER_navMain = [
   { title: "Dashboard", url: "/provider/dashboard", icon: PieChart },
-  { title: "Manage Menu", url: "/provider/menu", icon: BookOpen },
-  { title: "Orders", url: "/provider/orders", icon: SquareTerminal },
+  { title: "Provider Own Meals", url: "/dashboard/provider-own-meals", icon: BookOpen },
+  { title: "Orders", url: "/dashboard/orders", icon: SquareTerminal },
   { title: "Profile", url: "/dashboard/profile", icon: Settings2 },
 ];
 
