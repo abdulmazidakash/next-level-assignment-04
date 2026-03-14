@@ -28,9 +28,9 @@ interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
 
 const ADMIN_navMain = [
   { title: "Dashboard", url: "/admin", icon: PieChart },
-  { title: "Users", url: "/admin/users", icon: Bot },
-  { title: "Orders", url: "/admin/orders", icon: SquareTerminal },
-  { title: "Categories", url: "/admin/categories", icon: GalleryVerticalEnd },
+  { title: "Users", url: "/dashboard/users", icon: Bot },
+  { title: "Orders", url: "/dashboard/orders", icon: SquareTerminal },
+  { title: "Categories", url: "/dashboard/categories", icon: GalleryVerticalEnd },
 ];
 
 const CUSTOMER_navMain = [

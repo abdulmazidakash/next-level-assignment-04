@@ -212,8 +212,28 @@ const getSingleOrderFromDB = async (
   return order;
 };
 
+const getAllOrdersFromDB = async () => {
+  const orders = await prisma.order.findMany({
+    include: {
+      items: {
+        include: {
+          meal: true,
+        },
+      },
+      provider: true,
+      customer: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  return orders;
+};
+
 export const OrderService = {
   createOrderIntoDB,
   getMyOrdersFromDB,
-  getSingleOrderFromDB
+  getSingleOrderFromDB,
+  getAllOrdersFromDB
 };

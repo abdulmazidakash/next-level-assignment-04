@@ -36,7 +36,7 @@ export const getMyOrders = async () => {
       },
       cache: "no-store",
     })
-    console.log('order response===>', res)
+    // console.log('order response===>', res)
 
     if (!res.ok) {
       throw new Error("Failed to fetch orders")
@@ -45,6 +45,61 @@ export const getMyOrders = async () => {
     const data = await res.json()
 
     return data
+  } catch (error) {
+    console.error("Error fetching orders:", error)
+  }
+}
+
+export const getSingleOrder = async (orderId: string) => {
+  try {
+    const store = await cookies()
+    const token = store.get("token")?.value
+
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/orders/${orderId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token!,
+        },
+        cache: "no-store",
+      }
+    )
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch order")
+    }
+
+    const data = await res.json()
+
+    return data
+
+  } catch (error) {
+    console.error("Error fetching order:", error)
+  }
+}
+
+export const getAllOrders = async () => {
+
+  try {
+    const store = await cookies()
+    const token = store.get("token")?.value;
+
+    console.log(token)
+
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/orders/all-orders`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: token!,
+        },
+        cache: "no-store",
+      }
+    )
+
+    return res.json()
   } catch (error) {
     console.error("Error fetching orders:", error)
   }

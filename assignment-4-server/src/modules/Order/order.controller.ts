@@ -78,9 +78,31 @@ const getSingleOrder = async (req: Request, res: Response) => {
   }
 };
 
+const getAllOrders = async (req: Request, res: Response) => {
+  try {
+    const result = await OrderService.getAllOrdersFromDB();
+
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "All Orders retrieved successfully",
+      data: result,
+    });
+
+  } catch (error: any) {
+    sendResponse(res, {
+      statusCode: 400,
+      success: false,
+      message: error?.message || "Failed to retrieve orders",
+      data: null,
+    });
+  }
+};
+
 
 export const OrderController = {
   createOrder,
   getMyOrders,
   getSingleOrder,
+  getAllOrders,
 };
