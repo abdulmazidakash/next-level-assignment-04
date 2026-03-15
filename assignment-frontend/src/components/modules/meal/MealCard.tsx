@@ -5,6 +5,8 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { addToCart } from "@/lib/cart";
+import { toast } from "sonner";
 
 interface MealCardProps {
   meal: {
@@ -14,6 +16,7 @@ interface MealCardProps {
     price: number;
     imageUrl: string;
     provider: {
+      id: string;
       restaurantName: string;
       cuisineType: string;
     };
@@ -23,7 +26,7 @@ interface MealCardProps {
 export default function MealCard({ meal }: MealCardProps) {
   return (
     <Card className="group overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300">
-      
+
       {/* Image */}
       <div className="relative h-56 w-full overflow-hidden">
         <Image
@@ -35,7 +38,7 @@ export default function MealCard({ meal }: MealCardProps) {
       </div>
 
       <CardContent className="p-5 space-y-3">
-        
+
         {/* Title + Price */}
         <div className="flex items-start justify-between">
           <h3 className="text-xl font-semibold line-clamp-1">
@@ -70,6 +73,22 @@ export default function MealCard({ meal }: MealCardProps) {
         <Link href={`/meals/${meal.id}`}><Button className=" rounded-xl">
           View Details
         </Button></Link>
+        <Button
+          onClick={() => {
+            addToCart({
+              mealId: meal.id,
+              name: meal.name,
+              price: meal.price,
+              imageUrl: meal.imageUrl,
+              quantity: 1,
+              providerId: meal.provider.id ,
+            })
+
+            toast.success("Added to cart")
+          }}
+        >
+          Add To Cart
+        </Button>
       </CardFooter>
     </Card>
   );
