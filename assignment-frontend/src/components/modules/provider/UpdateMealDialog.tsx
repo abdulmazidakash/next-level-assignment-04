@@ -12,7 +12,7 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { updateMeal } from "@/services/provider";
+import { updateMeal } from "@/services/Meal";
 
 export default function UpdateMealDialog({ meal }: any) {
 

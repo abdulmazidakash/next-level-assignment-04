@@ -3,7 +3,7 @@
 
 
 import { Button } from "@/components/ui/button";
-import { deleteMeal } from "@/services/provider";
+import { deleteMeal } from "@/services/Meal";
 import { useRouter } from "next/navigation";
 
 export default function DeleteMealButton({ id }: any) {
