@@ -1,25 +1,18 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-"use client";
+"use client"
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 
 import {
   Field,
   FieldError,
   FieldGroup,
   FieldLabel,
-} from "@/components/ui/field";
+} from "@/components/ui/field"
 
 import {
   Select,
@@ -27,14 +20,22 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@/components/ui/select"
 
-import { useForm } from "@tanstack/react-form";
-import { toast } from "sonner";
-import { z } from "zod";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 
-import { getCategories } from "@/services/category";
-import { updateMeal } from "@/services/Meal";
+import { useForm } from "@tanstack/react-form"
+import { toast } from "sonner"
+import { z } from "zod"
+
+import { getCategories } from "@/services/category"
+import { updateMeal } from "@/services/Meal"
 
 const mealSchema = z.object({
   name: z.string().min(3),
@@ -42,20 +43,20 @@ const mealSchema = z.object({
   price: z.number().min(1),
   imageUrl: z.string().url(),
   categoryId: z.string().min(1),
-});
+})
 
-export default function UpdateMealDialog({ meal }: any) {
-  const router = useRouter();
-  const [categories, setCategories] = useState<any[]>([]);
+export default function UpdateMealForm({ meal }: any) {
+  const router = useRouter()
+  const [categories, setCategories] = useState<any[]>([])
 
   useEffect(() => {
-    const loadCategories = async () => {
-      const res = await getCategories();
-      setCategories(res?.data || []);
-    };
+    const load = async () => {
+      const res = await getCategories()
+      setCategories(res?.data || [])
+    }
 
-    loadCategories();
-  }, []);
+    load()
+  }, [])
 
   const form = useForm({
     defaultValues: {
@@ -71,46 +72,47 @@ export default function UpdateMealDialog({ meal }: any) {
     },
 
     onSubmit: async ({ value }) => {
-      const toastId = toast.loading("Updating meal...");
+      const toastId = toast.loading("Updating meal...")
 
       try {
-        const res = await updateMeal(meal.id, value);
+        const res = await updateMeal(meal.id, value)
 
         if (res?.error) {
-          toast.error(res.error.message, { id: toastId });
-          return;
+          toast.error(res.error.message, { id: toastId })
+          return
         }
 
-        toast.success("Meal updated", { id: toastId });
+        toast.success("Meal updated", { id: toastId })
 
-        router.refresh();
+        router.refresh()
+        router.push("/dashboard/provider-own-meals")
       } catch {
-        toast.error("Something went wrong", { id: toastId });
+        toast.error("Something went wrong", { id: toastId })
       }
     },
-  });
+  })
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button size="sm">Update</Button>
-      </DialogTrigger>
+    <Card>
+      <CardHeader>
+        <CardTitle>Update Meal</CardTitle>
+      </CardHeader>
 
-      <DialogContent className="max-w-lg">
+      <CardContent>
         <form
           id="update-meal-form"
           onSubmit={(e) => {
-            e.preventDefault();
-            form.handleSubmit();
+            e.preventDefault()
+            form.handleSubmit()
           }}
         >
           <FieldGroup>
 
-            {/* Meal Name */}
+            {/* Name */}
             <form.Field name="name">
               {(field) => (
                 <Field>
-                  <FieldLabel>Meal Name</FieldLabel>
+                  <FieldLabel>Name</FieldLabel>
 
                   <Input
                     value={field.state.value}
@@ -161,7 +163,7 @@ export default function UpdateMealDialog({ meal }: any) {
               )}
             </form.Field>
 
-            {/* Image URL */}
+            {/* Image */}
             <form.Field name="imageUrl">
               {(field) => (
                 <Field>
@@ -187,12 +189,12 @@ export default function UpdateMealDialog({ meal }: any) {
 
                   <Select
                     value={field.state.value}
-                    onValueChange={(value) =>
-                      field.handleChange(value)
+                    onValueChange={(v) =>
+                      field.handleChange(v)
                     }
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder="Select Category" />
+                      <SelectValue placeholder="Select category" />
                     </SelectTrigger>
 
                     <SelectContent>
@@ -213,15 +215,18 @@ export default function UpdateMealDialog({ meal }: any) {
             </form.Field>
 
           </FieldGroup>
-
-          <Button
-            type="submit"
-            className="w-full mt-6"
-          >
-            Update Meal
-          </Button>
         </form>
-      </DialogContent>
-    </Dialog>
-  );
+      </CardContent>
+
+      <CardFooter>
+        <Button
+          form="update-meal-form"
+          type="submit"
+          className="w-full"
+        >
+          Update Meal
+        </Button>
+      </CardFooter>
+    </Card>
+  )
 }

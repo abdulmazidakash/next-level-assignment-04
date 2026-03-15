@@ -15,12 +15,15 @@ import Image from "next/image";
 import ViewMealDialog from "./ViewMealDialog";
 import UpdateMealDialog from "./UpdateMealDialog";
 import DeleteMealButton from "./DeleteMealButton";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function ProviderMealsTable({ meals }: any) {
     return (
         <Table>
             <TableHeader>
                 <TableRow>
+                     <TableHead>Sl</TableHead>
                     <TableHead>Image</TableHead>
                     <TableHead>Name</TableHead>
                     <TableHead>Price</TableHead>
@@ -30,11 +33,12 @@ export default function ProviderMealsTable({ meals }: any) {
             </TableHeader>
 
             <TableBody>
-                {meals.map((meal: any) => (
+                {meals.map((meal: any, i: number) => (
                     <TableRow key={meal.id}>
+                        <TableCell>{i+ 1}</TableCell>
                         <TableCell>
                             <Image
-                            alt={meal?.title}
+                                alt={meal?.name}
                                 width={48}
                                 height={48}
                                 src={meal.imageUrl}
@@ -52,7 +56,12 @@ export default function ProviderMealsTable({ meals }: any) {
 
                         <TableCell className="flex gap-2">
                             <ViewMealDialog meal={meal} />
-                            <UpdateMealDialog meal={meal} />
+                            {/* <UpdateMealDialog meal={meal} /> */}
+                            <Link href={`/dashboard/provider-own-meals/${meal.id}`}>
+                                <Button size="sm" variant="outline">
+                                    Update
+                                </Button>
+                            </Link>
                             <DeleteMealButton id={meal.id} />
                         </TableCell>
                     </TableRow>

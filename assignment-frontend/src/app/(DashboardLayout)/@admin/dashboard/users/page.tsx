@@ -20,7 +20,7 @@ export default async function UsersPage() {
 
   const res = await getAllUsers()
 
-  const users: User[] = res.data
+  const users: User[] = res?.data
 
   return (
 
