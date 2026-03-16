@@ -28,6 +28,11 @@ router.get("/me",
     auth(UserRole.provider),
     ProviderController.getOwnProviders
 );
+router.patch(
+  "/me",
+  auth(UserRole.provider),
+  ProviderController.updateProvider
+)
 
 // update order status by provider
 router.patch("/order/:id",

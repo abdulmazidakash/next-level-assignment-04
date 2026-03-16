@@ -120,7 +120,7 @@ const updateOrderStatus = async (req: Request, res: Response) => {
 
 const getProviderOrders = async (req: Request, res: Response) => {
   try {
-    const userId = req?.user?.id as string;
+    const userId = req.user?.id as string;
 
     const result = await ProviderService.getProviderOrders(userId)
     sendResponse(res, {
@@ -139,7 +139,32 @@ const getProviderOrders = async (req: Request, res: Response) => {
   }
 }
 
+const updateProvider = async (req: Request, res: Response) => {
 
+  try {
+    const userId = req.user?.id
+    const payload = req.body
+
+    const result = await ProviderService.updateProviderIntoDB(
+      "",
+      payload,
+      userId
+    )
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "update provider successfully",
+      data: result,
+    })
+  } catch (error: any) {
+    sendResponse(res, {
+      statusCode: 404,
+      success: false,
+      message: error.message || "Provider not found",
+      data: null,
+    });
+  }
+}
 export const ProviderController = {
   createProvider,
   getAllProviders,
@@ -147,5 +172,6 @@ export const ProviderController = {
   updateOrderStatus,
   getPublicProviders,
   getProviderOrders,
-  getOwnProviders
+  getOwnProviders,
+  updateProvider
 };

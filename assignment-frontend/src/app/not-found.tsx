@@ -23,7 +23,7 @@ export default function NotFound() {
         <Link href="/">
           <motion.span
             whileHover={{ scale: 1.1 }}
-            className="text-2xl font-bold text-indigo-600 cursor-pointer"
+            className="text-2xl font-bold text-gray-900 cursor-pointer"
           >
             FoodHub 🍱
           </motion.span>

@@ -202,6 +202,28 @@ const getProviderOrders = async (userId: string) => {
   })
 }
 
+const updateProviderIntoDB = async (
+  providerId: string,
+  payload: any,
+  userId: string
+) => {
+
+  const provider = await prisma.providerProfiles.findUnique({
+    where: { providerId: userId }
+  })
+
+  if (!provider) {
+    throw new Error("Provider profile not found")
+  }
+
+  const result = await prisma.providerProfiles.update({
+    where: { id: provider.id },
+    data: payload
+  })
+
+  return result
+}
+
 export const ProviderService = {
   // Add service methods here
   createProviderIntoDB,
@@ -211,4 +233,5 @@ export const ProviderService = {
   getPublicProvidersIntoDB,
   getProviderOrders,
   getOwnProvidersIntoDB,
+  updateProviderIntoDB
 };

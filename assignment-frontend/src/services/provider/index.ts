@@ -208,5 +208,27 @@ export const getProviderMeals = async () => {
   }
 };
 
+export const updateProvider = async (payload: any) => {
+  try {
+    const store = await cookies()
+    const token = store.get("token")?.value
+
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/provider/me`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token!,
+        },
+        body: JSON.stringify(payload),
+      }
+    )
+
+    return res.json()
+  } catch (error) {
+    console.error(error)
+  }
+}
 
 
