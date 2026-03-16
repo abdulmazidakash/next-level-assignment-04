@@ -18,7 +18,7 @@ export default async function OrdersPage() {
 
   const res = await getMyOrders()
 
-  const orders: Order[] = res.data
+  const orders: Order[] = res?.data
 
   return (
 
@@ -46,7 +46,7 @@ export default async function OrdersPage() {
 
         <TableBody>
 
-          {orders.map((order) => (
+          {orders?.map((order) => (
 
             <TableRow key={order.id}>
 

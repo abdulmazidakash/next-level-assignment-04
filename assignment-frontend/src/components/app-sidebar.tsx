@@ -35,13 +35,14 @@ const ADMIN_navMain = [
 
 const CUSTOMER_navMain = [
   { title: "My Orders", url: "/dashboard/my-orders", icon: SquareTerminal },
-  { title: "Cart", url: "/cart", icon: Frame },
-  { title: "Checkout", url: "/checkout", icon: Command },
+  { title: "Cart", url: "/dashboard/cart", icon: Frame },
+  { title: "Checkout", url: "/dashboard/checkout", icon: Command },
   { title: "Profile", url: "/dashboard/profile", icon: Settings2 },
 ];
 
 const PROVIDER_navMain = [
   { title: "Dashboard", url: "/provider/dashboard", icon: PieChart },
+      { title: "Create Provider Profile", url: "/dashboard/create-provider-profile", icon: BookOpen },
     { title: "Add Meal", url: "/dashboard/add-meal", icon: BookOpen },
   { title: "Provider Own Meals", url: "/dashboard/provider-own-meals", icon: BookOpen },
   { title: "Orders", url: "/dashboard/orders", icon: SquareTerminal },

@@ -52,7 +52,7 @@ export default function CartPage() {
         <span>৳{total}</span>
       </div>
 
-      <Link href="/checkout">
+      <Link href="/dashboard/checkout">
         <Button className="w-full">Checkout</Button>
       </Link>
     </div>

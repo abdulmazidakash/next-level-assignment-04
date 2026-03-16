@@ -36,7 +36,7 @@ export const getMyOrders = async () => {
       },
       cache: "no-store",
     })
-    // console.log('order response===>', res)
+    console.log('order response===>', res)
 
     if (!res.ok) {
       throw new Error("Failed to fetch orders")

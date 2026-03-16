@@ -12,6 +12,19 @@ const createReviewIntoDB = async (
   if (!meal) {
     throw new Error("Meal not found");
   }
+  const hasOrdered = await prisma.orderItem.findFirst({
+    where: {
+      mealId: payload.mealId,
+      order: {
+        customerId: userId,
+        status: "DELIVERED"
+      }
+    }
+  })
+
+  if (!hasOrdered) {
+    throw new Error("You can review only after ordering")
+  }
 
   const review = await prisma.review.create({
     data: {

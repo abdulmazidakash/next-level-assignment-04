@@ -10,7 +10,7 @@ export default function NotFound() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 via-white to-purple-100 px-6">
+    <div className="min-h-screen flex items-center justify-center  px-6">
 
       <motion.div
         initial={{ opacity: 0, scale: 0.9, y: 40 }}

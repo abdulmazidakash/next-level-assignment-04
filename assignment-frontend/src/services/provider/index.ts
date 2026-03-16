@@ -4,6 +4,30 @@
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
+export const createProvider = async (payload: any) => {
+  try {
+    const store = await cookies();
+    const token = store.get("token")?.value;
+
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/providers`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token!,
+        },
+        body: JSON.stringify(payload),
+      }
+    );
+
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
 export const getMyProvider = async () => {
   try {
     const cookieStore = await cookies();
