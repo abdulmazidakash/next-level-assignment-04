@@ -57,3 +57,31 @@ export const updateUserStatus = async (
     console.error("Error updating user status:", error)
   }
 }
+
+export const updateUserRole = async (
+  userId: string,
+  role: "ADMIN" | "CUSTOMER" | "PROVIDER"
+) => {
+
+  try {
+    const store = await cookies()
+    const token = store.get("token")?.value
+
+    await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/users/role/${userId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token!,
+        },
+        body: JSON.stringify({ role }),
+      }
+    )
+
+    revalidatePath("/dashboard/users")
+
+  } catch (error) {
+    console.error("Error updating role:", error)
+  }
+}

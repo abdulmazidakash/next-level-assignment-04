@@ -14,7 +14,8 @@ import { Button } from "@/components/ui/button"
 import { UserStatusBadge } from "@/components/modules/user/user-status-badge"
 
 import { User } from "@/types/user"
-import { getAllUsers, updateUserStatus } from "@/services/User"
+import { getAllUsers, updateUserRole, updateUserStatus } from "@/services/User"
+import UserRoleForm from "@/components/modules/user/user-role-form"
 
 export default async function UsersPage() {
 
@@ -60,7 +61,10 @@ export default async function UsersPage() {
               </TableCell>
 
               <TableCell>
-                {user.role}
+                <UserRoleForm
+                  userId={user.id}
+                  role={user.role}
+                />
               </TableCell>
 
               <TableCell>

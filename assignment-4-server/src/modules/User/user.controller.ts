@@ -53,7 +53,32 @@ const updateUserStatus = async (req: Request, res: Response) => {
   }
 };
 
+const updateUserRole = async (req: Request, res: Response) => {
+
+  try {
+    const { id } = req.params;
+    const { role } = req.body;
+
+    const result = await UserService.updateUserRoleIntoDB(id as string, role);
+
+    sendResponse(res, {
+      statusCode: 400,
+      success: false,
+      message: "Role Updated Successfully",
+      data: result,
+    });
+  } catch (error: any) {
+    sendResponse(res, {
+      statusCode: 400,
+      success: false,
+      message: error?.message || "Failed to update user status",
+      data: null,
+    });
+  }
+};
+
 export const UserController = {
   getAllUsers,
   updateUserStatus,
+  updateUserRole
 };

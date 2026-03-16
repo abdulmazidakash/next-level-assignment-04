@@ -1,5 +1,5 @@
 import { prisma } from "../../lib/prisma";
-import { Status } from "../../../generated/prisma/enums";
+import { Role, Status } from "../../../generated/prisma/enums";
 
 const getAllUsersFromDB = async () => {
   const users = await prisma.user.findMany({
@@ -48,7 +48,38 @@ const updateUserStatusIntoDB = async (
   return updatedUser;
 };
 
+const updateUserRoleIntoDB = async (
+  userId: string,
+  role: Role
+) => {
+
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+  });
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  const updatedUser = await prisma.user.update({
+    where: { id: userId },
+    data: {
+      role,
+    },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+      status: true,
+    },
+  });
+
+  return updatedUser;
+};
+
 export const UserService = {
   getAllUsersFromDB,
   updateUserStatusIntoDB,
+  updateUserRoleIntoDB
 };

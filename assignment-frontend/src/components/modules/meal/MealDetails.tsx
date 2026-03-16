@@ -5,6 +5,9 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import MealOrderSection from "./MealOrderSection";
+import { Button } from "@/components/ui/button";
+import { addToCart } from "@/lib/cart";
+import { toast } from "sonner";
 
 export default function MealDetails({ meal }: { meal: any }) {
   if (!meal) return <div className="text-center py-20">Meal not found</div>;
@@ -61,7 +64,23 @@ export default function MealDetails({ meal }: { meal: any }) {
               <div className="border-t pt-6">
                 <p className="text-2xl font-bold mb-4">৳{meal.price}</p>
                 {/* Client-side order modal */}
-                <MealOrderSection meal={meal} />
+                {/* <MealOrderSection meal={meal} /> */}
+                <Button
+                  onClick={() => {
+                    addToCart({
+                      mealId: meal.id,
+                      name: meal.name,
+                      price: meal.price,
+                      imageUrl: meal.imageUrl,
+                      quantity: 1,
+                      providerId: meal.provider.id,
+                    })
+
+                    toast.success("Added to cart")
+                  }}
+                >
+                  Add To Cart
+                </Button>
               </div>
             </CardContent>
           </Card>

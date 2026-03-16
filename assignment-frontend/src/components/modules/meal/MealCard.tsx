@@ -67,9 +67,6 @@ export default function MealCard({ meal }: MealCardProps) {
       </CardContent>
 
       <CardFooter className="flex gap-2 p-5 pt-0">
-        <Button className=" rounded-xl">
-          Order Now
-        </Button>
         <Link href={`/meals/${meal.id}`}><Button className=" rounded-xl">
           View Details
         </Button></Link>

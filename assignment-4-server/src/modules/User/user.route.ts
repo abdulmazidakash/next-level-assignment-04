@@ -11,6 +11,12 @@ router.get(
 );
 
 router.patch(
+  "/role/:id",
+  auth(UserRole.admin),
+  UserController.updateUserRole
+);
+
+router.patch(
   "/:id",
   auth(UserRole.admin),
   UserController.updateUserStatus

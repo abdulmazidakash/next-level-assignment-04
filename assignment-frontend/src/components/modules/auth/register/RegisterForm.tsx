@@ -1,22 +1,25 @@
 "use client";
 
-import { loginUser } from "@/services/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { registerUser } from "@/services/auth";
 
 const schema = z.object({
-  email: z.string().email("Valid email required"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
+  name: z.string().min(2),
+  email: z.string().email(),
+  password: z.string().min(6),
 });
 
-export function LoginForm() {
+export function RegisterForm() {
+
   const router = useRouter();
 
   const form = useForm({
@@ -24,13 +27,14 @@ export function LoginForm() {
   });
 
   const onSubmit = async (data: any) => {
-    const res = await loginUser(data);
 
-    if (res?.success) {
-      toast.success("Login successful");
+    const result = await registerUser(data)
+
+    if (result?.success) {
+      toast.success("Account created!");
       router.push("/");
     } else {
-      toast.error(res?.message);
+      toast.error(result.message);
     }
   };
 
@@ -38,9 +42,11 @@ export function LoginForm() {
     <div className="w-full max-w-md space-y-6">
 
       <div className="text-center">
-        <h1 className="text-3xl font-bold">Login</h1>
+        <h1 className="text-3xl font-bold">
+          Create Account
+        </h1>
         <p className="text-muted-foreground">
-          Welcome back 👋
+          Join FoodHub today 🍔
         </p>
       </div>
 
@@ -48,6 +54,11 @@ export function LoginForm() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-4"
       >
+
+        <Input
+          placeholder="Name"
+          {...form.register("name")}
+        />
 
         <Input
           placeholder="Email"
@@ -61,18 +72,18 @@ export function LoginForm() {
         />
 
         <Button className="w-full">
-          Login
+          Register
         </Button>
 
       </form>
 
       <p className="text-center text-sm text-muted-foreground">
-        Don't have an account?
+        Already have an account?
         <Link
-          href="/register"
+          href="/login"
           className="text-primary ml-1"
         >
-          Register
+          Login
         </Link>
       </p>
 
