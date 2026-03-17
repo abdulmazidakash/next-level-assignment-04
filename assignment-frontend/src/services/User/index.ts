@@ -62,12 +62,11 @@ export const updateUserRole = async (
   userId: string,
   role: "ADMIN" | "CUSTOMER" | "PROVIDER"
 ) => {
-
   try {
     const store = await cookies()
     const token = store.get("token")?.value
 
-    await fetch(
+    const res = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/users/role/${userId}`,
       {
         method: "PATCH",
@@ -77,9 +76,13 @@ export const updateUserRole = async (
         },
         body: JSON.stringify({ role }),
       }
-    )
+    );
+
+    const data = await res.json(); 
 
     revalidatePath("/dashboard/users")
+
+    return data;
 
   } catch (error) {
     console.error("Error updating role:", error)

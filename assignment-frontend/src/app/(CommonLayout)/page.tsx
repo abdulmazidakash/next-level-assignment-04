@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import HeroCarousel from "@/components/modules/home/Hero";
+import TopRatedProviders from "@/components/modules/home/TopRatedProviders";
 import MealCard from "@/components/modules/meal/MealCard";
 import { getAllMeals } from "@/services/Meal";
 
@@ -18,6 +19,7 @@ export default async function Home() {
           <MealCard key={meal.id} meal={meal} />
         ))}
       </div>
+      <TopRatedProviders/>
    </>
   );
 }

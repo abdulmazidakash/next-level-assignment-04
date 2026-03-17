@@ -23,24 +23,6 @@ const createProvider = async (req: Request, res: Response) => {
 };
 
 
-const getAllProviders = async (req: Request, res: Response) => {
-  try {
-    const result = await ProviderService.getAllProvidersIntoDB();
-    sendResponse(res, {
-      statusCode: 200,
-      success: true,
-      message: "Provider retrieved successfully",
-      data: result,
-    });
-  } catch (error: any) {
-    sendResponse(res, {
-      statusCode: 400,
-      success: false,
-      message: error.message || "Something went wrong",
-      data: null,
-    });
-  }
-};
 const getOwnProviders = async (req: Request, res: Response) => {
   try {
     const result = await ProviderService.getOwnProvidersIntoDB(req.user?.id as string);
@@ -165,13 +147,33 @@ const updateProvider = async (req: Request, res: Response) => {
     });
   }
 }
+
+const getTopRatedProviders = async (req: Request, res: Response) => {
+  try {
+    const result = await ProviderService.getTopRatedProvidersIntoDB();
+
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "fetch Top Rated provider successfully",
+      data: result,
+    })
+  } catch (error: any) {
+    sendResponse(res, {
+      statusCode: 404,
+      success: false,
+      message: error.message || "Provider not found",
+      data: null,
+    });
+  }
+};
 export const ProviderController = {
   createProvider,
-  getAllProviders,
   getSingleProvider,
   updateOrderStatus,
   getPublicProviders,
   getProviderOrders,
   getOwnProviders,
-  updateProvider
+  updateProvider,
+  getTopRatedProviders
 };

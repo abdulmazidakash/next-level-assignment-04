@@ -3,7 +3,9 @@ import auth, { UserRole } from '../../middlewares/auth';
 import { ProviderController } from './provider.controller';
 
 const router = express.Router();
-
+router.get("/top",
+    ProviderController.getTopRatedProviders
+);
 // public providers with meals count
 router.get("/public",
     ProviderController.getPublicProviders
@@ -18,20 +20,15 @@ router.post('/',
     auth(UserRole.provider),
     ProviderController.createProvider
 );
-
-router.get("/",
-    ProviderController.getAllProviders
-);
-
 // provider can get their profile with meals count
 router.get("/me",
     auth(UserRole.provider),
     ProviderController.getOwnProviders
 );
 router.patch(
-  "/me",
-  auth(UserRole.provider),
-  ProviderController.updateProvider
+    "/me",
+    auth(UserRole.provider),
+    ProviderController.updateProvider
 )
 
 // update order status by provider

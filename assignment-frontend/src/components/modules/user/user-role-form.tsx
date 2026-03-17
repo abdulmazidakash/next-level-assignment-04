@@ -24,7 +24,9 @@ export default function UserRoleForm({ userId, role }: Props) {
 
       setLoading(true)
 
-      const res = await updateUserRole(userId, newRole as any)
+      const res = await updateUserRole(userId, newRole as any);
+      console.log('user role form result: ===>', res)
+
 
       if (res?.success) {
         toast.success("User role updated successfully")

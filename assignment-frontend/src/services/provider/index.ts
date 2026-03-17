@@ -232,3 +232,13 @@ export const updateProvider = async (payload: any) => {
 }
 
 
+export const getTopProviders = async () => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/providers/top`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  return res.json();
+};

@@ -54,7 +54,8 @@ const updateUserStatus = async (req: Request, res: Response) => {
 };
 
 const updateUserRole = async (req: Request, res: Response) => {
-
+  console.log('update user role data request: ===>',req.body);
+  console.log('update user role data request id: ===>',req.params.id);
   try {
     const { id } = req.params;
     const { role } = req.body;
@@ -63,7 +64,7 @@ const updateUserRole = async (req: Request, res: Response) => {
 
     sendResponse(res, {
       statusCode: 400,
-      success: false,
+      success: true,
       message: "Role Updated Successfully",
       data: result,
     });

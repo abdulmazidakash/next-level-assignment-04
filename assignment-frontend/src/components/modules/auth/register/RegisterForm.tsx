@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { registerUser } from "@/services/auth";
+import { uploadImageToImgbb } from "@/lib/uploadImage";
 
 const schema = z.object({
   name: z.string().min(2),
@@ -27,14 +28,32 @@ export function RegisterForm() {
   });
 
   const onSubmit = async (data: any) => {
+    try {
+      const file = data.image[0];
 
-    const result = await registerUser(data)
+      let imageUrl = "";
 
-    if (result?.success) {
-      toast.success("Account created!");
-      router.push("/");
-    } else {
-      toast.error(result.message);
+      if (file) {
+        imageUrl = await uploadImageToImgbb(file);
+      }
+
+      const payload = {
+        ...data,
+        image: imageUrl,
+        role: "CUSTOMER",
+      };
+
+      const result = await registerUser(payload);
+
+      if (result?.success) {
+        toast.success("Account created!");
+        router.push("/");
+      } else {
+        toast.error(result.message);
+      }
+
+    } catch (error) {
+      toast.error("Image upload failed");
     }
   };
 
@@ -54,6 +73,11 @@ export function RegisterForm() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-4"
       >
+        <Input
+          type="file"
+          accept="image/*"
+          id="image"
+        />
 
         <Input
           placeholder="Name"

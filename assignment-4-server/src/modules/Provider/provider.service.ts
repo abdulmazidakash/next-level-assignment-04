@@ -72,23 +72,6 @@ const getOwnProvidersIntoDB = async (userId: string) => {
   return result;
 };
 
-// all providers with meals count
-const getAllProvidersIntoDB = async () => {
-  const result = await prisma.providerProfiles.findMany({
-    include: {
-      user: {
-        select: {
-          id: true,
-          name: true,
-          email: true,
-        },
-      },
-      meals: true,
-    },
-  });
-
-  return result;
-};
 
 // single provider with meals
 const getSingleProviderIntoDB = async (providerId: string) => {
@@ -224,14 +207,63 @@ const updateProviderIntoDB = async (
   return result
 }
 
+const getTopRatedProvidersIntoDB = async () => {
+  const providers = await prisma.providerProfiles.findMany({
+    include: {
+      user: {
+        select: {
+          id: true,
+          name: true,
+          image: true, 
+        },
+      },
+      meals: {
+        include: {
+          reviews: true, 
+        },
+      },
+    },
+  });
+
+
+  const providersWithRating = providers.map((provider) => {
+    let totalRating = 0;
+    let totalReviews = 0;
+
+    provider.meals.forEach((meal) => {
+      meal.reviews.forEach((review) => {
+        totalRating += review.rating;
+        totalReviews++;
+      });
+    });
+
+    const avgRating =
+      totalReviews === 0 ? 0 : totalRating / totalReviews;
+
+    return {
+      ...provider,
+      avgRating,
+      totalReviews,
+    };
+  });
+
+
+  const sorted = providersWithRating.sort(
+    (a, b) => b.avgRating - a.avgRating
+  );
+
+
+  return sorted.slice(0, 3);
+};
+
 export const ProviderService = {
   // Add service methods here
   createProviderIntoDB,
-  getAllProvidersIntoDB,
   getSingleProviderIntoDB,
   updateOrderStatusIntoDB,
   getPublicProvidersIntoDB,
   getProviderOrders,
   getOwnProvidersIntoDB,
-  updateProviderIntoDB
+  updateProviderIntoDB,
+  getTopRatedProvidersIntoDB
 };
