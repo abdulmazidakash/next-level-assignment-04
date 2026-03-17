@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 
 const schema = z.object({
   email: z.string().email("Valid email required"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
+  password: z.string().min(5, "Password must be at least 5 characters"),
 });
 
 export function LoginForm() {

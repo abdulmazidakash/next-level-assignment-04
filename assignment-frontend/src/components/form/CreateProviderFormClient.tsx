@@ -26,6 +26,7 @@ import { toast } from "sonner";
 import { z } from "zod";
 
 import { createProvider } from "@/services/provider";
+import { useRouter } from "next/navigation";
 
 const providerSchema = z.object({
   restaurantName: z.string().min(3),
@@ -35,6 +36,7 @@ const providerSchema = z.object({
 });
 
 export function CreateProviderFormClient() {
+  const router = useRouter();
   const form = useForm({
     defaultValues: {
       restaurantName: "",
@@ -59,7 +61,7 @@ export function CreateProviderFormClient() {
         }
 
         toast.success("Provider profile created", { id: toastId });
-
+        router.push('/dashboard/profile')
         form.reset();
       } catch {
         toast.error("Something went wrong", { id: toastId });

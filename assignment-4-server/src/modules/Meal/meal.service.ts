@@ -77,15 +77,22 @@ const getPublicMealsIntoDB = async () => {
 const getSingleMealIntoDB = async (mealId: string) => {
   const result = await prisma.meal.findUnique({
     where: {
-      id: mealId,
-      isAvailable: true
+      id: mealId, 
     },
     include: {
       provider: true,
       category: true,
-      reviews: true,
+      reviews: {
+        include: {
+          customer: true, 
+        },
+      },
     },
   });
+
+  if (!result) {
+    throw new Error("Meal Details not found");
+  }
 
   return result;
 };
@@ -168,5 +175,4 @@ export const mealService = {
   updateMealIntoDB,
   deleteMealFromDB,
   getPublicMealsIntoDB
-
 };

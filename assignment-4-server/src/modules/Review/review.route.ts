@@ -10,6 +10,9 @@ router.post(
   ReviewController.createReview
 );
 
-router.get("/:mealId", ReviewController.getMealReviews);
+router.get(
+  "/:mealId",
+  ReviewController.getMealReviews
+);
 
 export const ReviewRoutes = router;

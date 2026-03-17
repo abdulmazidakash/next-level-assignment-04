@@ -3,6 +3,31 @@
 
 import { cookies } from "next/headers";
 
+
+export const createMeal = async (payload: any) => {
+  try {
+    const store = await cookies();
+    const token = store.get("token")?.value;
+
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/meals`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token!,
+        },
+        body: JSON.stringify(payload),
+      }
+    );
+
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
 export const getAllMeals = async () => {
   try {
     const res = await fetch(
@@ -33,32 +58,6 @@ export const getSinglePublicMeal = async (id: string) => {
         headers: {
           "Content-Type": "application/json",
         },
-        next: {
-          revalidate: 3600,
-        },
-      },
-    );
-    const result = await res.json();
-    console.log(result)
-
-    return result;
-  } catch (error: any) {
-    return Error(error);
-  }
-};
-
-export const getSingleMeal = async (id: string) => {
-  try {
-    const store = await cookies()
-    const token = store.get("token")?.value
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/meals/${id}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: token!,
-        },
         cache: "no-store",
       },
     );
@@ -70,6 +69,7 @@ export const getSingleMeal = async (id: string) => {
     return Error(error);
   }
 };
+
 
 export const deleteMeal = async (id: string) => {
   try {
@@ -106,28 +106,5 @@ export const updateMeal = async (id: string, payload: any) => {
     return res.json();
   } catch (error) {
     console.error("Error updating meal:", error);
-  }
-};
-
-export const createMeal = async (payload: any) => {
-  try {
-    const store = await cookies();
-    const token = store.get("token")?.value;
-
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/meals`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: token!,
-        },
-        body: JSON.stringify(payload),
-      }
-    );
-
-    return res.json();
-  } catch (error) {
-    console.error(error);
   }
 };

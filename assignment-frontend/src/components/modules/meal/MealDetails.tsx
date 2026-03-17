@@ -8,8 +8,24 @@ import MealOrderSection from "./MealOrderSection";
 import { Button } from "@/components/ui/button";
 import { addToCart } from "@/lib/cart";
 import { toast } from "sonner";
+import { useEffect, useState } from "react";
+import { getMealReview } from "@/services/review";
 
 export default function MealDetails({ meal }: { meal: any }) {
+
+  const [reviews, setReviews] = useState<any[]>([]);
+
+  useEffect(() => {
+    const loadReviews = async () => {
+      const data = await getMealReview(meal.id);
+      setReviews(data || []);
+    };
+
+    if (meal?.id) loadReviews();
+  }, [meal?.id]);
+
+  console.log('reviews data: ===>',reviews)
+
   if (!meal) return <div className="text-center py-20">Meal not found</div>;
 
   return (
@@ -36,12 +52,21 @@ export default function MealDetails({ meal }: { meal: any }) {
 
           <div>
             <h2 className="text-2xl font-semibold mb-4">Reviews</h2>
-            {meal.reviews?.length === 0 ? (
+
+            {reviews.length === 0 ? (
               <p className="text-muted-foreground">No reviews yet.</p>
             ) : (
-              meal.reviews.map((review: any) => (
+              reviews.map((review: any) => (
                 <Card key={review.id} className="mb-4">
-                  <CardContent>{review.comment}</CardContent>
+                  <CardContent className="space-y-2">
+                    <p className="font-semibold">
+                      {review.customer?.name}
+                    </p>
+                    <p>{"⭐".repeat(review.rating)}</p>
+                    <p className="text-muted-foreground">
+                      {review.comment}
+                    </p>
+                  </CardContent>
                 </Card>
               ))
             )}

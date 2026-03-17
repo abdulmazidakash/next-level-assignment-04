@@ -2,32 +2,35 @@ import { Request, Response } from "express";
 import { ReviewService } from "./review.service";
 
 const createReview = async (req: Request, res: Response) => {
+
   const userId = req.user?.id;
+  const payload = req.body;
 
   const result = await ReviewService.createReviewIntoDB(
-    req.body,
+    payload,
     userId
   );
 
-  res.json({
+  res.status(200).json({
     success: true,
-    message: "Review created",
-    data: result,
+    message: "Review added successfully",
+    data: result
   });
 };
 
 const getMealReviews = async (req: Request, res: Response) => {
-  const result = await ReviewService.getMealReviewsFromDB(
-    req.params.mealId as string
-  );
 
-  res.json({
+  const { mealId } = req.params;
+
+  const result = await ReviewService.getMealReviewsFromDB(mealId as string);
+
+  res.status(200).json({
     success: true,
-    data: result,
+    data: result
   });
 };
 
 export const ReviewController = {
   createReview,
-  getMealReviews,
+  getMealReviews
 };

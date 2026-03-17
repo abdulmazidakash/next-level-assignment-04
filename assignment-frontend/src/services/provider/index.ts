@@ -33,7 +33,7 @@ export const getMyProvider = async () => {
     const cookieStore = await cookies();
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/provider`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/providers`,
       {
         method: "GET",
         headers: {
@@ -57,7 +57,7 @@ export const getSingleProvider = async (id: string) => {
     const cookieStore = await cookies();
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/provider/${id}`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/providers/${id}`,
       {
         method: "GET",
         headers: {
@@ -79,7 +79,7 @@ export const getSingleProvider = async (id: string) => {
 export const getAllPublicProviders = async () => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/provider/public`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/providers/public`,
       {
         method: "GET",
         headers: {
@@ -102,7 +102,7 @@ export const getAllPublicProviders = async () => {
 */
 export const getSinglePublicProvider = async (id: string) => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/provider/public/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/providers/public/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -127,7 +127,7 @@ export const getProviderOrders = async () => {
     const token = store.get("token")?.value
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/provider/orders`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/providers/orders`,
       {
         headers: {
           Authorization: token!,
@@ -151,7 +151,7 @@ export const updateOrderStatus = async (
     const token = store.get("token")?.value
 
     await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/provider/order/${orderId}`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/providers/order/${orderId}`,
       {
         method: "PATCH",
         headers: {
@@ -174,7 +174,7 @@ export const getOwnProvider = async () => {
     const token = store.get("token")?.value
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/provider/me`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/providers/me`,
       {
         headers: {
           Authorization: token!,
@@ -214,7 +214,7 @@ export const updateProvider = async (payload: any) => {
     const token = store.get("token")?.value
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/provider/me`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/providers/me`,
       {
         method: "PATCH",
         headers: {

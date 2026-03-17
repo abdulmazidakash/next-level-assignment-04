@@ -8,10 +8,6 @@ router.post('/',
     auth(UserRole.provider),
     mealController.createMeals
 );
-router.get("/",
-    auth(UserRole.provider),
-    mealController.getAllMeals
-);
 router.get(
   "/public",
   mealController.getPublicMeals
@@ -19,10 +15,6 @@ router.get(
 router.get(
   "/public/:id",
   mealController.getSingleMeals
-);
-router.get("/:id",
-    auth(UserRole.provider),
-    mealController.getSingleMeals
 );
 router.put(
     "/:id",
