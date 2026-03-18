@@ -6,7 +6,7 @@ import { getAllMeals } from "@/services/Meal";
 export default async function MealsPage() {
   
   const {data} = await getAllMeals();
-  console.log(data)
+  console.log('meals card data: ===>',data)
   
   
   return (

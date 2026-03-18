@@ -10,6 +10,7 @@ export interface Provider {
   }
   user: {
     name: string
+    image: string
   }
 
   meals: Meal[]

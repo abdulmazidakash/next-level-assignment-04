@@ -1,40 +1,46 @@
-"use client"
+"use client";
 
-import { createReview } from "@/services/review"
-import { toast } from "sonner"
+import { createReview } from "@/services/review";
+import { toast } from "sonner";
 
-export default function ReviewForm({ mealId }: { mealId: string }) {
+export default function ReviewForm({
+  mealId,
+  onSuccess,
+}: {
+  mealId: string;
+  onSuccess?: () => void;
+}) {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
 
     try {
+      const formData = new FormData(e.currentTarget);
 
-      const formData = new FormData(e.currentTarget)
-
-      const rating = Number(formData.get("rating"))
-      const comment = formData.get("comment")
+      const rating = Number(formData.get("rating"));
+      const comment = formData.get("comment");
 
       await createReview({
         mealId,
         rating,
-        comment
-      })
+        comment,
+      });
 
-      toast.success("Review added!")
+      toast.success("Review added!");
+
+      e.currentTarget.reset();
+
+      onSuccess?.();
 
     } catch (error: any) {
-
-      toast.error(error.message)
-
+      toast.error(error.message);
     }
-  }
+  };
 
   return (
-
     <form onSubmit={handleSubmit} className="space-y-4">
 
-      <select name="rating" className="border p-2 rounded">
+      <select name="rating" className="border p-2 rounded w-full">
         <option value="5">⭐⭐⭐⭐⭐</option>
         <option value="4">⭐⭐⭐⭐</option>
         <option value="3">⭐⭐⭐</option>
@@ -46,15 +52,16 @@ export default function ReviewForm({ mealId }: { mealId: string }) {
         name="comment"
         placeholder="Write review"
         className="border p-3 w-full rounded"
+        required
       />
 
       <button
         type="submit"
-        className="bg-black text-white px-4 py-2 rounded"
+        className="bg-black text-white px-4 py-2 rounded w-full"
       >
         Submit Review
       </button>
 
     </form>
-  )
+  );
 }

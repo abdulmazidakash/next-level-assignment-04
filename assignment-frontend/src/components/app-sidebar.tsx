@@ -36,7 +36,6 @@ const ADMIN_navMain = [
 const CUSTOMER_navMain = [
   { title: "My Orders", url: "/dashboard/my-orders", icon: SquareTerminal },
   { title: "Cart", url: "/dashboard/cart", icon: Frame },
-  { title: "Checkout", url: "/dashboard/checkout", icon: Command },
   { title: "Profile", url: "/dashboard/profile", icon: Settings2 },
 ];
 

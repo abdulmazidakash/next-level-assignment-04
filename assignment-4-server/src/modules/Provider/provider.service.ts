@@ -97,6 +97,7 @@ const getPublicProvidersIntoDB = async () => {
         select: {
           id: true,
           name: true,
+          image: true,
         },
       },
       _count: {
