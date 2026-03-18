@@ -15,7 +15,7 @@ export default function ProviderMealsTable({ meals }: any) {
         <div className="w-14 h-14 rounded-full bg-amber-50 border border-amber-200 flex items-center justify-center">
           <UtensilsCrossed className="h-6 w-6 text-amber-700" />
         </div>
-        <p className="font-[family-name:var(--font-display,serif)] text-lg font-bold text-gray-900">
+        <p className=" text-lg font-bold text-gray-900">
           No meals yet
         </p>
         <p className="text-sm text-gray-400">Add your first meal to start receiving orders.</p>
@@ -62,7 +62,7 @@ export default function ProviderMealsTable({ meals }: any) {
                 {/* Meal image + name */}
                 <td className="px-4 py-4">
                   <div className="flex items-center gap-3">
-                    <div className="relative w-[52px] h-[44px] rounded-xl overflow-hidden flex-shrink-0">
+                    <div className="relative w-13 h-11 rounded-xl overflow-hidden shrink-0">
                       {meal.imageUrl ? (
                         <Image
                           src={meal.imageUrl}
@@ -73,7 +73,7 @@ export default function ProviderMealsTable({ meals }: any) {
                           unoptimized
                         />
                       ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-orange-500 to-rose-600 flex items-center justify-center">
+                        <div className="w-full h-full bg-linear-to-br from-orange-500 to-rose-600 flex items-center justify-center">
                           <UtensilsCrossed className="h-5 w-5 text-white opacity-80" />
                         </div>
                       )}
@@ -89,7 +89,7 @@ export default function ProviderMealsTable({ meals }: any) {
 
                 {/* Price */}
                 <td className="px-4 py-4">
-                  <span className="font-[family-name:var(--font-display,serif)] text-[.95rem] font-bold text-gray-900">
+                  <span className=" text-[.95rem] font-bold text-gray-900">
                     ৳{meal.price}
                   </span>
                 </td>
@@ -98,12 +98,12 @@ export default function ProviderMealsTable({ meals }: any) {
                 <td className="px-4 py-4">
                   {meal.isAvailable !== false ? (
                     <span className="inline-flex items-center gap-1.5 bg-green-50 border border-green-200 text-green-700 text-[11.5px] font-semibold px-2.5 py-1 rounded-full">
-                      <span className="w-1.5 h-1.5 rounded-full bg-green-500 flex-shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-green-500 shrink-0" />
                       Available
                     </span>
                   ) : (
                     <span className="inline-flex items-center gap-1.5 bg-red-50 border border-red-200 text-red-600 text-[11.5px] font-semibold px-2.5 py-1 rounded-full">
-                      <span className="w-1.5 h-1.5 rounded-full bg-red-400 flex-shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-red-400 shrink-0" />
                       Unavailable
                     </span>
                   )}
@@ -118,7 +118,7 @@ export default function ProviderMealsTable({ meals }: any) {
                     {/* Update */}
                     <Link
                       href={`/dashboard/provider-own-meals/${meal.id}`}
-                      className="inline-flex items-center gap-1.5 h-[30px] px-3 rounded-[8px] border-[1.5px] border-gray-200 bg-white text-gray-600 text-[12px] font-semibold hover:border-orange-300 hover:text-orange-600 hover:bg-amber-50 transition-all whitespace-nowrap"
+                      className="inline-flex items-center gap-1.5 h-7.5 px-3 rounded-xl border-[1.5px] border-gray-200 bg-white text-gray-600 text-[12px] font-semibold hover:border-orange-300 hover:text-orange-600 hover:bg-amber-50 transition-all whitespace-nowrap"
                     >
                       <Pencil className="h-3 w-3" />
                       Update

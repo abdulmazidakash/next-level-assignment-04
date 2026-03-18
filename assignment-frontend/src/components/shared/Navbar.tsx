@@ -41,17 +41,17 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/92 backdrop-blur-md border-b border-black/[0.08] shadow-[0_1px_16px_rgba(0,0,0,0.06)]">
-      <div className="max-w-[1200px] mx-auto flex h-16 items-center justify-between px-4 sm:px-6 gap-6">
+    <header className="sticky top-0 z-50 bg-white/92 backdrop-blur-md border-b border-black/8 shadow-[0_1px_16px_rgba(0,0,0,0.06)]">
+      <div className="max-w-300 mx-auto flex h-16 items-center justify-between px-4 sm:px-6 gap-6">
 
         {/* ── Logo ── */}
-        <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
-          <div className="w-9 h-9 rounded-[10px] bg-gradient-to-br from-orange-500 to-rose-600 flex items-center justify-center shadow-md shadow-rose-200 flex-shrink-0">
-            <UtensilsCrossed className="h-[18px] w-[18px] text-white" />
+        <Link href="/" className="flex items-center gap-2.5 shrink-0">
+          <div className="w-9 h-9 rounded-[10px] bg-linear-to-br from-orange-500 to-rose-600 flex items-center justify-center shadow-md shadow-rose-200 shrink-0">
+            <UtensilsCrossed className="h-4.5 w-4.5 text-white" />
           </div>
-          <span className="font-[family-name:var(--font-display,serif)] text-[1.2rem] font-bold text-gray-900 leading-none">
+          <span className=" text-[1.2rem] font-bold text-gray-900 leading-none">
             Food
-            <span className="bg-gradient-to-r from-orange-500 to-rose-600 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-orange-500 to-rose-600 bg-clip-text text-transparent">
               Hub
             </span>
           </span>
@@ -76,12 +76,12 @@ export default function Navbar() {
         </nav>
 
         {/* ── Desktop actions ── */}
-        <div className="hidden md:flex items-center gap-2 flex-shrink-0">
+        <div className="hidden md:flex items-center gap-2 shrink-0">
           {user ? (
             <>
               {/* User pill */}
               <div className="flex items-center gap-2 bg-amber-50 border border-amber-200 rounded-full pl-1 pr-3 py-1">
-                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-orange-500 to-rose-600 flex items-center justify-center text-[10.5px] font-bold text-white flex-shrink-0">
+                <div className="w-7 h-7 rounded-full bg-linear-to-br from-orange-500 to-rose-600 flex items-center justify-center text-[10.5px] font-bold text-white shrink-0">
                   {initials(user.name ?? "")}
                 </div>
                 <span className="text-[12.5px] font-semibold text-amber-800 whitespace-nowrap">
@@ -101,7 +101,7 @@ export default function Navbar() {
               {/* Logout */}
               <button
                 onClick={handleLogout}
-                className="inline-flex items-center gap-1.5 h-9 px-3.5 rounded-[10px] bg-[#f4f0eb] text-[13px] font-semibold text-gray-600 hover:bg-[#ece7de] hover:text-gray-900 transition-all border-none cursor-pointer font-[family-name:var(--font-sans)]"
+                className="inline-flex items-center gap-1.5 h-9 px-3.5 rounded-[10px] bg-[#f4f0eb] text-[13px] font-semibold text-gray-600 hover:bg-[#ece7de] hover:text-gray-900 transition-all border-none cursor-pointer "
               >
                 <LogOut className="h-3.5 w-3.5" />
                 Logout
@@ -110,7 +110,7 @@ export default function Navbar() {
           ) : (
             <Link
               href="/login"
-              className="inline-flex items-center gap-1.5 h-9 px-4 rounded-[10px] bg-gradient-to-br from-orange-500 to-rose-600 text-[13px] font-semibold text-white shadow-md shadow-rose-200 hover:shadow-rose-300 hover:-translate-y-0.5 transition-all"
+              className="inline-flex items-center gap-1.5 h-9 px-4 rounded-[10px] bg-linear-to-br from-orange-500 to-rose-600 text-[13px] font-semibold text-white shadow-md shadow-rose-200 hover:shadow-rose-300 hover:-translate-y-0.5 transition-all"
             >
               <LogIn className="h-3.5 w-3.5" />
               Login
@@ -119,26 +119,26 @@ export default function Navbar() {
         </div>
 
         {/* ── Mobile hamburger ── */}
-        <div className="md:hidden flex-shrink-0">
+        <div className="md:hidden shrink-0">
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
               <button className="w-9 h-9 rounded-[10px] border border-gray-200 bg-white flex items-center justify-center hover:border-orange-300 hover:bg-amber-50 transition-all">
-                <Menu className="h-[18px] w-[18px] text-gray-700" />
+                <Menu className="h-4.5 w-4.5 text-gray-700" />
               </button>
             </SheetTrigger>
 
-            <SheetContent side="right" className="w-[280px] p-0 border-l border-gray-100">
+            <SheetContent side="right" className="w-70 p-0 border-l border-gray-100">
               <div className="flex flex-col h-full">
 
                 {/* Drawer header */}
                 <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
                   <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-[8px] bg-gradient-to-br from-orange-500 to-rose-600 flex items-center justify-center flex-shrink-0">
+                    <div className="w-7 h-7 rounded-xl bg-linear-to-br from-orange-500 to-rose-600 flex items-center justify-center shrink-0">
                       <UtensilsCrossed className="h-3.5 w-3.5 text-white" />
                     </div>
-                    <span className="font-[family-name:var(--font-display,serif)] text-[1rem] font-bold text-gray-900">
+                    <span className=" text-[1rem] font-bold text-gray-900">
                       Food
-                      <span className="bg-gradient-to-r from-orange-500 to-rose-600 bg-clip-text text-transparent">
+                      <span className="bg-linear-to-r from-orange-500 to-rose-600 bg-clip-text text-transparent">
                         Hub
                       </span>
                     </span>
@@ -172,7 +172,7 @@ export default function Navbar() {
                     <>
                       {/* User pill */}
                       <div className="flex items-center gap-2.5 bg-amber-50 border border-amber-200 rounded-xl px-3 py-2.5">
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-orange-500 to-rose-600 flex items-center justify-center text-[11px] font-bold text-white flex-shrink-0">
+                        <div className="w-8 h-8 rounded-full bg-linear-to-br from-orange-500 to-rose-600 flex items-center justify-center text-[11px] font-bold text-white shrink-0">
                           {initials(user.name ?? "")}
                         </div>
                         <div>
@@ -192,7 +192,7 @@ export default function Navbar() {
 
                       <button
                         onClick={handleLogout}
-                        className="flex items-center justify-center gap-2 h-10 rounded-xl bg-[#f4f0eb] text-[13.5px] font-semibold text-gray-600 hover:bg-[#ece7de] hover:text-gray-900 transition-all border-none cursor-pointer font-[family-name:var(--font-sans)]"
+                        className="flex items-center justify-center gap-2 h-10 rounded-xl bg-[#f4f0eb] text-[13.5px] font-semibold text-gray-600 hover:bg-[#ece7de] hover:text-gray-900 transition-all border-none cursor-pointer "
                       >
                         <LogOut className="h-4 w-4" />
                         Logout
@@ -202,7 +202,7 @@ export default function Navbar() {
                     <Link
                       href="/login"
                       onClick={() => setOpen(false)}
-                      className="flex items-center justify-center gap-2 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-rose-600 text-[13.5px] font-semibold text-white shadow-md shadow-rose-200 transition-all"
+                      className="flex items-center justify-center gap-2 h-10 rounded-xl bg-linear-to-br from-orange-500 to-rose-600 text-[13.5px] font-semibold text-white shadow-md shadow-rose-200 transition-all"
                     >
                       <LogIn className="h-4 w-4" />
                       Login

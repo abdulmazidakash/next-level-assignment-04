@@ -1,12 +1,9 @@
-import { LoginForm } from '@/components/modules/auth/login/loginForm'
-import React from 'react'
+import { LoginForm } from "@/components/modules/auth/login/loginForm"
 
 export default function LoginPage() {
   return (
-    <div className="container mx-auto px-4">
-      <div className="min-h-[80vh] flex items-center justify-center">
-        <LoginForm />
-      </div>
+    <div className="min-h-screen bg-[#f7f2ec] flex items-center justify-center px-4 py-10">
+      <LoginForm />
     </div>
   )
 }
