@@ -1,72 +1,138 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-"use client";
+"use client"
 
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table";
-
-
-import Image from "next/image";
-import ViewMealDialog from "./ViewMealDialog";
-import UpdateMealDialog from "./UpdateMealDialog";
-import DeleteMealButton from "./DeleteMealButton";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import Image from "next/image"
+import Link from "next/link"
+import { Eye, Pencil, Trash2, UtensilsCrossed } from "lucide-react"
+import ViewMealDialog from "./ViewMealDialog"
+import DeleteMealButton from "./DeleteMealButton"
+import { cn } from "@/lib/utils"
 
 export default function ProviderMealsTable({ meals }: any) {
+  if (!meals?.length) {
     return (
-        <Table>
-            <TableHeader>
-                <TableRow>
-                     <TableHead>Sl</TableHead>
-                    <TableHead>Image</TableHead>
-                    <TableHead>Name</TableHead>
-                    <TableHead>Price</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Actions</TableHead>
-                </TableRow>
-            </TableHeader>
+      <div className="bg-white border border-black/[0.07] rounded-2xl p-14 flex flex-col items-center gap-4 text-center">
+        <div className="w-14 h-14 rounded-full bg-amber-50 border border-amber-200 flex items-center justify-center">
+          <UtensilsCrossed className="h-6 w-6 text-amber-700" />
+        </div>
+        <p className="font-[family-name:var(--font-display,serif)] text-lg font-bold text-gray-900">
+          No meals yet
+        </p>
+        <p className="text-sm text-gray-400">Add your first meal to start receiving orders.</p>
+      </div>
+    )
+  }
 
-            <TableBody>
-                {meals.map((meal: any, i: number) => (
-                    <TableRow key={meal.id}>
-                        <TableCell>{i+ 1}</TableCell>
-                        <TableCell>
-                            <Image
-                                alt={meal?.name}
-                                width={48}
-                                height={48}
-                                src={meal.imageUrl}
-                                className="h-12 w-12 rounded object-cover"
-                            />
-                        </TableCell>
+  return (
+    <div className="bg-white border border-black/[0.07] rounded-2xl overflow-hidden">
+      <div className="overflow-x-auto">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="bg-[#faf7f3]">
+              {["#", "Meal", "Price", "Status", "Actions"].map((h, i) => (
+                <th
+                  key={h}
+                  className={cn(
+                    "px-4 py-3 text-left text-[10.5px] font-bold tracking-[0.06em] uppercase text-gray-400 border-b border-gray-100 whitespace-nowrap",
+                    i === 0 && "w-12 text-center"
+                  )}
+                >
+                  {h}
+                </th>
+              ))}
+            </tr>
+          </thead>
 
-                        <TableCell>{meal.name}</TableCell>
+          <tbody>
+            {meals.map((meal: any, i: number) => (
+              <tr
+                key={meal.id}
+                className={cn(
+                  "border-b border-gray-50 last:border-0 transition-colors",
+                  meal.isAvailable === false
+                    ? "opacity-60 hover:opacity-80 hover:bg-[#fdf9f5]"
+                    : "hover:bg-[#fdf9f5]"
+                )}
+              >
+                {/* # */}
+                <td className="px-4 py-4 text-center text-xs text-gray-400 font-semibold">
+                  {i + 1}
+                </td>
 
-                        <TableCell>৳ {meal.price}</TableCell>
+                {/* Meal image + name */}
+                <td className="px-4 py-4">
+                  <div className="flex items-center gap-3">
+                    <div className="relative w-[52px] h-[44px] rounded-xl overflow-hidden flex-shrink-0">
+                      {meal.imageUrl ? (
+                        <Image
+                          src={meal.imageUrl}
+                          alt={meal.name}
+                          fill
+                          className="object-cover"
+                          sizes="52px"
+                          unoptimized
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-orange-500 to-rose-600 flex items-center justify-center">
+                          <UtensilsCrossed className="h-5 w-5 text-white opacity-80" />
+                        </div>
+                      )}
+                    </div>
+                    <div>
+                      <p className="font-semibold text-[14px] text-gray-900 leading-tight">{meal.name}</p>
+                      {meal.category?.name && (
+                        <p className="text-[11.5px] text-gray-400 mt-0.5">{meal.category.name}</p>
+                      )}
+                    </div>
+                  </div>
+                </td>
 
-                        <TableCell>
-                            {meal.isAvailable ? "Available" : "Unavailable"}
-                        </TableCell>
+                {/* Price */}
+                <td className="px-4 py-4">
+                  <span className="font-[family-name:var(--font-display,serif)] text-[.95rem] font-bold text-gray-900">
+                    ৳{meal.price}
+                  </span>
+                </td>
 
-                        <TableCell className="flex gap-2">
-                            <ViewMealDialog meal={meal} />
-                            {/* <UpdateMealDialog meal={meal} /> */}
-                            <Link href={`/dashboard/provider-own-meals/${meal.id}`}>
-                                <Button size="sm" variant="outline">
-                                    Update
-                                </Button>
-                            </Link>
-                            <DeleteMealButton id={meal.id} />
-                        </TableCell>
-                    </TableRow>
-                ))}
-            </TableBody>
-        </Table>
-    );
+                {/* Availability */}
+                <td className="px-4 py-4">
+                  {meal.isAvailable !== false ? (
+                    <span className="inline-flex items-center gap-1.5 bg-green-50 border border-green-200 text-green-700 text-[11.5px] font-semibold px-2.5 py-1 rounded-full">
+                      <span className="w-1.5 h-1.5 rounded-full bg-green-500 flex-shrink-0" />
+                      Available
+                    </span>
+                  ) : (
+                    <span className="inline-flex items-center gap-1.5 bg-red-50 border border-red-200 text-red-600 text-[11.5px] font-semibold px-2.5 py-1 rounded-full">
+                      <span className="w-1.5 h-1.5 rounded-full bg-red-400 flex-shrink-0" />
+                      Unavailable
+                    </span>
+                  )}
+                </td>
+
+                {/* Actions */}
+                <td className="px-4 py-4">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    {/* View */}
+                    <ViewMealDialog meal={meal} />
+
+                    {/* Update */}
+                    <Link
+                      href={`/dashboard/provider-own-meals/${meal.id}`}
+                      className="inline-flex items-center gap-1.5 h-[30px] px-3 rounded-[8px] border-[1.5px] border-gray-200 bg-white text-gray-600 text-[12px] font-semibold hover:border-orange-300 hover:text-orange-600 hover:bg-amber-50 transition-all whitespace-nowrap"
+                    >
+                      <Pencil className="h-3 w-3" />
+                      Update
+                    </Link>
+
+                    {/* Delete */}
+                    <DeleteMealButton id={meal.id} />
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  )
 }

@@ -1,5 +1,6 @@
-import { getSingleMeal } from "@/services/Meal";
+
 import UpdateMealForm from "@/components/form/UpdateMealForm";
+import { getSinglePublicMeal } from "@/services/Meal";
 
 export default async function ProviderOwnMealDetailsPage({
   params,
@@ -8,7 +9,7 @@ export default async function ProviderOwnMealDetailsPage({
 }) {
   const { id } = await params;
 
-  const mealRes = await getSingleMeal(id);
+  const mealRes = await getSinglePublicMeal(id);
   const meal = mealRes?.data;
 
   if (!meal) {
