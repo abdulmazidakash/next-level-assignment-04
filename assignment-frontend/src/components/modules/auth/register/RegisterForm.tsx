@@ -73,24 +73,24 @@ export function RegisterForm() {
   };
 
   return (
-    <div className="w-full max-w-[900px] grid grid-cols-1 md:grid-cols-2 bg-white border border-black/[0.08] rounded-[24px] overflow-hidden shadow-[0_24px_64px_rgba(0,0,0,0.1),0_4px_16px_rgba(0,0,0,0.06)]">
+    <div className="w-full max-w-225 grid grid-cols-1 md:grid-cols-2 bg-white border border-black/8 rounded-[24px] overflow-hidden shadow-[0_24px_64px_rgba(0,0,0,0.1),0_4px_16px_rgba(0,0,0,0.06)]">
 
       {/* ── Left: form panel ── */}
       <div className="flex flex-col justify-center px-8 py-10 sm:px-10">
 
         {/* Mobile logo */}
         <div className="flex items-center gap-2 mb-6 md:hidden">
-          <div className="w-8 h-8 rounded-[9px] bg-gradient-to-br from-orange-500 to-rose-600 flex items-center justify-center flex-shrink-0">
+          <div className="w-8 h-8 rounded-[9px] bg-linear-to-br from-orange-500 to-rose-600 flex items-center justify-center shrink-0">
             <UtensilsCrossed className="h-4 w-4 text-white" />
           </div>
-          <span className="font-[family-name:var(--font-display,serif)] text-[1.1rem] font-bold text-gray-900">
-            Food<span className="bg-gradient-to-r from-orange-500 to-rose-600 bg-clip-text text-transparent">Hub</span>
+          <span className=" text-[1.1rem] font-bold text-gray-900">
+            Food<span className="bg-linear-to-r from-orange-500 to-rose-600 bg-clip-text text-transparent">Hub</span>
           </span>
         </div>
 
         {/* Header */}
         <div className="mb-6">
-          <h1 className="font-[family-name:var(--font-display,serif)] text-[1.6rem] font-bold text-gray-900 leading-tight">
+          <h1 className=" text-[1.6rem] font-bold text-gray-900 leading-tight">
             Create account
           </h1>
           <p className="text-[13.5px] text-gray-400 mt-1">
@@ -104,7 +104,7 @@ export function RegisterForm() {
           <button
             type="button"
             onClick={() => fileRef.current?.click()}
-            className="w-[60px] h-[60px] rounded-full border-[3px] border-white shadow-md shadow-rose-100 flex-shrink-0 overflow-hidden bg-gradient-to-br from-orange-500 to-rose-600 flex items-center justify-center transition-transform hover:scale-105"
+            className="w-15 h-15 rounded-full border-[3px] border-white shadow-md shadow-rose-100 shrink-0 overflow-hidden bg-linear-to-br from-orange-500 to-rose-600 flex items-center justify-center transition-transform hover:scale-105"
           >
             {preview ? (
               // eslint-disable-next-line @next/next/no-img-element
@@ -145,9 +145,9 @@ export function RegisterForm() {
             <input
               {...register("name")}
               type="text"
-              placeholder="Rafi Khan"
+              placeholder="John Doe"
               className={cn(
-                "h-11 w-full rounded-[12px] border-[1.5px] px-4 text-[14px] text-gray-900 placeholder:text-gray-400 outline-none transition-all bg-white",
+                "h-11 w-full rounded-2xl border-[1.5px] px-4 text-[14px] text-gray-900 placeholder:text-gray-400 outline-none transition-all bg-white",
                 errors.name
                   ? "border-red-300 bg-red-50/30 focus:border-red-400"
                   : "border-gray-200 focus:border-orange-400 focus:bg-orange-50/20"
@@ -166,7 +166,7 @@ export function RegisterForm() {
               type="email"
               placeholder="you@example.com"
               className={cn(
-                "h-11 w-full rounded-[12px] border-[1.5px] px-4 text-[14px] text-gray-900 placeholder:text-gray-400 outline-none transition-all bg-white",
+                "h-11 w-full rounded-2xl border-[1.5px] px-4 text-[14px] text-gray-900 placeholder:text-gray-400 outline-none transition-all bg-white",
                 errors.email
                   ? "border-red-300 bg-red-50/30 focus:border-red-400"
                   : "border-gray-200 focus:border-orange-400 focus:bg-orange-50/20"
@@ -185,7 +185,7 @@ export function RegisterForm() {
               type="password"
               placeholder="Min. 6 characters"
               className={cn(
-                "h-11 w-full rounded-[12px] border-[1.5px] px-4 text-[14px] text-gray-900 placeholder:text-gray-400 outline-none transition-all bg-white",
+                "h-11 w-full rounded-2xl border-[1.5px] px-4 text-[14px] text-gray-900 placeholder:text-gray-400 outline-none transition-all bg-white",
                 errors.password
                   ? "border-red-300 bg-red-50/30 focus:border-red-400"
                   : "border-gray-200 focus:border-orange-400 focus:bg-orange-50/20"
@@ -203,10 +203,10 @@ export function RegisterForm() {
             className={cn(
               "mt-1 h-12 w-full rounded-[14px] flex items-center justify-center gap-2",
               "text-[15px] font-semibold text-white border-none cursor-pointer",
-              "bg-gradient-to-br from-orange-500 to-rose-600",
+              "bg-linear-to-br from-orange-500 to-rose-600",
               "hover:from-orange-600 hover:to-rose-700",
               "shadow-md shadow-rose-200 hover:shadow-rose-300 hover:-translate-y-0.5",
-              "transition-all font-[family-name:var(--font-sans)]",
+              "transition-all",
               "disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
             )}
           >
@@ -238,7 +238,7 @@ export function RegisterForm() {
       </div>
 
       {/* ── Right: decorative panel ── */}
-      <div className="relative hidden md:flex flex-col justify-between bg-gradient-to-br from-[#1a1108] via-[#2d1a0a] to-[#1a0c06] p-10 overflow-hidden">
+      <div className="relative hidden md:flex flex-col justify-between bg-linear-to-br from-[#1a1108] via-[#2d1a0a] to-[#1a0c06] p-10 overflow-hidden">
         {/* Decorative circles */}
         <div className="absolute -top-14 -right-14 w-52 h-52 rounded-full bg-orange-500/10" />
         <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-orange-500/10" />
@@ -246,12 +246,12 @@ export function RegisterForm() {
 
         {/* Logo */}
         <div className="relative flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-[10px] bg-gradient-to-br from-orange-500 to-rose-600 flex items-center justify-center shadow-lg shadow-rose-900/40 flex-shrink-0">
-            <UtensilsCrossed className="h-[18px] w-[18px] text-white" />
+          <div className="w-9 h-9 rounded-[10px] bg-linear-to-br from-orange-500 to-rose-600 flex items-center justify-center shadow-lg shadow-rose-900/40 shrink-0">
+            <UtensilsCrossed className="h-4.5 w-4.5 text-white" />
           </div>
-          <span className="font-[family-name:var(--font-display,serif)] text-[1.2rem] font-bold text-white leading-none">
+          <span className=" text-[1.2rem] font-bold text-white leading-none">
             Food
-            <span className="bg-gradient-to-r from-orange-500 to-rose-600 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-orange-500 to-rose-600 bg-clip-text text-transparent">
               Hub
             </span>
           </span>
@@ -259,20 +259,20 @@ export function RegisterForm() {
 
         {/* Body */}
         <div className="relative flex-1 flex flex-col justify-center gap-4 py-8">
-          <h2 className="font-[family-name:var(--font-display,serif)] text-[1.85rem] font-bold text-white leading-tight">
+          <h2 className=" text-[1.85rem] font-bold text-white leading-tight">
             Start your{" "}
-            <span className="bg-gradient-to-r from-orange-500 to-rose-600 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-orange-500 to-rose-600 bg-clip-text text-transparent">
               food journey
             </span>
           </h2>
-          <p className="text-[13.5px] text-white/45 leading-relaxed max-w-[240px]">
+          <p className="text-[13.5px] text-white/45 leading-relaxed max-w-60">
             Create a free account and unlock access to hundreds of local restaurants.
           </p>
 
           <div className="flex flex-col gap-3.5 mt-2">
             {STEPS.map((step, i) => (
               <div key={i} className="flex items-start gap-3">
-                <div className="w-[22px] h-[22px] rounded-full bg-gradient-to-br from-orange-500 to-rose-600 flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0 mt-0.5">
+                <div className="w-5.5 h-5.5 rounded-full bg-linear-to-br from-orange-500 to-rose-600 flex items-center justify-center text-[10px] font-bold text-white shrink-0 mt-0.5">
                   {i + 1}
                 </div>
                 <span className="text-[13px] text-white/60 leading-snug">{step}</span>

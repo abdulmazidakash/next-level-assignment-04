@@ -1,119 +1,132 @@
-import React from 'react'
+import React from "react";
+import Link from "next/link";
 import {
-  Rocket,
-  Zap,
-  ShieldCheck,
-  UtensilsCrossed,
-  Clock,
-  Star
-} from 'lucide-react'
+  Clock, UtensilsCrossed, ShieldCheck,
+  Zap, ArrowRight, CheckCircle2,
+} from "lucide-react";
+
+const FEATURES = [
+  {
+    icon: Clock,
+    iconStyle: "bg-orange-500/15 border border-orange-500/25 text-orange-400",
+    title: "Lightning Fast Delivery",
+    description:
+      "Your favourite meals arrive at your door in record time — hot, fresh, and ready to enjoy.",
+    stat: "Avg. 30 min delivery",
+  },
+  {
+    icon: UtensilsCrossed,
+    iconStyle: "bg-amber-500/15 border border-amber-500/25 text-amber-400",
+    title: "Premium Quality Food",
+    description:
+      "We work only with carefully selected restaurants and the highest-rated local kitchens.",
+    stat: "100+ verified restaurants",
+  },
+  {
+    icon: ShieldCheck,
+    iconStyle: "bg-green-500/15 border border-green-500/25 text-green-400",
+    title: "100% Trusted & Secure",
+    description:
+      "Safe payments, verified providers, and fully protected personal information — always.",
+    stat: "SSL encrypted payments",
+  },
+];
 
 export default function WhyChooseUs() {
-  const features = [
-    {
-      icon: Clock,
-      title: "Lightning Fast Delivery",
-      description: "Your favorite meals arrive at your door in record time — hot and fresh.",
-      color: "from-blue-500 to-cyan-400",
-      iconColor: "text-cyan-500"
-    },
-    {
-      icon: UtensilsCrossed,
-      title: "Premium Quality Food",
-      description: "We work only with carefully selected restaurants and highest-rated kitchens.",
-      color: "from-amber-500 to-orange-400",
-      iconColor: "text-amber-600"
-    },
-    {
-      icon: ShieldCheck,
-      title: "100% Trusted & Secure",
-      description: "Safe payments, verified providers, and protected personal information.",
-      color: "from-violet-500 to-purple-500",
-      iconColor: "text-violet-600"
-    }
-  ]
-
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-b from-gray-50 via-white to-gray-50">
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+    <section className="relative bg-linear-to-b from-[#1a1108] to-[#0f0903] py-16 md:py-24 overflow-hidden">
 
-        {/* Heading */}
-        <div className="text-center mb-16 md:mb-20">
-          <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-gradient-to-r from-orange-100 to-amber-100 text-orange-700 font-medium text-sm mb-5">
-            <Rocket size={18} className="text-orange-600" />
-            <span>Why thousands choose us every day</span>
+      {/* Dot grid */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(rgba(255,107,53,0.06) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+
+      <div className="relative z-10 max-w-275 mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* ── Header ── */}
+        <div className="text-center mb-12">
+          {/* Eyebrow */}
+          <div className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/25 text-white/65 text-[11.5px] font-bold tracking-wider uppercase px-4 py-1.5 rounded-full mb-4">
+            <Zap className="h-3.5 w-3.5 text-orange-400" />
+            Why FoodHub
           </div>
 
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
-            Why Choose <span className="text-orange-600">FoodHub</span>?
+          <h2 className=" text-[clamp(1.8rem,4vw,2.6rem)] font-bold text-white leading-tight mb-3">
+            Everything You Need,{" "}
+            <span className="bg-linear-to-r from-orange-500 to-rose-600 bg-clip-text text-transparent">
+              All in One Place
+            </span>
           </h2>
 
-          <p className="mt-5 text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-[15px] text-white/40 max-w-120 mx-auto leading-relaxed">
             We combine speed, quality, and trust so you can enjoy great food without compromise.
           </p>
         </div>
 
-        {/* Feature Cards */}
-        <div className="grid md:grid-cols-3 gap-7 lg:gap-9">
-
-          {features.map((feature, index) => {
-            const Icon = feature.icon
-            return (
+        {/* ── Feature cards ── */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {FEATURES.map(({ icon: Icon, iconStyle, title, description, stat }) => (
+            <div
+              key={title}
+              className="group relative flex flex-col gap-4 bg-white/4 border border-white/8 rounded-4xl p-7 hover:-translate-y-1.5 hover:bg-white/[0.07] hover:border-orange-500/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] transition-all duration-300 overflow-hidden"
+            >
+              {/* Icon tile */}
               <div
-                key={index}
-                className={`
-                  group relative overflow-hidden
-                  bg-white rounded-2xl shadow-md hover:shadow-2xl
-                  transition-all duration-400 ease-out
-                  border border-gray-100
-                  hover:-translate-y-2
-                `}
+                className={`w-13 h-13 rounded-[14px] flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 ${iconStyle}`}
               >
-                {/* Gradient top bar */}
-                <div className={`h-2 bg-gradient-to-r ${feature.color}`} />
-
-                <div className="p-8 pb-10">
-
-                  {/* Icon circle */}
-                  <div className={`
-                    inline-flex items-center justify-center 
-                    w-16 h-16 rounded-2xl mb-6
-                    bg-gradient-to-br ${feature.color} bg-opacity-10
-                    text-white
-                    group-hover:scale-110 group-hover:rotate-3
-                    transition-transform duration-400
-                  `}>
-                    <Icon
-                      size={32}
-                      className={`${feature.iconColor} group-hover:scale-110 transition-transform duration-400`}
-                      strokeWidth={1.8}
-                    />
-                  </div>
-
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    {feature.title}
-                  </h3>
-
-                  <p className="text-gray-600 leading-relaxed">
-                    {feature.description}
-                  </p>
-
-                </div>
-
-                {/* Subtle hover shine effect */}
-                <div className="
-                  absolute inset-0 opacity-0 group-hover:opacity-10
-                  bg-linear-to-br from-white via-transparent to-transparent
-                  pointer-events-none transition-opacity duration-500
-                "/>
-
+                <Icon className="h-6 w-6" strokeWidth={1.8} />
               </div>
-            )
-          })}
 
+              <h3 className=" text-[1.1rem] font-bold text-white leading-tight">
+                {title}
+              </h3>
+
+              <p className="text-[13.5px] text-white/45 leading-relaxed flex-1">
+                {description}
+              </p>
+
+              {/* Stat tag */}
+              <div className="inline-flex items-center gap-1.5 bg-orange-500/10 border border-orange-500/20 text-white/55 text-[11px] font-semibold px-3 py-1.5 rounded-full self-start">
+                <CheckCircle2 className="h-3 w-3 text-orange-400" />
+                {stat}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* ── CTA strip ── */}
+        <div className="mt-10 bg-white/4 border border-white/[0.07] rounded-4xl px-7 py-6 flex items-center justify-between flex-wrap gap-5">
+          <div>
+            <h3 className=" text-[1.2rem] font-bold text-white mb-1">
+              Ready to order your first meal?
+            </h3>
+            <p className="text-[13.5px] text-white/40">
+              Join thousands of happy customers already using FoodHub
+            </p>
+          </div>
+
+          <div className="flex gap-2.5 flex-wrap">
+            <Link
+              href="/meals"
+              className="inline-flex items-center gap-2 h-10 px-5 rounded-2xl border-none bg-linear-to-br from-orange-500 to-rose-600 text-white text-[13.5px] font-semibold shadow-md shadow-rose-900/40 hover:shadow-rose-900/60 hover:-translate-y-0.5 transition-all"
+            >
+              <ArrowRight className="h-4 w-4" />
+              Browse Meals
+            </Link>
+            <Link
+              href="/providers"
+              className="inline-flex items-center gap-2 h-10 px-5 rounded-2xl border border-white/12 bg-transparent text-white/70 text-[13.5px] font-semibold hover:bg-white/[0.07] hover:text-white hover:border-white/20 transition-all"
+            >
+              View Providers
+            </Link>
+          </div>
         </div>
 
       </div>
     </section>
-  )
+  );
 }
