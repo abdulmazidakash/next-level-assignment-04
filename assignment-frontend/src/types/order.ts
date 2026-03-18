@@ -3,6 +3,9 @@ export interface Meal {
   name: string
   price: number
   imageUrl: string
+  category: {
+    name: string
+  }
 }
 
 export interface OrderItem {
