@@ -2,7 +2,7 @@ import { RegisterForm } from "@/components/modules/auth/register/RegisterForm"
 
 export default function RegisterPage() {
   return (
-    <div className="min-h-screen bg-[#f7f2ec] flex items-center justify-center px-4 py-10">
+    <div className="min-h-screen flex items-center justify-center px-4 py-10">
       <RegisterForm />
     </div>
   )

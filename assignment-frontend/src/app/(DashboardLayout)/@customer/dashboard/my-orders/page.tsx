@@ -32,7 +32,7 @@ function StatusBadge({ status }: { status: string }) {
     >
       <span
         className={cn(
-          "w-1.5 h-1.5 rounded-full flex-shrink-0",
+          "w-1.5 h-1.5 rounded-full shrink-0",
           STATUS_DOT[key] ?? "bg-gray-400"
         )}
       />
@@ -42,7 +42,7 @@ function StatusBadge({ status }: { status: string }) {
 }
 
 // ── Restaurant initials dot ──────────────────────────────────
-const DOT_GRADIENTS = [
+const DOT_linearS = [
   "from-orange-500 to-rose-600",
   "from-teal-600 to-emerald-500",
   "from-blue-600 to-sky-400",
@@ -72,13 +72,13 @@ export default async function OrdersPage() {
 
   return (
     <div className="min-h-screen bg-[#f7f2ec]">
-      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div className="max-w-275 mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
         {/* ── Header ── */}
         <div className="mb-7">
-          <h1 className="font-[family-name:var(--font-display,serif)] text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
+          <h1 className=" text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
             My{" "}
-            <span className="bg-gradient-to-r from-orange-500 to-rose-600 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-orange-500 to-rose-600 bg-clip-text text-transparent">
               Orders
             </span>
           </h1>
@@ -95,7 +95,7 @@ export default async function OrdersPage() {
           ].map(({ label, value, sub }) => (
             <div key={label} className="bg-white border border-black/[0.07] rounded-2xl px-5 py-4">
               <p className="text-[10.5px] font-bold tracking-widest uppercase text-gray-400 mb-1">{label}</p>
-              <p className="font-[family-name:var(--font-display,serif)] text-[1.55rem] font-bold text-gray-900 leading-none">
+              <p className=" text-[1.55rem] font-bold text-gray-900 leading-none">
                 {value}
               </p>
               <p className="text-[11.5px] text-gray-400 mt-1">{sub}</p>
@@ -145,8 +145,8 @@ export default async function OrdersPage() {
                         <div className="flex items-center gap-2.5">
                           <div
                             className={cn(
-                              "w-7 h-7 rounded-lg flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0 bg-gradient-to-br",
-                              DOT_GRADIENTS[i % DOT_GRADIENTS.length]
+                              "w-7 h-7 rounded-lg flex items-center justify-center text-[10px] font-bold text-white shrink-0 bg-linear-to-br",
+                              DOT_linearS[i % DOT_linearS.length]
                             )}
                           >
                             {initials(order.provider?.restaurantName ?? "?")}
@@ -167,7 +167,7 @@ export default async function OrdersPage() {
 
                       {/* Price */}
                       <td className="px-4 py-4">
-                        <span className="font-[family-name:var(--font-display,serif)] text-base font-bold text-gray-900">
+                        <span className=" text-base font-bold text-gray-900">
                           ৳{order.totalPrice?.toLocaleString()}
                         </span>
                       </td>
@@ -192,7 +192,7 @@ export default async function OrdersPage() {
                       <td className="px-4 py-4">
                         <Link
                           href={`/dashboard/my-orders/${order.id}`}
-                          className="inline-flex items-center gap-1.5 h-8 px-3 rounded-[9px] text-[12px] font-semibold bg-gradient-to-br from-orange-500 to-rose-600 text-white shadow-sm shadow-rose-200 hover:shadow-rose-300 hover:-translate-y-0.5 transition-all whitespace-nowrap"
+                          className="inline-flex items-center gap-1.5 h-8 px-3 rounded-[9px] text-[12px] font-semibold bg-linear-to-br from-orange-500 to-rose-600 text-white shadow-sm shadow-rose-200 hover:shadow-rose-300 hover:-translate-y-0.5 transition-all whitespace-nowrap"
                         >
                           View
                           <ArrowRight className="h-3 w-3" />

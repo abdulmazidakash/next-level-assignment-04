@@ -13,7 +13,6 @@ const NAV_LINKS = [
   { name: "Meals",     href: "/meals" },
   { name: "Providers", href: "/providers" },
   { name: "About",     href: "/about-us" },
-  { name: "Contact",   href: "/contact" },
 ];
 
 function initials(name: string) {

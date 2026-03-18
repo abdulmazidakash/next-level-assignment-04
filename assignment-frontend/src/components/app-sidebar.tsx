@@ -54,7 +54,6 @@ const NAV_CONFIG = {
       label: "Account",
       items: [
         { title: "Profile",          href: "/dashboard/profile",          icon: User },
-        { title: "Provider Profile", href: "/dashboard/provider-profile", icon: Home },
       ],
     },
   ],

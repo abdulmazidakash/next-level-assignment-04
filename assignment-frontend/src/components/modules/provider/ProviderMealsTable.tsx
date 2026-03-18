@@ -5,8 +5,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { Eye, Pencil, Trash2, UtensilsCrossed } from "lucide-react"
 import ViewMealDialog from "./ViewMealDialog"
-import DeleteMealButton from "./DeleteMealButton"
 import { cn } from "@/lib/utils"
+import DeleteMealDialog from "@/components/dialog/DeleteMealDialog"
 
 export default function ProviderMealsTable({ meals }: any) {
   if (!meals?.length) {
@@ -118,14 +118,14 @@ export default function ProviderMealsTable({ meals }: any) {
                     {/* Update */}
                     <Link
                       href={`/dashboard/provider-own-meals/${meal.id}`}
-                      className="inline-flex items-center gap-1.5 h-7.5 px-3 rounded-xl border-[1.5px] border-gray-200 bg-white text-gray-600 text-[12px] font-semibold hover:border-orange-300 hover:text-orange-600 hover:bg-amber-50 transition-all whitespace-nowrap"
+                      className="inline-flex items-center gap-1.5 h-8 px-3 rounded-[9px] border-[1.5px] border-red-200 bg-red-50 text-red-500 text-[12px] font-semibold hover:bg-red-100 hover:border-red-300 hover:-translate-y-0.5 transition-all"
                     >
                       <Pencil className="h-3 w-3" />
-                      Update
+                      
                     </Link>
 
                     {/* Delete */}
-                    <DeleteMealButton id={meal.id} />
+                    <DeleteMealDialog id={meal.id} />
                   </div>
                 </td>
               </tr>

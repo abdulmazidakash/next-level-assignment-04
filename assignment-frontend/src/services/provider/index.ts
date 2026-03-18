@@ -195,14 +195,16 @@ export const getProviderMeals = async () => {
     const store = await cookies()
     const token = store.get("token")?.value;
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/meals`, {
+    const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/meals`, {
       headers: {
         Authorization: token!,
       },
       cache: "no-store",
     });
+    const result = await data.json();
+    console.log('get provider meals: ===>', result)
 
-    return res.json();
+    return result;
   } catch (error) {
     console.error("Error fetching provider meals:", error);
   }

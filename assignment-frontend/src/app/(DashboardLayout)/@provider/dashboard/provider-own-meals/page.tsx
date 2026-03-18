@@ -5,7 +5,9 @@ import { Plus } from "lucide-react"
 
 export default async function ProviderMealsPage() {
   const res   = await getProviderMeals()
-  const meals = res?.data || []
+  const meals = res?.data || [];
+
+  console.log('provider own meals: ===>', meals)
 
   const available   = meals.filter((m: any) => m.isAvailable !== false).length
   const unavailable = meals.length - available
@@ -14,7 +16,7 @@ export default async function ProviderMealsPage() {
     : 0
 
   return (
-    <div className="min-h-screen bg-[#f7f2ec]">
+    <div className="min-h-screen bg-[#f7f2ec] rounded-xl">
       <div className="max-w-250 mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col gap-7">
 
         {/* ── Header ── */}
@@ -30,7 +32,7 @@ export default async function ProviderMealsPage() {
           </div>
 
           <Link
-            href="/dashboard/provider-own-meals/add-meal"
+            href="/dashboard/add-meal"
             className="inline-flex items-center gap-2 h-9 px-4 rounded-xl border-none bg-linear-to-br from-orange-500 to-rose-600 text-white text-[13.5px] font-semibold shadow-md shadow-rose-200 hover:shadow-rose-300 hover:-translate-y-0.5 transition-all whitespace-nowrap"
           >
             <Plus className="h-4 w-4" />

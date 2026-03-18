@@ -52,7 +52,6 @@ const getAllMealsIntoDB = async (userId: string) => {
   const result = await prisma.meal.findMany({
     where: {
       providerId: providerProfile.id,
-      isAvailable: true,
     },
     include: {
       provider: true,

@@ -5,8 +5,13 @@ import { mealController } from './meal.controller';
 const router = express.Router();
 
 router.post('/',
-    auth(UserRole.provider),
-    mealController.createMeals
+  auth(UserRole.provider),
+  mealController.createMeals
+);
+router.get(
+  "/",
+  auth(UserRole.provider),
+  mealController.getAllMeals
 );
 router.get(
   "/public",
@@ -17,14 +22,14 @@ router.get(
   mealController.getSingleMeals
 );
 router.put(
-    "/:id",
-    auth(UserRole.provider),
-    mealController.updateMeal
+  "/:id",
+  auth(UserRole.provider),
+  mealController.updateMeal
 );
 router.delete(
-    "/:id",
-    auth(UserRole.provider),
-    mealController.deleteMeal
+  "/:id",
+  auth(UserRole.provider),
+  mealController.deleteMeal
 );
 
 export const mealRoutes = router;

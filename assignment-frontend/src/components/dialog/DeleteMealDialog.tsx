@@ -10,12 +10,12 @@ import {
   DialogDescription,
   DialogFooter,
 } from "@/components/ui/dialog"
-import { deleteCategory } from "@/services/category"   // adjust import as needed
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
+import { deleteMeal } from "@/services/Meal"
 
-export default function DeleteCategoryDialog({ id }: { id: string }) {
+export default function DeleteMealDialog({ id }: { id: string }) {
   const [open, setOpen]       = useState(false)
   const [loading, setLoading] = useState(false)
   const router = useRouter()
@@ -23,7 +23,7 @@ export default function DeleteCategoryDialog({ id }: { id: string }) {
   const handleDelete = async () => {
     setLoading(true)
     try {
-      const res = await deleteCategory(id)
+      const res = await deleteMeal(id)
       if (res?.success) {
         toast.success("Category deleted")
         setOpen(false)
@@ -59,11 +59,11 @@ export default function DeleteCategoryDialog({ id }: { id: string }) {
                 <Trash2 className="h-4.5 w-4.5 text-red-500" />
               </div>
               <DialogTitle className=" text-lg font-bold text-gray-900">
-                Delete Category
+                Delete Meal
               </DialogTitle>
             </div>
             <DialogDescription className="text-[13.5px] text-gray-500 leading-relaxed mt-1">
-              This will permanently remove the category and cannot be undone.
+              This will permanently remove the meal and cannot be undone.
               Any meals linked to it may be affected.
             </DialogDescription>
           </DialogHeader>
