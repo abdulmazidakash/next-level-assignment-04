@@ -1,147 +1,219 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Menu } from "lucide-react";
-import { useRouter } from "next/navigation";
-
-import { Button } from "@/components/ui/button";
+import { useRouter, usePathname } from "next/navigation";
+import { Menu, X, LayoutDashboard, LogOut, LogIn, UtensilsCrossed } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { getUser, UserLogOut } from "@/services/auth";
+import { cn } from "@/lib/utils";
+
+const NAV_LINKS = [
+  { name: "Home",      href: "/" },
+  { name: "Meals",     href: "/meals" },
+  { name: "Providers", href: "/providers" },
+  { name: "About",     href: "/about-us" },
+  { name: "Contact",   href: "/contact" },
+];
+
+function initials(name: string) {
+  return name?.split(" ").slice(0, 2).map((w) => w[0]).join("").toUpperCase() ?? "?"
+}
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
-  const [user, setUser] = useState<any>(null);
-  const router = useRouter();
-
-  const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "Meals", href: "/meals" },
-    { name: "Providers", href: "/providers" },
-    { name: "About", href: "/about-us" },
-    { name: "Contact", href: "/contact" },
-  ];
+  const [open, setOpen]   = useState(false);
+  const [user, setUser]   = useState<any>(null);
+  const router   = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
-    const loadUser = async () => {
-      const currentUser = await getUser();
-      setUser(currentUser);
-    };
-    loadUser();
+    getUser().then(setUser);
   }, []);
 
-  // 🔥 Get Dashboard Route Based on Role
-  const getDashboardRoute = () => {
-    if (!user) return "/";
-
-    switch (user.role) {
-      case "ADMIN":
-        return "/dashboard";
-      case "PROVIDER":
-        return "/dashboard";
-      case "CUSTOMER":
-        return "/dashboard";
-      default:
-        return "/";
-    }
-  };
+  const dashRoute = "/dashboard";
 
   const handleLogout = async () => {
     await UserLogOut();
     setUser(null);
+    setOpen(false);
     router.push("/");
     router.refresh();
   };
 
   return (
-    <header className="border-b bg-white sticky top-0 z-50">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
+    <header className="sticky top-0 z-50 bg-white/92 backdrop-blur-md border-b border-black/[0.08] shadow-[0_1px_16px_rgba(0,0,0,0.06)]">
+      <div className="max-w-[1200px] mx-auto flex h-16 items-center justify-between px-4 sm:px-6 gap-6">
 
-        {/* LOGO */}
-        <Link href="/" className="text-xl font-bold text-primary">
-          FoodHub 🍱
+        {/* ── Logo ── */}
+        <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
+          <div className="w-9 h-9 rounded-[10px] bg-gradient-to-br from-orange-500 to-rose-600 flex items-center justify-center shadow-md shadow-rose-200 flex-shrink-0">
+            <UtensilsCrossed className="h-[18px] w-[18px] text-white" />
+          </div>
+          <span className="font-[family-name:var(--font-display,serif)] text-[1.2rem] font-bold text-gray-900 leading-none">
+            Food
+            <span className="bg-gradient-to-r from-orange-500 to-rose-600 bg-clip-text text-transparent">
+              Hub
+            </span>
+          </span>
         </Link>
 
-        {/* DESKTOP NAV */}
-        <nav className="hidden md:flex items-center gap-6">
-          {navLinks.map((link) => (
+        {/* ── Desktop nav links ── */}
+        <nav className="hidden md:flex items-center gap-0.5">
+          {NAV_LINKS.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm font-medium hover:text-primary transition"
+              className={cn(
+                "text-[13.5px] font-medium px-3 py-1.5 rounded-[9px] transition-all",
+                pathname === link.href
+                  ? "text-orange-600 bg-amber-50"
+                  : "text-gray-600 hover:text-gray-900 hover:bg-[#f4f0eb]"
+              )}
             >
               {link.name}
             </Link>
           ))}
-
-          {user ? (
-            <>
-              <Link href={getDashboardRoute()}>
-                <Button variant="outline">Dashboard</Button>
-              </Link>
-
-              <Button onClick={handleLogout}>Logout</Button>
-            </>
-          ) : (
-            <Link href="/login">
-              <Button>Login</Button>
-            </Link>
-          )}
         </nav>
 
-        {/* MOBILE NAV */}
-        <div className="md:hidden">
+        {/* ── Desktop actions ── */}
+        <div className="hidden md:flex items-center gap-2 flex-shrink-0">
+          {user ? (
+            <>
+              {/* User pill */}
+              <div className="flex items-center gap-2 bg-amber-50 border border-amber-200 rounded-full pl-1 pr-3 py-1">
+                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-orange-500 to-rose-600 flex items-center justify-center text-[10.5px] font-bold text-white flex-shrink-0">
+                  {initials(user.name ?? "")}
+                </div>
+                <span className="text-[12.5px] font-semibold text-amber-800 whitespace-nowrap">
+                  {user.name?.split(" ")[0]}
+                </span>
+              </div>
+
+              {/* Dashboard */}
+              <Link
+                href={dashRoute}
+                className="inline-flex items-center gap-1.5 h-9 px-3.5 rounded-[10px] border border-gray-200 bg-white text-[13px] font-semibold text-gray-700 hover:border-orange-300 hover:bg-amber-50 hover:text-orange-600 transition-all"
+              >
+                <LayoutDashboard className="h-3.5 w-3.5" />
+                Dashboard
+              </Link>
+
+              {/* Logout */}
+              <button
+                onClick={handleLogout}
+                className="inline-flex items-center gap-1.5 h-9 px-3.5 rounded-[10px] bg-[#f4f0eb] text-[13px] font-semibold text-gray-600 hover:bg-[#ece7de] hover:text-gray-900 transition-all border-none cursor-pointer font-[family-name:var(--font-sans)]"
+              >
+                <LogOut className="h-3.5 w-3.5" />
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link
+              href="/login"
+              className="inline-flex items-center gap-1.5 h-9 px-4 rounded-[10px] bg-gradient-to-br from-orange-500 to-rose-600 text-[13px] font-semibold text-white shadow-md shadow-rose-200 hover:shadow-rose-300 hover:-translate-y-0.5 transition-all"
+            >
+              <LogIn className="h-3.5 w-3.5" />
+              Login
+            </Link>
+          )}
+        </div>
+
+        {/* ── Mobile hamburger ── */}
+        <div className="md:hidden flex-shrink-0">
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Menu className="h-5 w-5" />
-              </Button>
+              <button className="w-9 h-9 rounded-[10px] border border-gray-200 bg-white flex items-center justify-center hover:border-orange-300 hover:bg-amber-50 transition-all">
+                <Menu className="h-[18px] w-[18px] text-gray-700" />
+              </button>
             </SheetTrigger>
 
-            <SheetContent side="right" className="w-64">
-              <div className="flex flex-col gap-6 mt-6">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className="text-sm font-medium hover:text-primary transition"
-                  >
-                    {link.name}
-                  </Link>
-                ))}
+            <SheetContent side="right" className="w-[280px] p-0 border-l border-gray-100">
+              <div className="flex flex-col h-full">
 
-                {user ? (
-                  <>
+                {/* Drawer header */}
+                <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
+                  <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-[8px] bg-gradient-to-br from-orange-500 to-rose-600 flex items-center justify-center flex-shrink-0">
+                      <UtensilsCrossed className="h-3.5 w-3.5 text-white" />
+                    </div>
+                    <span className="font-[family-name:var(--font-display,serif)] text-[1rem] font-bold text-gray-900">
+                      Food
+                      <span className="bg-gradient-to-r from-orange-500 to-rose-600 bg-clip-text text-transparent">
+                        Hub
+                      </span>
+                    </span>
+                  </Link>
+                </div>
+
+                {/* Nav links */}
+                <nav className="flex flex-col gap-0.5 px-3 py-4">
+                  {NAV_LINKS.map((link) => (
                     <Link
-                      href={getDashboardRoute()}
+                      key={link.name}
+                      href={link.href}
                       onClick={() => setOpen(false)}
+                      className={cn(
+                        "text-[14.5px] font-medium px-3 py-2.5 rounded-[10px] transition-all",
+                        pathname === link.href
+                          ? "text-orange-600 bg-amber-50"
+                          : "text-gray-600 hover:text-gray-900 hover:bg-[#f4f0eb]"
+                      )}
                     >
-                      <Button className="w-full" variant="outline">
-                        Dashboard
-                      </Button>
+                      {link.name}
                     </Link>
+                  ))}
+                </nav>
 
-                    <Button
-                      onClick={() => {
-                        handleLogout();
-                        setOpen(false);
-                      }}
-                      className="w-full"
+                <div className="mx-4 h-px bg-gray-100" />
+
+                {/* Mobile auth actions */}
+                <div className="flex flex-col gap-2.5 px-4 py-4 mt-auto">
+                  {user ? (
+                    <>
+                      {/* User pill */}
+                      <div className="flex items-center gap-2.5 bg-amber-50 border border-amber-200 rounded-xl px-3 py-2.5">
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-orange-500 to-rose-600 flex items-center justify-center text-[11px] font-bold text-white flex-shrink-0">
+                          {initials(user.name ?? "")}
+                        </div>
+                        <div>
+                          <p className="font-semibold text-[13px] text-amber-900">{user.name}</p>
+                          <p className="text-[11px] text-amber-600 capitalize">{user.role?.toLowerCase()}</p>
+                        </div>
+                      </div>
+
+                      <Link
+                        href={dashRoute}
+                        onClick={() => setOpen(false)}
+                        className="flex items-center justify-center gap-2 h-10 rounded-xl border border-gray-200 bg-white text-[13.5px] font-semibold text-gray-700 hover:border-orange-300 hover:bg-amber-50 hover:text-orange-600 transition-all"
+                      >
+                        <LayoutDashboard className="h-4 w-4" />
+                        Dashboard
+                      </Link>
+
+                      <button
+                        onClick={handleLogout}
+                        className="flex items-center justify-center gap-2 h-10 rounded-xl bg-[#f4f0eb] text-[13.5px] font-semibold text-gray-600 hover:bg-[#ece7de] hover:text-gray-900 transition-all border-none cursor-pointer font-[family-name:var(--font-sans)]"
+                      >
+                        <LogOut className="h-4 w-4" />
+                        Logout
+                      </button>
+                    </>
+                  ) : (
+                    <Link
+                      href="/login"
+                      onClick={() => setOpen(false)}
+                      className="flex items-center justify-center gap-2 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-rose-600 text-[13.5px] font-semibold text-white shadow-md shadow-rose-200 transition-all"
                     >
-                      Logout
-                    </Button>
-                  </>
-                ) : (
-                  <Link href="/login" onClick={() => setOpen(false)}>
-                    <Button className="w-full">Login</Button>
-                  </Link>
-                )}
+                      <LogIn className="h-4 w-4" />
+                      Login
+                    </Link>
+                  )}
+                </div>
               </div>
             </SheetContent>
           </Sheet>
         </div>
+
       </div>
     </header>
   );
