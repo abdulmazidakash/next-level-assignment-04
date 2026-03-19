@@ -16,6 +16,7 @@ import { getCategories } from "@/services/category";
 import { createMeal } from "@/services/Meal";
 import { cn } from "@/lib/utils";
 import { uploadImageToImgbb } from "@/lib/uploadImage";
+import { useRouter } from "next/navigation";
 
 const mealSchema = z.object({
   name:        z.string().min(3, "Name must be at least 3 characters"),
@@ -54,6 +55,7 @@ function inputCn(hasError?: boolean) {
 }
 
 export function CreateMealFormClient() {
+  const router = useRouter();
   const [categories, setCategories]     = useState<any[]>([]);
   const [imagePreview, setImagePreview] = useState("");
   const [imageFile, setImageFile]       = useState<File | null>(null);
@@ -90,6 +92,7 @@ export function CreateMealFormClient() {
         toast.success("Meal created!", { id: toastId });
         form.reset();
         clearImage();
+        router.push('/provider-dashboard/provider-own-meals')
       } catch {
         toast.error("Image upload failed", { id: toastId });
       }

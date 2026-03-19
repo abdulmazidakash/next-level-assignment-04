@@ -13,10 +13,10 @@ import { uploadImageToImgbb } from "@/lib/uploadImage";
 import { cn } from "@/lib/utils";
 
 const schema = z.object({
-  name:     z.string().min(2, "Name must be at least 2 characters"),
-  email:    z.string().email("Please enter a valid email"),
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email"),
   password: z.string().min(6, "Password must be at least 6 characters"),
-  image:    z.any().optional(),
+  image: z.any().optional(),
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -54,16 +54,30 @@ export function RegisterForm() {
       if (file) imageUrl = await uploadImageToImgbb(file);
 
       const result = await registerUser({
-        name:     data.name,
-        email:    data.email,
+        name: data.name,
+        email: data.email,
         password: data.password,
-        image:    imageUrl,
-        role:     "CUSTOMER",
+        image: imageUrl,
+        role: "CUSTOMER",
       });
 
+      // if (result?.success) {
+      //   toast.success("Account created!");
+      //   router.push("/");
+      // } 
       if (result?.success) {
-        toast.success("Account created!");
+        toast.success(
+          <div className="flex flex-col gap-0.5">
+            <span className="font-semibold">
+              Welcome, {data.name.split(" ")[0]}! 🎉
+            </span>
+            <span className="text-sm text-muted-foreground">
+              Your account has been created.
+            </span>
+          </div>
+        );
         router.push("/");
+        router.refresh();
       } else {
         toast.error(result?.message ?? "Registration failed");
       }

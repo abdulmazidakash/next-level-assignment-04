@@ -1,37 +1,60 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-import { getUser } from "./services/auth";
+import { NextRequest, NextResponse } from "next/server";
+import { jwtDecode } from "jwt-decode";
+import { Roles } from "./constants/roles";
 
-const ALLOWED_ROLE = ["CUSTOMER", "ADMIN", "PROVIDER"];
-const PUBLIC_ROUTE = ["/login", "/register"];
+export function proxy(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+  const token = request.cookies.get("token")?.value;
 
-// This function can be marked `async` if using `await` inside
-export async function proxy(request: NextRequest) {
-  const { pathname, origin } = request.nextUrl;
-  const user = await getUser();
-
-  if (PUBLIC_ROUTE.includes(pathname)) {
-    return NextResponse.next();
+  if (!token) {
+    return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  if (!user) {
-    return NextResponse.redirect(
-      new URL(`/login?redirect=${pathname}`, origin),
-    );
+  let role: string;
+
+  try {
+    const decoded: any = jwtDecode(token);
+    role = decoded?.role;
+  } catch {
+    return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  if (!ALLOWED_ROLE.includes(user.role)) {
-    return NextResponse.redirect(
-      new URL(`/login?redirect=${pathname}`, origin),
-    );
+  // 🔐 ADMIN
+  if (pathname.startsWith("/admin-dashboard")) {
+    if (role !== Roles.admin) {
+      return NextResponse.redirect(new URL("/dashboard", request.url));
+    }
+  }
+
+  // 🍽 PROVIDER
+  if (pathname.startsWith("/provider-dashboard")) {
+    if (role !== Roles.provider) {
+      return NextResponse.redirect(new URL("/dashboard", request.url));
+    }
+  }
+
+  // 👤 CUSTOMER
+  if (pathname.startsWith("/dashboard")) {
+    if (role !== Roles.customer) {
+      if (role === Roles.admin) {
+        return NextResponse.redirect(new URL("/admin-dashboard", request.url));
+      }
+      if (role === Roles.provider) {
+        return NextResponse.redirect(new URL("/provider-dashboard", request.url));
+      }
+    }
   }
 
   return NextResponse.next();
 }
 
-// Alternatively, you can use a default export:
-// export default function proxy(request: NextRequest) { ... }
-
 export const config = {
-  matcher: "/dashboard",
+  matcher: [
+    "/dashboard",
+    "/dashboard/:path*",
+    "/admin-dashboard",
+    "/admin-dashboard/:path*",
+    "/provider-dashboard",
+    "/provider-dashboard/:path*",
+  ],
 };

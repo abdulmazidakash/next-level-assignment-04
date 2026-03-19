@@ -11,7 +11,7 @@ import { UtensilsCrossed, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const schema = z.object({
-  email:    z.string().email("Please enter a valid email"),
+  email: z.string().email("Please enter a valid email"),
   password: z.string().min(5, "Password must be at least 5 characters"),
 });
 
@@ -34,10 +34,28 @@ export function LoginForm() {
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
+  // const onSubmit = async (data: FormValues) => {
+  //   const res = await loginUser(data);
+  //   if (res?.success) {
+  //     toast.success("Login successful");
+  //     router.push("/");
+  //   } else {
+  //     toast.error(res?.message ?? "Login failed");
+  //   }
+  // };
   const onSubmit = async (data: FormValues) => {
     const res = await loginUser(data);
     if (res?.success) {
-      toast.success("Login successful");
+      toast.success(
+        <div className="flex flex-col gap-0.5">
+          <span className="font-semibold">
+            Welcome back, {res?.data?.name?.split(" ")[0]}! 🎉
+          </span>
+          <span className="text-sm text-muted-foreground">
+            You're now logged in.
+          </span>
+        </div>
+      );
       router.push("/");
     } else {
       toast.error(res?.message ?? "Login failed");

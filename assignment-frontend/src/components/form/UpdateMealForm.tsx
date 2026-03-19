@@ -81,7 +81,7 @@ export default function UpdateMealForm({ meal }: any) {
         if (res?.error) { toast.error(res.error.message, { id: toastId }); return }
         toast.success("Meal updated!", { id: toastId })
         router.refresh()
-        router.push("/dashboard/provider-own-meals")
+        router.push("/provider-dashboard/provider-own-meals")
       } catch {
         toast.error("Something went wrong", { id: toastId })
       }

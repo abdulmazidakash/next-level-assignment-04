@@ -7,12 +7,13 @@ import { Menu, X, LayoutDashboard, LogOut, LogIn, UtensilsCrossed } from "lucide
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { getUser, UserLogOut } from "@/services/auth";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
 const NAV_LINKS = [
-  { name: "Home",      href: "/" },
-  { name: "Meals",     href: "/meals" },
+  { name: "Home", href: "/" },
+  { name: "Meals", href: "/meals" },
   { name: "Providers", href: "/providers" },
-  { name: "About",     href: "/about-us" },
+  { name: "About", href: "/about-us" },
 ];
 
 function initials(name: string) {
@@ -20,9 +21,9 @@ function initials(name: string) {
 }
 
 export default function Navbar() {
-  const [open, setOpen]   = useState(false);
-  const [user, setUser]   = useState<any>(null);
-  const router   = useRouter();
+  const [open, setOpen] = useState(false);
+  const [user, setUser] = useState<any>(null);
+  const router = useRouter();
   const pathname = usePathname();
 
   useEffect(() => {
@@ -33,6 +34,12 @@ export default function Navbar() {
 
   const handleLogout = async () => {
     await UserLogOut();
+    toast.success(
+      <div className="flex flex-col gap-0.5">
+        <span className="font-semibold">Goodbye, {user?.name?.split(" ")[0]}! 👋</span>
+        <span className="text-sm text-muted-foreground">You've been logged out.</span>
+      </div>
+    );
     setUser(null);
     setOpen(false);
     router.push("/");

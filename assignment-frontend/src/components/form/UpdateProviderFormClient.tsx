@@ -82,7 +82,7 @@ export function UpdateProviderFormClient({ provider }: any) {
           return;
         }
         toast.success("Provider profile updated!", { id: toastId });
-        router.push("/dashboard/provider-profile");
+        router.push("/provider-dashboard/profile");
       } catch {
         toast.error("Something went wrong", { id: toastId });
       }

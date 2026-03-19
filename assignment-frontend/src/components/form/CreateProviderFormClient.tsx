@@ -75,7 +75,7 @@ export function CreateProviderFormClient() {
         }
         toast.success("Provider profile created!", { id: toastId });
         form.reset();
-        router.push("/dashboard/provider-profile");
+        router.push("/provider-dashboard/profile");
       } catch {
         toast.error("Something went wrong", { id: toastId });
       }
