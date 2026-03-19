@@ -30,7 +30,7 @@ export default async function TopRatedProviders() {
   if (!providers?.data?.length) return null;
 
   return (
-    <section className="py-16 md:py-20 bg-[#f7f2ec]">
+    <section className="py-16 md:py-20 ">
       <div className="max-w-275 mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── Section header ── */}
