@@ -84,7 +84,7 @@ export default function MealCard({ meal }: MealCardProps) {
 
     toast.success(
       <div className="flex items-center gap-3">
-        <div className="relative h-12 w-12 flex-shrink-0 rounded-lg overflow-hidden border border-gray-200">
+        <div className="relative h-12 w-12 shrink-0 rounded-lg overflow-hidden border border-gray-200">
           <Image
             src={meal.imageUrl || "/placeholder-meal.jpg"}
             alt={meal.name}
@@ -105,16 +105,16 @@ export default function MealCard({ meal }: MealCardProps) {
   return (
     <Card
       className={cn(
-        "group relative overflow-hidden rounded-[20px] border border-black/[0.07] bg-white p-0",
+        "group relative overflow-hidden rounded-4xl border border-black/[0.07] bg-white p-0",
         "shadow-sm hover:shadow-2xl hover:-translate-y-1.5",
         "transition-all duration-300 ease-out flex flex-col",
         !isAvailable && "opacity-70 grayscale-[0.3]"
       )}
     >
       {/* ── Image ── */}
-      <div className="relative h-[220px] w-full overflow-hidden">
-        {/* Bottom gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent z-10 pointer-events-none" />
+      <div className="relative h-55 w-full overflow-hidden">
+        {/* Bottom linear overlay */}
+        <div className="absolute inset-0 bg-linear-to-t from-black/45 via-transparent to-transparent z-10 pointer-events-none" />
 
         <Image
           src={meal.imageUrl || "/placeholder-meal.jpg"}
@@ -165,13 +165,13 @@ export default function MealCard({ meal }: MealCardProps) {
             className={cn(
               "font-bold leading-snug line-clamp-2 flex-1",
               "text-[1.1rem] sm:text-[1.15rem] text-gray-900",
-              "font-[family-name:var(--font-display,serif)]",
+              "",
               "group-hover:text-orange-600 transition-colors duration-200"
             )}
           >
             {meal.name}
           </h3>
-          <span className="flex-shrink-0 bg-gradient-to-br from-orange-500 to-rose-600 text-white font-bold text-[1.05rem] px-3.5 py-1.5 rounded-full shadow-md shadow-rose-200 whitespace-nowrap leading-tight">
+          <span className="shrink-0 bg-linear-to-br from-orange-500 to-rose-600 text-white font-bold text-[1.05rem] px-3.5 py-1.5 rounded-full shadow-md shadow-rose-200 whitespace-nowrap leading-tight">
             ৳{meal.price}
           </span>
         </div>
@@ -184,13 +184,13 @@ export default function MealCard({ meal }: MealCardProps) {
         {/* Provider + Rating */}
         <div className="flex items-center justify-between gap-2 flex-wrap pt-3 border-t border-gray-100">
           {/* Restaurant name */}
-          <span className="text-[12.5px] font-semibold bg-amber-50 border border-amber-200 text-amber-800 px-2.5 py-1 rounded-full max-w-[130px] truncate">
+          <span className="text-[12.5px] font-semibold bg-amber-50 border border-amber-200 text-amber-800 px-2.5 py-1 rounded-full max-w-32.5 truncate">
             {provider.restaurantName}
           </span>
 
           {/* Rating */}
           {hasRating ? (
-            <div className="flex items-center gap-1.5 bg-amber-50 border border-amber-200 px-2.5 py-1 rounded-full flex-shrink-0">
+            <div className="flex items-center gap-1.5 bg-amber-50 border border-amber-200 px-2.5 py-1 rounded-full shrink-0">
               <Star className="h-3.5 w-3.5 fill-amber-500 text-amber-500" />
               <span className="text-[12.5px] font-semibold text-amber-800">{rating.toFixed(1)}</span>
               <span className="text-[11.5px] text-amber-600">({reviewCount})</span>
@@ -206,7 +206,7 @@ export default function MealCard({ meal }: MealCardProps) {
         {/* Details */}
         <Button
           variant="outline"
-          className="flex-1 h-[42px] rounded-[14px] border-orange-400/60 text-orange-600 hover:bg-orange-50 text-[13.5px] font-semibold transition-colors"
+          className="flex-1 h-10.5 rounded-[14px] border-orange-400/60 text-orange-600 hover:bg-orange-50 text-[13.5px] font-semibold transition-colors"
           asChild
         >
           <Link href={`/meals/${meal.id}`}>Details</Link>
@@ -217,8 +217,8 @@ export default function MealCard({ meal }: MealCardProps) {
           onClick={handleAddToCart}
           disabled={!isAvailable}
           className={cn(
-            "flex-1 h-[42px] gap-1.5 rounded-[14px] text-[13.5px] font-semibold",
-            "bg-gradient-to-br from-orange-500 to-rose-600 text-white",
+            "flex-1 h-10.5 gap-1.5 rounded-[14px] text-[13.5px] font-semibold",
+            "bg-linear-to-br from-orange-500 to-rose-600 text-white",
             "hover:from-orange-600 hover:to-rose-700 hover:-translate-y-0.5",
             "shadow-md shadow-rose-200 hover:shadow-rose-300",
             "transition-all duration-200",

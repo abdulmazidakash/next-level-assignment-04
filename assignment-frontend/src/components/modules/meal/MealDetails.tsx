@@ -85,7 +85,7 @@ export default function MealDetails({ meal }: { meal: any }) {
   return (
     <div className="min-h-screen bg-[#f7f2ec]">
       {/* ── HERO ─────────────────────────────────────────── */}
-      <div className="relative h-[420px] w-full overflow-hidden">
+      <div className="relative h-105 w-full overflow-hidden">
         <Image
           src={meal.imageUrl}
           alt={meal.name}
@@ -93,16 +93,16 @@ export default function MealDetails({ meal }: { meal: any }) {
           className="object-cover transition-transform duration-[8s] ease-out hover:scale-105"
           unoptimized
         />
-        {/* gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent" />
+        {/* linear */}
+        <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/25 to-transparent" />
 
         {/* hero content */}
         <div className="absolute bottom-0 left-0 right-0 px-6 sm:px-10 pb-8 flex flex-col gap-3">
-          <Badge className="self-start bg-gradient-to-r from-orange-500 to-rose-600 text-white border-0 text-[11px] font-semibold tracking-wider uppercase px-3 py-1 rounded-full">
+          <Badge className="self-start bg-linear-to-r from-orange-500 to-rose-600 text-white border-0 text-[11px] font-semibold tracking-wider uppercase px-3 py-1 rounded-full">
             {meal.category?.name}
           </Badge>
 
-          <h1 className="font-[family-name:var(--font-display,serif)] text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight drop-shadow-md">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight drop-shadow-md">
             {meal.name}
           </h1>
 
@@ -120,7 +120,7 @@ export default function MealDetails({ meal }: { meal: any }) {
       </div>
 
       {/* ── BODY ─────────────────────────────────────────── */}
-      <div className="max-w-[1080px] mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div className="max-w-270 mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-8">
 
           {/* ── LEFT ─────────────────────────────── */}
@@ -128,7 +128,7 @@ export default function MealDetails({ meal }: { meal: any }) {
 
             {/* About */}
             <section className="bg-white border border-black/[0.07] rounded-2xl p-6 sm:p-8">
-              <h2 className="font-[family-name:var(--font-display,serif)] text-xl font-bold text-gray-900 mb-4 pb-4 border-b border-gray-100">
+              <h2 className="text-xl font-bold text-gray-900 mb-4 pb-4 border-b border-gray-100">
                 About this meal
               </h2>
               <p className="text-[15px] text-gray-600 leading-relaxed">{meal.description}</p>
@@ -150,7 +150,7 @@ export default function MealDetails({ meal }: { meal: any }) {
 
             {/* Reviews */}
             <section className="bg-white border border-black/[0.07] rounded-2xl p-6 sm:p-8">
-              <h2 className="font-[family-name:var(--font-display,serif)] text-xl font-bold text-gray-900 mb-5 pb-4 border-b border-gray-100">
+              <h2 className=" text-xl font-bold text-gray-900 mb-5 pb-4 border-b border-gray-100">
                 Customer Reviews
               </h2>
 
@@ -159,7 +159,7 @@ export default function MealDetails({ meal }: { meal: any }) {
                 <div className="flex items-center gap-8 flex-wrap mb-6 pb-6 border-b border-gray-100">
                   {/* Big number */}
                   <div className="text-center">
-                    <div className="font-[family-name:var(--font-display,serif)] text-5xl font-bold text-gray-900 leading-none">
+                    <div className=" text-5xl font-bold text-gray-900 leading-none">
                       {rating > 0 ? rating.toFixed(1) : (
                         reviews.length
                           ? (reviews.reduce((s: number, r: any) => s + r.rating, 0) / reviews.length).toFixed(1)
@@ -171,13 +171,13 @@ export default function MealDetails({ meal }: { meal: any }) {
                   </div>
 
                   {/* Bars */}
-                  <div className="flex-1 min-w-[160px] space-y-1.5">
+                  <div className="flex-1 min-w-40 space-y-1.5">
                     {bars.map(({ star, pct }) => (
                       <div key={star} className="flex items-center gap-2 text-xs text-gray-500">
                         <span className="w-2 text-right">{star}</span>
                         <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
                           <div
-                            className="h-full bg-gradient-to-r from-orange-400 to-rose-500 rounded-full transition-all"
+                            className="h-full bg-linear-to-r from-orange-400 to-rose-500 rounded-full transition-all"
                             style={{ width: `${pct}%` }}
                           />
                         </div>
@@ -200,7 +200,7 @@ export default function MealDetails({ meal }: { meal: any }) {
                     >
                       {/* Header */}
                       <div className="flex items-center gap-3 mb-2">
-                        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-orange-500 to-rose-600 flex items-center justify-center text-white font-bold text-[12px] flex-shrink-0">
+                        <div className="w-9 h-9 rounded-full bg-linear-to-br from-orange-500 to-rose-600 flex items-center justify-center text-white font-bold text-[12px] shrink-0">
                           {initials(review.customer?.name ?? "?")}
                         </div>
                         <div>
@@ -228,21 +228,21 @@ export default function MealDetails({ meal }: { meal: any }) {
             <div className="lg:sticky lg:top-6 bg-white border border-black/[0.07] rounded-2xl overflow-hidden shadow-lg">
 
               {/* Restaurant banner */}
-              <div className="bg-gradient-to-br from-amber-50 to-orange-50 border-b border-amber-100 px-6 py-5">
+              <div className="bg-linear-to-br from-amber-50 to-orange-50 border-b border-amber-100 px-6 py-5">
                 <p className="text-[10.5px] font-semibold tracking-widest text-gray-400 uppercase mb-1">Served by</p>
-                <p className="font-[family-name:var(--font-display,serif)] text-lg font-bold text-gray-900">
+                <p className="text-lg font-bold text-gray-900">
                   {meal.provider?.restaurantName}
                 </p>
                 <div className="mt-2 space-y-1 text-[12.5px] text-gray-600">
                   {meal.provider?.address && (
                     <div className="flex items-center gap-2">
-                      <MapPin className="h-3.5 w-3.5 opacity-50 flex-shrink-0" />
+                      <MapPin className="h-3.5 w-3.5 opacity-50 shrink-0" />
                       <span>{meal.provider.address}</span>
                     </div>
                   )}
                   {meal.provider?.cuisineType && (
                     <div className="flex items-center gap-2">
-                      <Home className="h-3.5 w-3.5 opacity-50 flex-shrink-0" />
+                      <Home className="h-3.5 w-3.5 opacity-50 shrink-0" />
                       <span>{meal.provider.cuisineType} cuisine</span>
                     </div>
                   )}
@@ -253,7 +253,7 @@ export default function MealDetails({ meal }: { meal: any }) {
               <div className="p-6 space-y-5">
                 {/* Price */}
                 <div className="flex items-baseline gap-2">
-                  <span className="font-[family-name:var(--font-display,serif)] text-4xl font-bold text-gray-900">
+                  <span className="text-4xl font-bold text-gray-900">
                     ৳{meal.price}
                   </span>
                   <span className="text-sm text-gray-400">/ serving</span>
@@ -289,8 +289,8 @@ export default function MealDetails({ meal }: { meal: any }) {
                   className={cn(
                     "w-full h-12 rounded-[14px] text-[15px] font-semibold gap-2 transition-all",
                     added
-                      ? "bg-gradient-to-r from-green-500 to-emerald-600 shadow-green-200"
-                      : "bg-gradient-to-br from-orange-500 to-rose-600 hover:from-orange-600 hover:to-rose-700 shadow-rose-200",
+                      ? "bg-linear-to-r from-green-500 to-emerald-600 shadow-green-200"
+                      : "bg-linear-to-br from-orange-500 to-rose-600 hover:from-orange-600 hover:to-rose-700 shadow-rose-200",
                     "shadow-lg hover:shadow-xl hover:-translate-y-0.5"
                   )}
                 >
@@ -320,7 +320,7 @@ export default function MealDetails({ meal }: { meal: any }) {
                     { Icon: ShieldCheck, text: "100% halal certified" },
                   ].map(({ Icon, text }) => (
                     <div key={text} className="flex items-center gap-2">
-                      <Icon className="h-3.5 w-3.5 opacity-50 flex-shrink-0" />
+                      <Icon className="h-3.5 w-3.5 opacity-50 shrink-0" />
                       <span>{text}</span>
                     </div>
                   ))}

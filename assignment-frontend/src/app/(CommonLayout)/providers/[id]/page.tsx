@@ -21,7 +21,7 @@ function AvailBadge({ available }: { available: boolean }) {
     >
       <span
         className={cn(
-          "w-1.5 h-1.5 rounded-full flex-shrink-0",
+          "w-1.5 h-1.5 rounded-full shrink-0",
           available ? "bg-green-500" : "bg-red-400"
         )}
       />
@@ -50,7 +50,7 @@ export default async function ProviderPage({ params }: PageProps) {
     <div className="min-h-screen bg-[#f7f2ec]">
 
       {/* ── HERO ── */}
-      <div className="relative h-[260px] sm:h-[300px] overflow-hidden">
+      <div className="relative h-65 sm:h-75 overflow-hidden">
         {provider.coverImage ? (
           <Image
             src={provider.coverImage}
@@ -61,18 +61,18 @@ export default async function ProviderPage({ params }: PageProps) {
           />
         ) : (
           /* Decorative fallback */
-          <div className="absolute inset-0 bg-gradient-to-br from-amber-900 via-orange-800 to-rose-900" />
+          <div className="absolute inset-0 bg-linear-to-br from-amber-900 via-orange-800 to-rose-900" />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/20 to-transparent" />
 
         <div className="absolute bottom-0 left-0 right-0 px-6 sm:px-10 pb-7 flex flex-col gap-2.5">
           {/* Cuisine pill */}
-          <span className="self-start bg-gradient-to-r from-orange-500 to-rose-600 text-white text-[10.5px] font-bold tracking-widest uppercase px-3 py-1 rounded-full">
+          <span className="self-start bg-linear-to-r from-orange-500 to-rose-600 text-white text-[10.5px] font-bold tracking-widest uppercase px-3 py-1 rounded-full">
             {provider.cuisineType}
           </span>
 
           {/* Name */}
-          <h1 className="font-[family-name:var(--font-display,serif)] text-3xl sm:text-4xl font-bold text-white leading-tight drop-shadow-md">
+          <h1 className=" text-3xl sm:text-4xl font-bold text-white leading-tight drop-shadow-md">
             {provider.restaurantName}
           </h1>
 
@@ -91,7 +91,7 @@ export default async function ProviderPage({ params }: PageProps) {
               </span>
             )}
             <span className="flex items-center gap-1.5 bg-white/12 backdrop-blur-sm border border-white/20 rounded-full px-3 py-1 text-[12px] text-white font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-400 flex-shrink-0" />
+              <span className="w-1.5 h-1.5 rounded-full bg-green-400 shrink-0" />
               Open now
             </span>
           </div>
@@ -99,7 +99,7 @@ export default async function ProviderPage({ params }: PageProps) {
       </div>
 
       {/* ── BODY ── */}
-      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-275 mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
         {/* ── Info cards ── */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
@@ -114,7 +114,7 @@ export default async function ProviderPage({ params }: PageProps) {
               label: "Available",
               value: availableCount,
               sub: "ready to order",
-              icon: <span className="w-2 h-2 rounded-full bg-green-500 flex-shrink-0" />,
+              icon: <span className="w-2 h-2 rounded-full bg-green-500 shrink-0" />,
             },
             {
               label: "Cuisine",
@@ -133,7 +133,7 @@ export default async function ProviderPage({ params }: PageProps) {
               <p className="text-[10.5px] font-bold tracking-widest uppercase text-gray-400 mb-1">{label}</p>
               <div className="flex items-center gap-1.5">
                 {icon}
-                <span className="font-[family-name:var(--font-display,serif)] text-2xl font-bold text-gray-900 leading-none">
+                <span className=" text-2xl font-bold text-gray-900 leading-none">
                   {value}
                 </span>
               </div>
@@ -144,7 +144,7 @@ export default async function ProviderPage({ params }: PageProps) {
 
         {/* ── Meals table ── */}
         <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
-          <h2 className="font-[family-name:var(--font-display,serif)] text-xl font-bold text-gray-900">
+          <h2 className=" text-xl font-bold text-gray-900">
             Menu
           </h2>
           <span className="bg-amber-50 border border-amber-200 text-amber-800 text-[12px] font-semibold px-3 py-1 rounded-full">
@@ -195,7 +195,7 @@ export default async function ProviderPage({ params }: PageProps) {
                         <td className="px-4 py-4">
                           <div className="flex items-center gap-3">
                             {meal.imageUrl ? (
-                              <div className="relative w-[52px] h-[44px] rounded-xl overflow-hidden flex-shrink-0">
+                              <div className="relative w-13 h-11 rounded-xl overflow-hidden shrink-0">
                                 <Image
                                   src={meal.imageUrl}
                                   alt={meal.name}
@@ -206,7 +206,7 @@ export default async function ProviderPage({ params }: PageProps) {
                                 />
                               </div>
                             ) : (
-                              <div className="w-[52px] h-[44px] rounded-xl bg-gradient-to-br from-orange-500 to-rose-600 flex items-center justify-center flex-shrink-0">
+                              <div className="w-13 h-11 rounded-xl bg-linear-to-br from-orange-500 to-rose-600 flex items-center justify-center shrink-0">
                                 <UtensilsCrossed className="h-5 w-5 text-white opacity-80" />
                               </div>
                             )}
@@ -221,7 +221,7 @@ export default async function ProviderPage({ params }: PageProps) {
 
                         {/* Price */}
                         <td className="px-4 py-4">
-                          <span className="font-[family-name:var(--font-display,serif)] text-base font-bold text-gray-900">
+                          <span className=" text-base font-bold text-gray-900">
                             ৳{meal.price}
                           </span>
                         </td>
@@ -236,13 +236,13 @@ export default async function ProviderPage({ params }: PageProps) {
                           {isAvailable ? (
                             <Link
                               href={`/meals/${meal.id}`}
-                              className="inline-flex items-center gap-1.5 h-[34px] px-3.5 rounded-[10px] text-[12.5px] font-semibold bg-gradient-to-br from-orange-500 to-rose-600 text-white shadow-md shadow-rose-200 hover:shadow-rose-300 hover:-translate-y-0.5 transition-all whitespace-nowrap border-0"
+                              className="inline-flex items-center gap-1.5 h-8.5 px-3.5 rounded-[10px] text-[12.5px] font-semibold bg-linear-to-br from-orange-500 to-rose-600 text-white shadow-md shadow-rose-200 hover:shadow-rose-300 hover:-translate-y-0.5 transition-all whitespace-nowrap border-0"
                             >
                               <Eye className="h-3.5 w-3.5" />
                               View
                             </Link>
                           ) : (
-                            <span className="inline-flex items-center gap-1.5 h-[34px] px-3.5 rounded-[10px] text-[12.5px] font-semibold bg-gray-100 text-gray-400 cursor-not-allowed whitespace-nowrap">
+                            <span className="inline-flex items-center gap-1.5 h-8.5 px-3.5 rounded-[10px] text-[12.5px] font-semibold bg-gray-100 text-gray-400 cursor-not-allowed whitespace-nowrap">
                               <AlertCircle className="h-3.5 w-3.5" />
                               Unavailable
                             </span>

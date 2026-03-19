@@ -23,7 +23,6 @@ const NAV_CONFIG = {
     {
       label: "Overview",
       items: [
-        { title: "Dashboard",  href: "/dashboard",            icon: PieChart },
         { title: "Users",      href: "/dashboard/users",      icon: Users },
         { title: "Orders",     href: "/dashboard/orders",     icon: ShoppingBag },
         { title: "Categories", href: "/dashboard/categories", icon: Tag },
@@ -44,7 +43,6 @@ const NAV_CONFIG = {
     {
       label: "Restaurant",
       items: [
-        { title: "Dashboard",       href: "/dashboard",                    icon: LayoutDashboard },
         { title: "My Meals",        href: "/dashboard/provider-own-meals", icon: UtensilsCrossed },
         { title: "Add Meal",        href: "/dashboard/add-meal",           icon: PlusCircle },
         { title: "Incoming Orders", href: "/dashboard/orders",             icon: ShoppingBag },

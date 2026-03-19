@@ -36,12 +36,12 @@ export default function HeroCarousel() {
   ]
 
   return (
-    <div className="w-full mx-auto py-10">
+    <div className="container mx-auto py-10">
       <Carousel className="w-full">
         <CarouselContent>
           {slides.map((slide, index) => (
             <CarouselItem key={index}>
-              <div className="relative h-[450px] w-full overflow-hidden rounded-2xl">
+              <div className="relative h-112.5 w-full overflow-hidden rounded-2xl">
 
                 {/* Background Image */}
                 <Image

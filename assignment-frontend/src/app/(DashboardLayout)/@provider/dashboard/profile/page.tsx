@@ -85,7 +85,7 @@ export default async function ProviderProfilePage() {
           {/* Avatar + status row */}
           <div className="flex items-end justify-between px-8 -mt-10 relative z-10 bg-white">
             {/* Avatar */}
-            <div className="w-20 h-20 rounded-4xl bg-linear-to-br from-orange-500 to-rose-600 border-4 border-white shadow-[0_8px_24px_rgba(232,56,79,0.3)] flex items-center justify-center shrink-0 -translate-y-0">
+            <div className="w-20 h-20 rounded-4xl bg-linear-to-br from-orange-500 to-rose-600 border-4 border-white shadow-[0_8px_24px_rgba(232,56,79,0.3)] flex items-center justify-center shrink-0 translate-y-0">
               <span className=" text-2xl font-bold text-white">
                 {initials(provider.restaurantName)}
               </span>

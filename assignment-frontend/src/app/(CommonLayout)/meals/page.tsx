@@ -1,80 +1,58 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import MealCard from "@/components/modules/meal/MealCard";
+import MealsFilter from "@/components/modules/meal/MealsFilter";
 import { getAllMeals } from "@/services/Meal";
-import { UtensilsCrossed } from "lucide-react";
+import { UtensilsCrossed, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default async function MealsPage() {
   const { data } = await getAllMeals();
+  const meals = data ?? [];
 
   return (
-    <section className="min-h-screen bg-linear-to-b from-orange-50/60 via-white to-white px-4 py-10 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-[#f7f2ec]">
+      <div className="max-w-275 mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-        {/* ── Page Header ── */}
-        <div className="mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+        {/* ── Page header ── */}
+        <div className="flex items-end justify-between flex-wrap gap-4 mb-10">
           <div>
-            <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-red-400 mb-2">
+            <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-200 text-amber-800 text-[11.5px] font-bold tracking-wider uppercase px-4 py-1.5 rounded-full mb-3">
               <UtensilsCrossed className="h-3.5 w-3.5" />
               Our Menu
             </div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
-              Today&apos;s Meals
+
+            <h1 className="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-gray-900 leading-tight">
+              Today&apos;s{" "}
+              <span className="bg-linear-to-r from-orange-500 to-rose-600 bg-clip-text text-transparent">
+                Meals
+              </span>
             </h1>
+
+            {meals.length > 0 && (
+              <p className="text-[13.5px] text-gray-400 mt-2">
+                {meals.length} item{meals.length !== 1 ? "s" : ""} available
+              </p>
+            )}
           </div>
 
-          {data?.length > 0 && (
-            <p className="text-sm text-gray-400 font-medium sm:mb-1">
-              {data.length} item{data.length !== 1 ? "s" : ""} available
-            </p>
-          )}
+          <Link
+            href="/providers"
+            className="inline-flex items-center gap-2 h-10 px-5 rounded-[13px] border border-gray-200 bg-white text-[13.5px] font-semibold text-gray-700 hover:border-orange-300 hover:bg-amber-50 hover:text-orange-600 transition-all whitespace-nowrap self-end"
+          >
+            Browse Providers
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
 
         {/* ── Divider ── */}
-        <div className="h-px bg-linear-to-r from-red-200 via-orange-100 to-transparent mb-10" />
+        <div
+          className="h-px mb-8"
+          style={{ background: "linear-gradient(to right, #fdba74, #fed7aa, transparent)" }}
+        />
 
-        {/* ── Meal Grid ── */}
-        {data?.length > 0 ? (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {data.map((meal: any, index: number) => (
-              <div
-                key={meal.id}
-                className="animate-fade-in-up"
-                style={{ animationDelay: `${index * 60}ms`, animationFillMode: "both" }}
-              >
-                <MealCard meal={meal} />
-              </div>
-            ))}
-          </div>
-        ) : (
-          /* ── Empty State ── */
-          <div className="flex flex-col items-center justify-center py-24 text-center">
-            <div className="w-16 h-16 rounded-2xl bg-red-50 flex items-center justify-center mb-4 shadow-inner">
-              <UtensilsCrossed className="h-7 w-7 text-red-300" />
-            </div>
-            <h2 className="text-lg font-bold text-gray-700 mb-1">No meals available</h2>
-            <p className="text-sm text-gray-400 max-w-xs">
-              Check back soon — the kitchen is being stocked with delicious options.
-            </p>
-          </div>
-        )}
+        {/* ── Search + filter + grid ── */}
+        <MealsFilter meals={meals} />
+
       </div>
-
-      {/* ── Fade-in animation keyframes ── */}
-      {/* <style jsx global>{`
-        @keyframes fade-in-up {
-          from {
-            opacity: 0;
-            transform: translateY(16px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fade-in-up {
-          animation: fade-in-up 0.4s ease-out;
-        }
-      `}</style> */}
-    </section>
+    </div>
   );
 }

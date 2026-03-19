@@ -50,10 +50,10 @@ export default async function ProfilePage() {
 
   return (
     <div className="min-h-screen bg-[#f7f2ec] flex items-center justify-center p-6">
-      <div className="w-full max-w-[460px] bg-white border border-black/[0.07] rounded-[28px] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.1),0_4px_12px_rgba(0,0,0,0.06)]">
+      <div className="w-full max-w-115 bg-white border border-black/[0.07] rounded-[28px] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.1),0_4px_12px_rgba(0,0,0,0.06)]">
 
         {/* ── Banner ── */}
-        <div className="relative h-[110px] bg-gradient-to-br from-orange-500 via-rose-500 to-rose-700 overflow-hidden">
+        <div className="relative h-27.5 bg-linear-to-br from-orange-500 via-rose-500 to-rose-700 overflow-hidden">
           {/* Decorative circles */}
           <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-white/10" />
           <div className="absolute -bottom-10 -right-4 w-24 h-24 rounded-full bg-white/10" />
@@ -62,8 +62,8 @@ export default async function ProfilePage() {
 
         {/* ── Avatar ── */}
         <div className="flex justify-center -mt-11 relative z-10">
-          <div className="w-[88px] h-[88px] rounded-full border-4 border-white bg-gradient-to-br from-orange-500 to-rose-600 flex items-center justify-center shadow-[0_8px_24px_rgba(232,56,79,0.35)]">
-            <span className="font-[family-name:var(--font-display,serif)] text-2xl font-bold text-white">
+          <div className="w-22 h-22 rounded-full border-4 border-white bg-linear-to-br from-orange-500 to-rose-600 flex items-center justify-center shadow-[0_8px_24px_rgba(232,56,79,0.35)]">
+            <span className=" text-2xl font-bold text-white">
               {initials(user.name)}
             </span>
           </div>
@@ -73,7 +73,7 @@ export default async function ProfilePage() {
         <div className="px-8 pb-8 pt-3">
           {/* Name + email */}
           <div className="text-center">
-            <h1 className="font-[family-name:var(--font-display,serif)] text-2xl font-bold text-gray-900 leading-tight mt-1">
+            <h1 className=" text-2xl font-bold text-gray-900 leading-tight mt-1">
               {user.name}
             </h1>
             <p className="text-[13.5px] text-gray-400 mt-1">{user.email}</p>
@@ -106,7 +106,7 @@ export default async function ProfilePage() {
                 key={label}
                 className="flex items-center justify-between gap-3 bg-[#faf7f3] rounded-xl px-4 py-2.5"
               >
-                <span className="flex items-center gap-2 text-[12.5px] font-semibold text-gray-400 whitespace-nowrap flex-shrink-0">
+                <span className="flex items-center gap-2 text-[12.5px] font-semibold text-gray-400 whitespace-nowrap shrink-0">
                   <span className="opacity-60">{icon}</span>
                   {label}
                 </span>
@@ -114,7 +114,7 @@ export default async function ProfilePage() {
                   className={cn(
                     "text-[13px] font-medium text-right",
                     value ? "text-gray-900" : "text-gray-400 italic",
-                    truncate && "truncate max-w-[200px]"
+                    truncate && "truncate max-w-50"
                   )}
                   title={truncate ? String(value ?? "") : undefined}
                 >
@@ -127,7 +127,7 @@ export default async function ProfilePage() {
           {/* Edit button */}
           <Link
             href="/profile/edit"
-            className="mt-6 w-full h-11 rounded-[14px] flex items-center justify-center gap-2 text-[14px] font-semibold text-white bg-gradient-to-br from-orange-500 to-rose-600 hover:from-orange-600 hover:to-rose-700 shadow-md shadow-rose-200 hover:shadow-rose-300 hover:-translate-y-0.5 transition-all"
+            className="mt-6 w-full h-11 rounded-[14px] flex items-center justify-center gap-2 text-[14px] font-semibold text-white bg-linear-to-br from-orange-500 to-rose-600 hover:from-orange-600 hover:to-rose-700 shadow-md shadow-rose-200 hover:shadow-rose-300 hover:-translate-y-0.5 transition-all"
           >
             <Pencil className="h-4 w-4" />
             Edit Profile

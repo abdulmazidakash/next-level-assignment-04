@@ -41,7 +41,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-white/92 backdrop-blur-md border-b border-black/8 shadow-[0_1px_16px_rgba(0,0,0,0.06)]">
-      <div className="max-w-300 mx-auto flex h-16 items-center justify-between px-4 sm:px-6 gap-6">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 gap-6">
 
         {/* ── Logo ── */}
         <Link href="/" className="flex items-center gap-2.5 shrink-0">
@@ -79,14 +79,14 @@ export default function Navbar() {
           {user ? (
             <>
               {/* User pill */}
-              <div className="flex items-center gap-2 bg-amber-50 border border-amber-200 rounded-full pl-1 pr-3 py-1">
+              {/* <div className="flex items-center gap-2 bg-amber-50 border border-amber-200 rounded-full pl-1 pr-3 py-1">
                 <div className="w-7 h-7 rounded-full bg-linear-to-br from-orange-500 to-rose-600 flex items-center justify-center text-[10.5px] font-bold text-white shrink-0">
                   {initials(user.name ?? "")}
                 </div>
                 <span className="text-[12.5px] font-semibold text-amber-800 whitespace-nowrap">
                   {user.name?.split(" ")[0]}
                 </span>
-              </div>
+              </div> */}
 
               {/* Dashboard */}
               <Link

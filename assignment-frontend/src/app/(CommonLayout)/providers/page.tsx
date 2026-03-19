@@ -4,8 +4,8 @@ import { MapPin, UtensilsCrossed, ArrowRight, Search } from "lucide-react"
 import { getAllPublicProviders } from "@/services/provider"
 import { Provider } from "@/types/provider"
 
-// ── Gradient palette for avatar fallbacks ─────────────────────
-const GRADIENTS = [
+// ── linear palette for avatar fallbacks ─────────────────────
+const linearS = [
   "from-orange-500 to-rose-600",
   "from-teal-600 to-emerald-500",
   "from-blue-600 to-sky-400",
@@ -69,7 +69,7 @@ export default async function ProvidersPage() {
           ].map(({ label, value, sub }) => (
             <div key={label} className="bg-white border border-black/[0.07] rounded-2xl px-5 py-4">
               <p className="text-[11px] font-semibold tracking-widest uppercase text-gray-400 mb-1">{label}</p>
-              <p className="font-[family-name:var(--font-display,serif)] text-3xl font-bold text-gray-900 leading-none">
+              <p className="text-3xl font-bold text-gray-900 leading-none">
                 {value}
               </p>
               <p className="text-[11.5px] text-gray-400 mt-1">{sub}</p>
@@ -119,11 +119,11 @@ export default async function ProvidersPage() {
                               alt={provider.restaurantName}
                               width={40}
                               height={40}
-                              className="rounded-xl object-cover flex-shrink-0"
+                              className="rounded-xl object-cover shrink-0"
                             />
                           ) : (
                             <div
-                              className={`w-10 h-10 rounded-xl bg-gradient-to-br ${GRADIENTS[i % GRADIENTS.length]} flex items-center justify-center text-white text-[13px] font-bold flex-shrink-0`}
+                              className={`w-10 h-10 rounded-xl bg-linear-to-br ${linearS[i % linearS.length]} flex items-center justify-center text-white text-[13px] font-bold shrink-0`}
                             >
                               {initials(provider.restaurantName)}
                             </div>
@@ -145,7 +145,7 @@ export default async function ProvidersPage() {
                       {/* Location */}
                       <td className="px-4 py-4 hidden sm:table-cell">
                         <div className="flex items-center gap-1.5 text-[13px] text-gray-500">
-                          <MapPin className="h-3 w-3 opacity-50 flex-shrink-0" />
+                          <MapPin className="h-3 w-3 opacity-50 shrink-0" />
                           {provider.address}
                         </div>
                       </td>
@@ -161,7 +161,7 @@ export default async function ProvidersPage() {
                       {/* Status */}
                       <td className="px-4 py-4">
                         <div className="flex items-center gap-1.5 text-[12px] font-medium text-gray-600">
-                          <span className="w-1.5 h-1.5 rounded-full bg-green-500 flex-shrink-0" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-green-500 shrink-0" />
                           Active
                         </div>
                       </td>
@@ -170,7 +170,7 @@ export default async function ProvidersPage() {
                       <td className="px-4 py-4">
                         <Link
                           href={`/providers/${provider.id}`}
-                          className="inline-flex items-center gap-1.5 h-[34px] px-3.5 rounded-[10px] text-[12.5px] font-semibold bg-gradient-to-br from-orange-500 to-rose-600 text-white shadow-md shadow-rose-200 hover:shadow-rose-300 hover:-translate-y-0.5 transition-all whitespace-nowrap"
+                          className="inline-flex items-center gap-1.5 h-8.5 px-3.5 rounded-[10px] text-[12.5px] font-semibold bg-linear-to-br from-orange-500 to-rose-600 text-white shadow-md shadow-rose-200 hover:shadow-rose-300 hover:-translate-y-0.5 transition-all whitespace-nowrap"
                         >
                           View
                           <ArrowRight className="h-3.5 w-3.5" />
