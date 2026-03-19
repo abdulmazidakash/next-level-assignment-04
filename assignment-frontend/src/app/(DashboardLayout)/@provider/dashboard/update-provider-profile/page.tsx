@@ -8,7 +8,7 @@ export default async function UpdateProviderPage() {
   const provider = res?.data
 
   return (
-    <div className="flex justify-center py-10">
+    <div className="flex justify-center py-10 bg-[#f7f2ec] rounded-2xl container mx-auto">
       <UpdateProviderFormClient provider={provider} />
     </div>
   );

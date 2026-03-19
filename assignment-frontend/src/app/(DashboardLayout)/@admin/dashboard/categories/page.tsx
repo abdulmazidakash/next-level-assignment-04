@@ -7,8 +7,8 @@ export default async function CategoriesPage() {
   const categories = res?.data || []
 
   return (
-    <div className="min-h-screen bg-[#f7f2ec]">
-      <div className="max-w-160 mx-auto px-4 sm:px-6 py-10 flex flex-col gap-6">
+    <div className="min-h-screen bg-[#f7f2ec] rounded-2xl">
+      <div className="container mx-auto px-4 sm:px-6 py-10 flex flex-col gap-6">
 
         {/* ── Page header ── */}
         <div className="flex items-start justify-between flex-wrap gap-3">

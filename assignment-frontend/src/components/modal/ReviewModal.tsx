@@ -19,7 +19,7 @@ export default function ReviewModal({ mealId }: { mealId: string }) {
 
       {/* ── Trigger ── */}
       <DialogTrigger asChild>
-        <button className="inline-flex items-center gap-2 h-9 px-4 rounded-xl border-none bg-linear-to-br from-orange-500 to-rose-600 text-white text-[13.5px] font-semibold shadow-md shadow-rose-200 hover:shadow-rose-300 hover:-translate-y-0.5 transition-all cursor-pointer">
+        <button className="inline-flex items-center gap-2 h-9 px-4 rounded-xl border-none bg-linear-to-br from-orange-500 to-rose-600 text-white text-[13.5px] font-semibold shadow-md shadow-rose-200 hover:shadow-rose-300 hover:-translate-y-0.5 transition-all cursor-pointer mt-4">
           <Star className="h-4 w-4 fill-white/80 text-white" />
           Write a Review
         </button>

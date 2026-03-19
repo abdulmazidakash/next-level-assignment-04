@@ -83,14 +83,14 @@ export default function MealDetails({ meal }: { meal: any }) {
       .toUpperCase() ?? "?";
 
   return (
-    <div className="min-h-screen bg-[#f7f2ec]">
+    <div className="min-h-screen rounded-2xl bg-[#f7f2ec]">
       {/* ── HERO ─────────────────────────────────────────── */}
       <div className="relative h-105 w-full overflow-hidden">
         <Image
           src={meal.imageUrl}
           alt={meal.name}
           fill
-          className="object-cover transition-transform duration-[8s] ease-out hover:scale-105"
+          className="object-cover transition-transform duration-[8s] ease-out hover:scale-105 rounded-t-2xl"
           unoptimized
         />
         {/* linear */}

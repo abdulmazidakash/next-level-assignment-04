@@ -37,7 +37,7 @@ const team = [
 
 export default function AboutUsPage() {
   return (
-    <div className="min-h-screen bg-[#fdf8f3] text-gray-900">
+    <div className="min-h-screen rounded-2xl bg-[#fdf8f3] text-gray-900">
 
       {/* ── Google Font import ── */}
       <style>{`

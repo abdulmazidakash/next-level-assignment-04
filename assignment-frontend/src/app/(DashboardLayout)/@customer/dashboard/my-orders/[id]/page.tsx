@@ -54,7 +54,7 @@ export default async function OrderDetailsPage({
 
     if (!order) {
         return (
-            <div className="min-h-screen bg-[#f7f2ec] flex items-center justify-center">
+            <div className="min-h-screen bg-[#f7f2ec] flex items-center justify-center rounded-2xl">
                 <p className="text-gray-400 text-sm italic">Order not found</p>
             </div>
         )
@@ -64,14 +64,17 @@ export default async function OrderDetailsPage({
     const itemCount = order.items?.reduce((s: number, i: OrderItem) => s + i.quantity, 0) ?? 0
 
     return (
-        <div className="min-h-screen bg-[#f7f2ec]">
-            <div className="max-w-225 mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col gap-7">
+        <div className="min-h-screen bg-[#f7f2ec] rounded-2xl">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col gap-7">
 
                 {/* ── Top row ── */}
                 <div className="flex items-start justify-between flex-wrap gap-4">
                     <div>
-                        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
-                            Order Details
+                        <h1 className=" text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
+                            Order{" "}
+                            <span className="bg-linear-to-r from-orange-500 to-rose-600 bg-clip-text text-transparent">
+                                Details
+                            </span>
                         </h1>
                         <div className="flex items-center gap-2 mt-1.5">
                             <span className="text-[12.5px] text-gray-400">Order ID</span>

@@ -21,7 +21,7 @@ export default async function ProviderProfilePage() {
   // ── Empty / no profile ──────────────────────────────────
   if (!provider) {
     return (
-      <div className="min-h-screen bg-[#f7f2ec] flex items-center justify-center p-6">
+      <div className="min-h-screen bg-[#f7f2ec] flex items-center justify-center p-6 rounded-2xl">
         <div className="bg-white border border-black/[0.07] rounded-[24px] p-14 flex flex-col items-center gap-5 max-w-sm w-full text-center shadow-lg">
           <div className="w-16 h-16 rounded-full bg-amber-50 border border-amber-200 flex items-center justify-center">
             <Home className="h-7 w-7 text-amber-700" />
@@ -57,7 +57,7 @@ export default async function ProviderProfilePage() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#f7f2ec]">
+    <div className="min-h-screen bg-[#f7f2ec] rounded-2xl">
       <div className="max-w-180 mx-auto px-4 sm:px-6 py-10">
 
         {/* ── Card ── */}

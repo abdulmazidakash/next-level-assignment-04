@@ -30,7 +30,7 @@ export default async function ProviderProfilePage() {
 
   // profile not exists → show form
   return (
-    <div className="flex justify-center py-10">
+    <div className="flex justify-center py-10 rounded-2xl container mx-auto bg-[#f7f2ec]">
       <CreateProviderFormClient />
     </div>
   )

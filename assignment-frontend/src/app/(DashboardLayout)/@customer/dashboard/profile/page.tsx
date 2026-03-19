@@ -16,7 +16,7 @@ export default async function ProfilePage() {
 
   if (!profileRes?.data) {
     return (
-      <div className="min-h-screen bg-[#f7f2ec] flex items-center justify-center">
+      <div className="min-h-screen rounded-2xl bg-[#f7f2ec] flex items-center justify-center">
         <p className="text-gray-400 text-sm italic">Not logged in</p>
       </div>
     )
@@ -49,8 +49,8 @@ export default async function ProfilePage() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#f7f2ec] flex items-center justify-center p-6">
-      <div className="w-full max-w-115 bg-white border border-black/[0.07] rounded-[28px] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.1),0_4px_12px_rgba(0,0,0,0.06)]">
+    <div className="min-h-screen rounded-2xl bg-[#f7f2ec] flex items-center justify-center p-6">
+      <div className="container max-w-115 bg-white border border-black/[0.07] rounded-[28px] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.1),0_4px_12px_rgba(0,0,0,0.06)]">
 
         {/* ── Banner ── */}
         <div className="relative h-27.5 bg-linear-to-br from-orange-500 via-rose-500 to-rose-700 overflow-hidden">

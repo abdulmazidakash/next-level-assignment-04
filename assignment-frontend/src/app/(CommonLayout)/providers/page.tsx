@@ -26,15 +26,14 @@ function initials(name: string) {
 export default async function ProvidersPage() {
   const { data } = await getAllPublicProviders()
   const providers: Provider[] = data ?? [];
-  console.log('providers data: ===>',providers)
 
   const totalMeals = providers.reduce((sum, p) => sum + (p._count?.meals ?? 0), 0)
   const avgMeals = providers.length ? (totalMeals / providers.length).toFixed(1) : "0"
   const cities = new Set(providers.map((p) => p.address?.split(",").pop()?.trim())).size
 
   return (
-    <div className="min-h-screen bg-[#f7f2ec]">
-      <div className="max-w-275 mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div className="min-h-screen rounded-2xl bg-[#f7f2ec]">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
         {/* ── Page header ── */}
         <div className="flex items-end justify-between flex-wrap gap-4 mb-8">

@@ -9,8 +9,8 @@ export default async function MealsPage() {
   const meals = data ?? [];
 
   return (
-    <div className="min-h-screen bg-[#f7f2ec]">
-      <div className="max-w-275 mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="min-h-screen rounded-2xl bg-[#f7f2ec]">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
         {/* ── Page header ── */}
         <div className="flex items-end justify-between flex-wrap gap-4 mb-10">

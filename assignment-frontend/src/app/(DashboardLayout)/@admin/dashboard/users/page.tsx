@@ -46,7 +46,7 @@ export default async function UsersPage() {
   const admins    = users.filter((u) => u.role === "ADMIN").length
 
   return (
-    <div className="min-h-screen bg-[#f7f2ec]">
+    <div className="min-h-screen bg-[#f7f2ec] rounded-2xl">
       <div className="max-w-275 mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col gap-7">
 
         {/* ── Header ── */}

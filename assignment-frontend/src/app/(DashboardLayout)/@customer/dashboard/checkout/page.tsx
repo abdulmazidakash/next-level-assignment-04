@@ -49,8 +49,8 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f7f2ec]">
-      <div className="max-w-215 mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div className="min-h-screen bg-[#f7f2ec] rounded-2xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
         {/* ── Header ── */}
         <div className="mb-7">

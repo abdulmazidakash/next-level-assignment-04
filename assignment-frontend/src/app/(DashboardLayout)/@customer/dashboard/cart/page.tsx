@@ -22,7 +22,7 @@ export default function CartPage() {
   // ── Empty state ──────────────────────────────────────────
   if (cart.length === 0) {
     return (
-      <div className="min-h-screen bg-[#f7f2ec] flex items-center justify-center p-6">
+      <div className="min-h-screen bg-[#f7f2ec] flex items-center justify-center p-6 rounded-2xl">
         <div className="bg-white border border-black/[0.07] rounded-2xl p-10 flex flex-col items-center gap-4 max-w-sm w-full text-center">
           <div className="w-16 h-16 rounded-full bg-amber-50 border border-amber-200 flex items-center justify-center">
             <ShoppingBag className="h-7 w-7 text-amber-700" />
@@ -44,8 +44,8 @@ export default function CartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f7f2ec]">
-      <div className="max-w-215 mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div className="min-h-screen bg-[#f7f2ec] rounded-2xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
         {/* ── Header ── */}
         <div className="mb-7">

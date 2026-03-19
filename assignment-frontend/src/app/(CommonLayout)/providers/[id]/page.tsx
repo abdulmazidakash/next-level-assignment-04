@@ -47,7 +47,7 @@ export default async function ProviderPage({ params }: PageProps) {
   const availableCount = meals.filter((m: any) => m.isAvailable !== false).length
 
   return (
-    <div className="min-h-screen bg-[#f7f2ec]">
+    <div className="min-h-screen rounded-2xl bg-[#f7f2ec]">
 
       {/* ── HERO ── */}
       <div className="relative h-65 sm:h-75 overflow-hidden">
@@ -61,7 +61,7 @@ export default async function ProviderPage({ params }: PageProps) {
           />
         ) : (
           /* Decorative fallback */
-          <div className="absolute inset-0 bg-linear-to-br from-amber-900 via-orange-800 to-rose-900" />
+          <div className="absolute inset-0 bg-linear-to-br from-amber-900 via-orange-800 to-rose-900 rounded-t-2xl" />
         )}
         <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/20 to-transparent" />
 

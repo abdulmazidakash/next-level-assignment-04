@@ -59,8 +59,8 @@ export default async function AdminOrdersPage() {
   const cancelled     = orders.filter((o) => o.status?.toUpperCase() === "CANCELLED").length
 
   return (
-    <div className="min-h-screen bg-[#f7f2ec]">
-      <div className="max-w-300 mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col gap-7">
+    <div className="min-h-screen bg-[#f7f2ec] rounded-2xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col gap-7">
 
         {/* ── Header ── */}
         <div>
