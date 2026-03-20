@@ -18,7 +18,7 @@ const mealSchema = z.object({
   name:        z.string().min(3, "Name must be at least 3 characters"),
   description: z.string().min(5, "Description must be at least 5 characters"),
   price:       z.number().min(1, "Price must be at least 1"),
-  imageUrl:    z.string().optional(),
+  imageUrl:    z.string(),
   categoryId:  z.string().min(1, "Category is required"),
 })
 

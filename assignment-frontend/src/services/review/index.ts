@@ -23,9 +23,10 @@ export const createReview = async (data: any) => {
 
     if (!res.ok) {
         throw new Error(result.message)
-    }
+    };
+    console.log('index error comment: ;===> ', result)
 
-    return result
+    return result;
 }
 
 export const getMealReview = async (mealId: string) => {

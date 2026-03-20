@@ -76,7 +76,7 @@ export default async function ProviderProfilePage() {
             {/* Edit button */}
             <div className="absolute top-4 right-4 z-10">
               <Link
-                href="/dashboard/update-provider-profile"
+                href="/provider-dashboard/update-provider-profile"
                 className="inline-flex items-center gap-1.5 h-9 px-4 rounded-full border-[1.5px] border-white/50 bg-white/15 backdrop-blur-sm text-white text-[13px] font-semibold hover:bg-white/25 hover:border-white/70 transition-all whitespace-nowrap"
               >
                 <Pencil className="h-3.5 w-3.5" />

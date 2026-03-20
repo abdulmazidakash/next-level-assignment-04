@@ -88,7 +88,6 @@ export const getAllPublicProviders = async () => {
         cache: "no-store",
       },
     );
-    console.log("Fetching from:", `${process.env.NEXT_PUBLIC_BASE_URL}/meals`);
     const result = await res.json();
 
     return result;
@@ -107,9 +106,6 @@ export const getSinglePublicProvider = async (id: string) => {
       headers: {
         "Content-Type": "application/json",
       },
-      // next: {
-      //   revalidate: 3600,
-      // },
       cache: "no-store"
     });
 
