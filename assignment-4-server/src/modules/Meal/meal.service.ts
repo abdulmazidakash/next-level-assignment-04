@@ -64,6 +64,7 @@ const getAllMealsIntoDB = async (userId: string) => {
 const getPublicMealsIntoDB = async () => {
   return prisma.meal.findMany({
     include: {
+      category: true,
       provider: {
         include: {
           user: true,

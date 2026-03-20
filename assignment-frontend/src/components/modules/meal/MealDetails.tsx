@@ -35,6 +35,10 @@ export default function MealDetails({ meal }: { meal: any }) {
     if (meal?.id) load();
   }, [meal?.id]);
 
+
+
+
+
   if (!meal) return <div className="text-center py-20">Meal not found</div>;
 
   const rating = meal.provider?.avgRating ?? 0;
@@ -73,7 +77,6 @@ export default function MealDetails({ meal }: { meal: any }) {
       ))}
     </div>
   );
-
   const initials = (name: string) =>
     name
       ?.split(" ")
@@ -131,7 +134,8 @@ export default function MealDetails({ meal }: { meal: any }) {
               <h2 className="text-xl font-bold text-gray-900 mb-4 pb-4 border-b border-gray-100">
                 About this meal
               </h2>
-              <p className="text-[15px] text-gray-600 leading-relaxed">{meal.description}</p>
+              <p className="text-[15px] text-gray-600 leading-relaxed">CuisineType: {meal?.provider?.cuisineType}</p>
+              <p className="text-[15px] text-gray-600 leading-relaxed">Description: {meal.description}</p>
 
               {/* Tags */}
               {meal.tags?.length > 0 && (
@@ -168,6 +172,7 @@ export default function MealDetails({ meal }: { meal: any }) {
                     </div>
                     <Stars n={Math.round(rating || 0)} size={13} />
                     <p className="text-xs text-gray-400 mt-1">{reviews.length} reviews</p>
+
                   </div>
 
                   {/* Bars */}
@@ -201,8 +206,22 @@ export default function MealDetails({ meal }: { meal: any }) {
                       {/* Header */}
                       <div className="flex items-center gap-3 mb-2">
                         <div className="w-9 h-9 rounded-full bg-linear-to-br from-orange-500 to-rose-600 flex items-center justify-center text-white font-bold text-[12px] shrink-0">
-                          {initials(review.customer?.name ?? "?")}
+                          {review.customer?.image ? (
+                            <Image
+                              src={review.customer?.image}
+                              alt={review.customer?.name}
+                              width={88}
+                              height={88}
+                              className="w-full h-full object-cover rounded-full"
+                              unoptimized
+                            />
+                          ) : (
+                            <span className=" text-2xl font-bold text-white">
+                              {initials(review.customer?.name)}
+                            </span>
+                          )}
                         </div>
+
                         <div>
                           <p className="font-semibold text-sm text-gray-900">{review.customer?.name}</p>
                           {review.createdAt && (

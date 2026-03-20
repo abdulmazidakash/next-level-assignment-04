@@ -19,6 +19,10 @@ interface MealCardProps {
     imageUrl: string;
     isAvailable: boolean;
     availabilityStatus?: "available" | "out-of-stock" | "coming-soon" | "pre-order";
+    category: {
+      id: string;
+      name: string;
+    };
     provider: {
       id: string;
       restaurantName: string;

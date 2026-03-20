@@ -7,6 +7,7 @@ import Link from "next/link";
 export default async function MealsPage() {
   const { data } = await getAllMeals();
   const meals = data ?? [];
+  console.log('meals page: ===>', meals)
 
   return (
     <div className="min-h-screen rounded-2xl bg-[#f7f2ec]">

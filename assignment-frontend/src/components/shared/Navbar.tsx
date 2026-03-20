@@ -28,7 +28,7 @@ export default function Navbar() {
 
   useEffect(() => {
     getUser().then(setUser);
-  }, []);
+  }, [pathname]);
 
   const dashRoute = "/dashboard";
 

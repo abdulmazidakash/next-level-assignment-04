@@ -46,7 +46,7 @@ export const getMealReview = async (mealId: string) => {
         );
 
         const result = await res.json();
-        console.log('server result: ===>', result)
+        // console.log('server result: ===>', result.data)
 
         return result.data;
     } catch (error: any) {

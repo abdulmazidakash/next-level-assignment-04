@@ -117,7 +117,7 @@ export default function ProviderMealsTable({ meals }: any) {
 
                     {/* Update */}
                     <Link
-                      href={`/dashboard/provider-own-meals/${meal.id}`}
+                      href={`/provider-dashboard/provider-own-meals/${meal.id}`}
                       className="inline-flex items-center gap-1.5 h-8 px-3 rounded-[9px] border-[1.5px] border-red-200 bg-red-50 text-red-500 text-[12px] font-semibold hover:bg-red-100 hover:border-red-300 hover:-translate-y-0.5 transition-all"
                     >
                       <Pencil className="h-3 w-3" />

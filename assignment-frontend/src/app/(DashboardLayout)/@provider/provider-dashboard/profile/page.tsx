@@ -4,6 +4,7 @@ import {
   Home, MapPin, User, Mail, UtensilsCrossed,
   Star, MessageSquare, Pencil, Plus,
 } from "lucide-react"
+import Image from "next/image"
 
 function initials(name: string) {
   return name
@@ -16,7 +17,9 @@ function initials(name: string) {
 
 export default async function ProviderProfilePage() {
   const res      = await getOwnProvider()
-  const provider = res?.data
+  const provider = res?.data;
+
+  console.log('provider response: ===>', res)
 
   // ── Empty / no profile ──────────────────────────────────
   if (!provider) {
@@ -33,7 +36,7 @@ export default async function ProviderProfilePage() {
             You haven't set up a restaurant profile yet. Create one to start listing meals.
           </p>
           <Link
-            href="/dashboard/create-provider-profile"
+            href="/provider-dashboard/create-provider-profile"
             className="inline-flex items-center gap-2 h-11 px-6 rounded-[14px] bg-linear-to-br from-orange-500 to-rose-600 text-white text-[14px] font-semibold shadow-md shadow-rose-200 hover:shadow-rose-300 hover:-translate-y-0.5 transition-all"
           >
             <Plus className="h-4 w-4" />
@@ -84,12 +87,26 @@ export default async function ProviderProfilePage() {
 
           {/* Avatar + status row */}
           <div className="flex items-end justify-between px-8 -mt-10 relative z-10 bg-white">
-            {/* Avatar */}
-            <div className="w-20 h-20 rounded-4xl bg-linear-to-br from-orange-500 to-rose-600 border-4 border-white shadow-[0_8px_24px_rgba(232,56,79,0.3)] flex items-center justify-center shrink-0 translate-y-0">
-              <span className=" text-2xl font-bold text-white">
-                {initials(provider.restaurantName)}
-              </span>
-            </div>
+
+            {/* ── Avatar ── */}
+                    <div className="flex justify-center -mt-11 relative z-10">
+                      <div className="w-22 h-22 rounded-full border-4 border-white bg-linear-to-br from-orange-500 to-rose-600 flex items-center justify-center shadow-[0_8px_24px_rgba(232,56,79,0.35)] overflow-hidden shrink-0">
+                        {provider.user?.image ? (
+                          <Image
+                            src={provider.user?.image}
+                            alt={provider.user?.name}
+                            width={88}
+                            height={88}
+                            className="w-full h-full object-cover"
+                            unoptimized
+                          />
+                        ) : (
+                          <span className=" text-2xl font-bold text-white">
+                            {initials(provider.restaurantName)}
+                          </span>
+                        )}
+                      </div>
+                    </div>
 
             {/* Status pill */}
             <div className="flex items-center gap-1.5 bg-green-50 border border-green-200 text-green-700 text-[12px] font-semibold px-3 py-1 rounded-full mb-3">

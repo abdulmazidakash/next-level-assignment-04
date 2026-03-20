@@ -16,7 +16,7 @@ const createReviewIntoDB = async (payload: any, userId: string) => {
       mealId: payload.mealId,
       order: {
         customerId: userId,
-        status: "DELIVERED"
+        status: "PLACED"
       }
     }
   });
