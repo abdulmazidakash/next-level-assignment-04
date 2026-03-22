@@ -4,6 +4,15 @@ import { mealController } from './meal.controller';
 
 const router = express.Router();
 
+router.get(
+  "/public",
+  mealController.getPublicMeals
+);
+router.get(
+  "/public/:id",
+  mealController.getSingleMeals
+);
+
 router.post('/',
   auth(UserRole.provider),
   mealController.createMeals
@@ -13,14 +22,7 @@ router.get(
   auth(UserRole.provider),
   mealController.getAllMeals
 );
-router.get(
-  "/public",
-  mealController.getPublicMeals
-);
-router.get(
-  "/public/:id",
-  mealController.getSingleMeals
-);
+
 router.put(
   "/:id",
   auth(UserRole.provider),

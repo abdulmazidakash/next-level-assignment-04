@@ -6,6 +6,9 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 
+export const dynamic = "force-dynamic";
+
+
 function initials(name: string) {
   return name
     ?.split(" ")

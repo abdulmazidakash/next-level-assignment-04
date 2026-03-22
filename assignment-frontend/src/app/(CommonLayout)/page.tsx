@@ -5,6 +5,8 @@ import WhyChooseUs from "@/components/modules/home/WhyChooseUs";
 import HowItWorks from "@/components/modules/home/HowItWorks";
 import FeaturedMeals from "@/components/modules/home/FeaturedMeals";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
 
 

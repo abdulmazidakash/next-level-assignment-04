@@ -4,6 +4,9 @@ import { Order } from "@/types/order"
 import { UtensilsCrossed, ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 
+export const dynamic = "force-dynamic";
+
+
 // ── Status badge ────────────────────────────────────────────
 // Replaces / unifies with your existing <OrderStatusBadge />
 const STATUS_STYLES: Record<string, string> = {

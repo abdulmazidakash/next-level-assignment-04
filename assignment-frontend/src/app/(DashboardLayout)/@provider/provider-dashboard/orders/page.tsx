@@ -4,6 +4,9 @@ import OrderStatusBadge from "@/components/modules/order/provider-order-status-b
 import OrderStatusDropdown from "@/components/modules/order/provider-order-status-dropdown"
 import { cn } from "@/lib/utils"
 
+export const dynamic = "force-dynamic";
+
+
 // ── Avatar helpers ────────────────────────────────────────────
 const linearS = [
   "from-orange-500 to-rose-600",

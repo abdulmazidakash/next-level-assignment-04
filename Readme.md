@@ -6,8 +6,8 @@ FoodHub is a full-stack web application where users can discover meals, place or
 
 ## 🚀 Live Links
 
-* **Frontend:** https://your-frontend-url.vercel.app
-* **Backend:** https://your-backend-url.vercel.app
+* **Frontend:** https://assignment-frontend-seven-ecru.vercel.app
+* **Backend:** https://assignment-4-server-pi.vercel.app
 
 ---
 
@@ -231,7 +231,7 @@ PLACED → PREPARING → READY → DELIVERED
 
 ## 🎥 Demo Video
 
-👉 https://your-video-link.com
+👉 https://drive.google.com/file/d/1bd8397KooYuNWYd5GMBwahrBr-5cclU9/view
 
 ---
 

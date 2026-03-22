@@ -4,8 +4,12 @@ import Link from 'next/link';
 import MealCard from '../meal/MealCard';
 
 export default async function FeaturedMeals() {
-    const { data } = await getAllMeals();
-    const featuredMeals = data?.slice(0, 3) ?? [];
+
+    const response = await getAllMeals();
+
+    const meals = response?.data ?? [];
+    const featuredMeals = meals.slice(0, 3);
+
     return (
         <>
             <section className="container bg-[#f7f2ec] rounded-2xl mx-auto mt-8 px-4 sm:px-6 lg:px-8 py-16 md:py-20">

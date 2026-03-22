@@ -2,6 +2,8 @@ import CreateCategoryModal from "@/components/modal/CreateCategoryModal"
 import CategoryTable from "@/components/table/CategoryTable"
 import { getCategories } from "@/services/category"
 
+export const dynamic = "force-dynamic";
+
 export default async function CategoriesPage() {
   const res = await getCategories()
   const categories = res?.data || []

@@ -3,6 +3,9 @@ import { getProviderMeals } from "@/services/provider"
 import Link from "next/link"
 import { Plus } from "lucide-react"
 
+export const dynamic = "force-dynamic";
+
+
 export default async function ProviderMealsPage() {
   const res   = await getProviderMeals()
   const meals = res?.data || [];

@@ -17,7 +17,10 @@ app.use(express.json());
 app.use(cors({
   origin: [
     "http://localhost:3000",
-    "https://assignment-4-server-pi.vercel.app"
+    "https://assignment-frontend-seven-ecru.vercel.app",
+    "https://assignment-4-server-pi.vercel.app",
+    
+    
   ],
   credentials: true
 }));

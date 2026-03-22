@@ -3,6 +3,8 @@ import { User } from "@/types/user"
 import UserRoleForm from "@/components/modules/user/user-role-form"
 import { cn } from "@/lib/utils"
 
+export const dynamic = "force-dynamic";
+
 // ── Status badge ─────────────────────────────────────────────
 function StatusBadge({ status }: { status: string }) {
   const isActive = status === "ACTIVE"

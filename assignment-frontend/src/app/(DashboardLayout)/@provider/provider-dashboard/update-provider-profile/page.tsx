@@ -1,6 +1,9 @@
 import { getOwnProvider } from "@/services/provider";
 import { UpdateProviderFormClient } from "@/components/form/UpdateProviderFormClient";
 
+export const dynamic = "force-dynamic";
+
+
 export default async function UpdateProviderPage() {
 
   const res = await getOwnProvider()

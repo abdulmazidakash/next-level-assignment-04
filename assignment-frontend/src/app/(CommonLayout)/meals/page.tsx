@@ -4,9 +4,13 @@ import { getAllMeals } from "@/services/Meal";
 import { UtensilsCrossed, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
+
 export default async function MealsPage() {
-  const { data } = await getAllMeals();
-  const meals = data ?? [];
+  const response = await getAllMeals();
+  const meals = response?.data ?? []; 
+
   console.log('meals page: ===>', meals)
 
   return (

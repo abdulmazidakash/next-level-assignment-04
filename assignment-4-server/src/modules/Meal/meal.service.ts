@@ -7,25 +7,10 @@ const createMealIntoDB = async (payload: any, userId: string) => {
     }
   });
 
-  // if (!providerProfile || user.role !== "PROVIDER") {
-  //   throw new Error("Only providers can create meals");
-  // }
 
   if (!providerProfile) {
     throw new Error("Provider profile not found");
   }
-
-  // if (!payload.categoryId) {
-  //   throw new Error("Category is required");
-  // }
-
-  // const categoryExists = await prisma.category.findUnique({
-  //   where: { id: payload.categoryId }
-  // });
-
-  // if (!categoryExists) {
-  //   throw new Error("Invalid category");
-  // }
 
   const result = await prisma.meal.create({
     data: {

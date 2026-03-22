@@ -4,6 +4,8 @@ import { MapPin, UtensilsCrossed, ArrowRight, Search } from "lucide-react"
 import { getAllPublicProviders } from "@/services/provider"
 import { Provider } from "@/types/provider"
 
+export const dynamic = "force-dynamic";
+
 // ── linear palette for avatar fallbacks ─────────────────────
 const linearS = [
   "from-orange-500 to-rose-600",

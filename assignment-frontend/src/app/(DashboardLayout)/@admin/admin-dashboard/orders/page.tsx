@@ -4,6 +4,8 @@ import { UtensilsCrossed } from "lucide-react"
 import { cn } from "@/lib/utils"
 import AdminOrdersFilters from "@/components/modules/order/admin-order-filters"
 
+export const dynamic = "force-dynamic";
+
 // ── Status badge ─────────────────────────────────────────────
 const STATUS_STYLES: Record<string, string> = {
   PENDING:   "bg-yellow-50 border border-yellow-200 text-yellow-800",
