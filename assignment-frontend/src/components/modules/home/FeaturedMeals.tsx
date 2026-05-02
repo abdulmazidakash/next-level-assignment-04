@@ -8,7 +8,7 @@ export default async function FeaturedMeals() {
     const response = await getAllMeals();
 
     const meals = response?.data ?? [];
-    const featuredMeals = meals.slice(0, 3);
+    const featuredMeals = meals.slice(0, 4);
 
     return (
         <>
@@ -47,7 +47,7 @@ export default async function FeaturedMeals() {
 
                 {/* Meal cards */}
                 {featuredMeals.length > 0 ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {featuredMeals.map((meal: any) => (
                             <MealCard key={meal.id} meal={meal} />
                         ))}

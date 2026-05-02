@@ -28,52 +28,6 @@ export const createMeal = async (payload: any) => {
 };
 
 
-// export const getAllMeals = async () => {
-//   try {
-//     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-//     console.log('get all meals baseurl: ===>',baseUrl)
-//     const res = await fetch(
-//       `${process.env.NEXT_PUBLIC_BASE_URL}/meals/public`,
-//       {
-//         method: "GET",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         cache: "no-store",
-//       },
-//     );
-//     console.log("Fetching from:", `${process.env.NEXT_PUBLIC_BASE_URL}/meals`);
-//     const result = await res.json();
-
-//     return result;
-//   } catch (error: any) {
-//     console.log(error.message);
-//   }
-// };
-
-// export const getAllMeals = async () => {
-//   try {
-//     const res = await fetch(
-//       `${process.env.NEXT_PUBLIC_BASE_URL}/api/meals/public`,
-//       {
-//         method: "GET",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         cache: "no-store",
-//       }
-//     );
-
-//     const result = await res.json();
-
-//     console.log("API RESULT: ===>", result); // 👈 IMPORTANT
-
-//     return result;
-//   } catch (error: any) {
-//     console.log(error.message);
-//   }
-// };
-
 export const getAllMeals = async () => {
   try {
     const res = await fetch(

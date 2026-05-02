@@ -10,28 +10,28 @@ import { cn } from "@/lib/utils"
 
 const SLIDES = [
   {
-    image:       "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1400&q=85",
-    tag:         "Burgers",
-    title:       "Gourmet Burgers,\nDelivered Fresh",
+    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1400&q=85",
+    tag: "Burgers",
+    title: "Gourmet Burgers,\nDelivered Fresh",
     description: "Juicy, premium-ingredient burgers made to order and delivered hot to your door.",
-    cta:         "Order Burgers",
-    accent:      "from-orange-500 to-rose-600",
+    cta: "Order Burgers",
+    accent: "from-orange-500 to-rose-600",
   },
   {
-    image:       "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=1400&q=85",
-    tag:         "Asian",
-    title:       "Bold Asian\nFlavours",
+    image: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=1400&q=85",
+    tag: "Asian",
+    title: "Bold Asian\nFlavours",
     description: "Explore spicy noodles, fresh seafood, and authentic recipes from across Asia.",
-    cta:         "Explore Asian",
-    accent:      "from-teal-500 to-emerald-600",
+    cta: "Explore Asian",
+    accent: "from-teal-500 to-emerald-600",
   },
   {
-    image:       "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=1400&q=85",
-    tag:         "Biryani",
-    title:       "Legendary\nKacchi Biryani",
+    image: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=1400&q=85",
+    tag: "Biryani",
+    title: "Legendary\nKacchi Biryani",
     description: "Slow-cooked, saffron-layered, and rich with tradition. Order the real thing today.",
-    cta:         "Order Biryani",
-    accent:      "from-amber-500 to-orange-600",
+    cta: "Order Biryani",
+    accent: "from-amber-500 to-orange-600",
   },
 ]
 
@@ -44,7 +44,7 @@ export default function HeroCarousel() {
 
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi])
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi])
-  const scrollTo   = useCallback((i: number) => emblaApi?.scrollTo(i), [emblaApi])
+  const scrollTo = useCallback((i: number) => emblaApi?.scrollTo(i), [emblaApi])
 
   useEffect(() => {
     if (!emblaApi) return
@@ -55,12 +55,12 @@ export default function HeroCarousel() {
   }, [emblaApi])
 
   return (
-    <div className="relative container  pt-4 pb-6">
-      <div className="container mx-auto relative">
+    <div className="relative container  py-4 ">
+      <div className="container mx-auto relative ">
 
         {/* ── Carousel viewport ── */}
-        <div className="overflow-hidden rounded-[24px] shadow-[0_16px_48px_rgba(0,0,0,0.18)]" ref={emblaRef}>
-          <div className="flex touch-pan-y">
+        <div className="overflow-hidden rounded-[24px] shadow-[0_16px_48px_rgba(0,0,0,0.18)] h-[65vh] md:h-[90vh] lg:h-[90vh]" ref={emblaRef}>
+          <div className="flex touch-pan-y w-full">
             {SLIDES.map((slide, i) => (
               <div key={i} className="flex-[0_0_100%] min-w-0 relative h-105 sm:h-125 md:h-140">
 
