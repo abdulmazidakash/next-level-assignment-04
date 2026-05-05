@@ -34,13 +34,13 @@ export default async function ProvidersPage() {
   const cities = new Set(providers.map((p) => p.address?.split(",").pop()?.trim())).size
 
   return (
-    <div className="min-h-screen rounded-2xl bg-[#f7f2ec]">
+    <div className="min-h-screen rounded-2xl bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
         {/* ── Page header ── */}
         <div className="flex items-end justify-between flex-wrap gap-4 mb-8">
           <div>
-            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
+            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight dark:text-white">
               Food{" "}
               <span className="bg-linear-to-r from-orange-500 to-rose-600 bg-clip-text text-transparent">
                 Providers
@@ -55,7 +55,7 @@ export default async function ProvidersPage() {
             <input
               type="text"
               placeholder="Search providers…"
-              className="w-full h-9 pl-9 pr-4 rounded-full border border-gray-200 bg-white text-sm text-gray-700 placeholder:text-gray-400 outline-none focus:border-orange-400 transition-colors"
+              className="w-full h-9 pl-9 pr-4 rounded-full border border-gray-200 bg-input text-sm text-gray-700 placeholder:text-gray-400 outline-none focus:border-orange-400 transition-colors"
             />
           </div>
         </div>
@@ -68,9 +68,9 @@ export default async function ProvidersPage() {
             { label: "Cities",          value: cities,           sub: "Coverage areas" },
             { label: "Avg Meals",       value: avgMeals,         sub: "Per provider" },
           ].map(({ label, value, sub }) => (
-            <div key={label} className="bg-white border border-black/[0.07] rounded-2xl px-5 py-4">
+            <div key={label} className="bg-card border border-black/[0.07] rounded-2xl px-5 py-4">
               <p className="text-[11px] font-semibold tracking-widest uppercase text-gray-400 mb-1">{label}</p>
-              <p className="text-3xl font-bold text-gray-900 leading-none">
+              <p className="text-3xl font-bold text-gray-900 dark:text-white leading-none">
                 {value}
               </p>
               <p className="text-[11.5px] text-gray-400 mt-1">{sub}</p>
@@ -79,15 +79,15 @@ export default async function ProvidersPage() {
         </div>
 
         {/* ── Table ── */}
-        <div className="bg-white border border-black/[0.07] rounded-2xl overflow-hidden">
+        <div className="bg-secondary border border-black/[0.07] rounded-2xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
-                <tr className="bg-[#faf7f3]">
+                <tr className="bg-secondary/50">
                   {["#", "Restaurant", "Owner", "Location", "Meals", "Status", "Action"].map((h) => (
                     <th
                       key={h}
-                      className="px-4 py-3 text-left text-[11.5px] font-semibold tracking-[0.05em] uppercase text-gray-400 border-b border-gray-100 whitespace-nowrap first:text-center first:w-12"
+                      className="px-4 py-3 text-left text-[11.5px] font-semibold tracking-[0.05em] uppercase text-gray-400 dark:text-white border-b border-gray-100 whitespace-nowrap first:text-center first:w-12"
                     >
                       {h}
                     </th>
@@ -98,7 +98,7 @@ export default async function ProvidersPage() {
               <tbody>
                 {providers.length === 0 ? (
                   <tr>
-                    <td colSpan={7} className="text-center py-16 text-sm text-gray-400 italic">
+                    <td colSpan={7} className="text-center py-16 text-sm text-gray-400 dark:text-white italic">
                       No providers found.
                     </td>
                   </tr>
@@ -106,10 +106,10 @@ export default async function ProvidersPage() {
                   providers.map((provider, i) => (
                     <tr
                       key={provider.id}
-                      className="border-b border-gray-50 last:border-0 hover:bg-[#fdf9f5] transition-colors"
+                      className="border-b border-gray-50 last:border-0 hover:bg-secondary/50 transition-colors"
                     >
                       {/* # */}
-                      <td className="px-4 py-4 text-center text-xs text-gray-400 font-medium">{i + 1}</td>
+                      <td className="px-4 py-4 text-center text-xs text-gray-400 dark:text-white font-medium">{i + 1}</td>
 
                       {/* Restaurant */}
                       <td className="px-4 py-4">
@@ -130,22 +130,22 @@ export default async function ProvidersPage() {
                             </div>
                           )}
                           <div>
-                            <p className="font-semibold text-sm text-gray-900 leading-tight">
+                            <p className="font-semibold text-sm text-gray-900 dark:text-white leading-tight">
                               {provider.restaurantName}
                             </p>
-                            <p className="text-[11.5px] text-gray-400 mt-0.5">{provider.cuisineType}</p>
+                            <p className="text-[11.5px] text-gray-400 dark:text-white mt-0.5">{provider.cuisineType}</p>
                           </div>
                         </div>
                       </td>
 
                       {/* Owner */}
                       <td className="px-4 py-4">
-                        <span className="text-sm font-medium text-gray-800">{provider.user?.name}</span>
+                        <span className="text-sm font-medium text-gray-800 dark:text-white">{provider.user?.name}</span>
                       </td>
 
                       {/* Location */}
                       <td className="px-4 py-4 hidden sm:table-cell">
-                        <div className="flex items-center gap-1.5 text-[13px] text-gray-500">
+                        <div className="flex items-center gap-1.5 text-[13px] text-gray-500 dark:text-white">
                           <MapPin className="h-3 w-3 opacity-50 shrink-0" />
                           {provider.address}
                         </div>
@@ -161,7 +161,7 @@ export default async function ProvidersPage() {
 
                       {/* Status */}
                       <td className="px-4 py-4">
-                        <div className="flex items-center gap-1.5 text-[12px] font-medium text-gray-600">
+                        <div className="flex items-center gap-1.5 text-[12px] font-medium text-gray-600 dark:text-white">
                           <span className="w-1.5 h-1.5 rounded-full bg-green-500 shrink-0" />
                           Active
                         </div>

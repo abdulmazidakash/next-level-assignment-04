@@ -109,7 +109,7 @@ export default function MealCard({ meal }: MealCardProps) {
   return (
     <Card
       className={cn(
-        "group relative overflow-hidden rounded-4xl border border-black/[0.07] bg-white p-0",
+        "group relative overflow-hidden rounded-4xl border border-black/[0.07] bg-card p-0",
         "shadow-sm hover:shadow-2xl hover:-translate-y-1.5",
         "transition-all duration-300 ease-out flex flex-col",
         !isAvailable && "opacity-70 grayscale-[0.3]"
@@ -168,7 +168,7 @@ export default function MealCard({ meal }: MealCardProps) {
           <h3
             className={cn(
               "font-bold leading-snug line-clamp-2 flex-1",
-              "text-[1.1rem] sm:text-[1.15rem] text-gray-900",
+              "text-[1.1rem] sm:text-[1.15rem] text-gray-900 dark:text-gray-200",
               "",
               "group-hover:text-orange-600 transition-colors duration-200"
             )}
@@ -188,7 +188,7 @@ export default function MealCard({ meal }: MealCardProps) {
         {/* Provider + Rating */}
         <div className="flex items-center justify-between gap-2 flex-wrap pt-3 border-t border-gray-100">
           {/* Restaurant name */}
-          <span className="text-[12.5px] font-semibold bg-amber-50 border border-amber-200 text-amber-800 px-2.5 py-1 rounded-full max-w-32.5 truncate">
+          <span className="text-[12.5px] font-semibold bg-amber-50 dark:bg-zinc-900 border border-amber-200 text-amber-800 px-2.5 py-1 rounded-full max-w-32.5 truncate">
             {provider.restaurantName}
           </span>
 

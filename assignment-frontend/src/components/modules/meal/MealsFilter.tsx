@@ -159,7 +159,7 @@ export default function MealsFilter({ meals }: MealsFilterProps) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search meals, restaurants, cuisines…"
-            className="w-full h-11 pl-10 pr-10 rounded-2xl border border-gray-200 bg-white text-[14px] text-gray-900 placeholder:text-gray-400 outline-none focus:border-orange-400 transition-colors"
+            className="w-full h-11 pl-10 pr-10 rounded-2xl border border-gray-200 bg-input text-[14px] text-gray-900 placeholder:text-gray-400 outline-none focus:border-orange-400 transition-colors"
           />
           {query && (
             <button onClick={() => setQuery("")}

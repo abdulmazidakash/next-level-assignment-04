@@ -37,7 +37,7 @@ const team = [
 
 export default function AboutUsPage() {
   return (
-    <div className="min-h-screen rounded-2xl bg-[#fdf8f3] text-gray-900">
+    <div className="min-h-screen rounded-2xl bg-[#fdf8f3] text-gray-900 dark:bg-gray-900 dark:text-white">
 
       {/* ── Google Font import ── */}
       <style>{`
@@ -77,7 +77,7 @@ export default function AboutUsPage() {
             Our Story
           </p>
 
-          <h1 className="font-display rise rise-2 text-5xl sm:text-6xl lg:text-7xl font-black leading-[1.05] text-gray-900 mb-6">
+          <h1 className="font-display rise rise-2 text-5xl sm:text-6xl lg:text-7xl font-black leading-[1.05] text-gray-900 dark:text-white mb-6">
             Food made{" "}
             <em className="not-italic text-orange-500">from the</em>
             <br />
@@ -96,15 +96,15 @@ export default function AboutUsPage() {
       {/* ══════════════════════════════════════
           STATS RIBBON
       ══════════════════════════════════════ */}
-      <section className="bg-white border-y border-orange-100 px-6 py-10 sm:px-12 lg:px-20">
+      <section className="bg-background border-y border-orange-100 px-6 py-10 sm:px-12 lg:px-20">
         <div className="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-8">
           {stats.map(({ icon: Icon, value, label }) => (
             <div key={label} className="flex flex-col items-center text-center gap-2">
               <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center">
-                <Icon className="h-4.5 w-4.5 text-orange-500" />
+                <Icon className="h-4.5 w-4.5 text-orange-500 " />
               </div>
-              <p className="font-display text-3xl font-black text-gray-900">{value}</p>
-              <p className="font-body text-xs text-gray-400 font-medium uppercase tracking-wider">{label}</p>
+              <p className="font-display text-3xl font-black text-gray-900 dark:text-white">{value}</p>
+              <p className="font-body text-xs text-gray-400 dark:text-white font-medium uppercase tracking-wider">{label}</p>
             </div>
           ))}
         </div>
@@ -141,15 +141,15 @@ export default function AboutUsPage() {
             <p className="font-body text-xs font-semibold uppercase tracking-widest text-orange-500 mb-3">
               Who We Are
             </p>
-            <h2 className="font-display text-4xl font-black text-gray-900 leading-tight mb-5">
+            <h2 className="font-display text-4xl font-black text-gray-900 dark:text-white leading-tight mb-5">
               A kitchen built on tradition & trust
             </h2>
-            <p className="font-body text-gray-500 font-light leading-relaxed mb-4">
+            <p className="font-body text-gray-500 dark:text-white font-light leading-relaxed mb-4">
               NourishBox began in a humble Chittagong kitchen where our founder, inspired by his
               grandmother's recipes, decided the world needed more honest, soulful cooking. What
               started as weekend deliveries to neighbors quickly grew into a beloved city-wide brand.
             </p>
-            <p className="font-body text-gray-500 font-light leading-relaxed">
+            <p className="font-body text-gray-500 dark:text-white font-light leading-relaxed">
               Today we serve thousands of families daily — but our kitchen philosophy hasn't changed
               one bit. Every meal is cooked fresh, plated with care, and delivered with pride.
             </p>
@@ -160,26 +160,26 @@ export default function AboutUsPage() {
       {/* ══════════════════════════════════════
           VALUES
       ══════════════════════════════════════ */}
-      <section className="bg-white px-6 py-20 sm:px-12 lg:px-20 border-t border-orange-50">
+      <section className="bg-background px-6 py-20 sm:px-12 lg:px-20 border-t border-orange-50">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-14">
             <p className="font-body text-xs font-semibold uppercase tracking-widest text-orange-500 mb-3">
               What Drives Us
             </p>
-            <h2 className="font-display text-4xl font-black text-gray-900">Our core values</h2>
+            <h2 className="font-display text-4xl font-black text-gray-900 dark:text-white">Our core values</h2>
           </div>
 
           <div className="grid sm:grid-cols-3 gap-8">
             {values.map(({ icon: Icon, title, description }) => (
               <div
                 key={title}
-                className="group p-6 rounded-2xl border border-orange-100 bg-[#fdf8f3] hover:border-orange-300 hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+                className="group p-6 rounded-2xl border border-orange-100 bg-[#fdf8f3] dark:bg-[#1f2937] hover:border-orange-300 hover:shadow-md hover:-translate-y-1 transition-all duration-300"
               >
                 <div className="w-11 h-11 rounded-xl bg-orange-100 flex items-center justify-center mb-4 group-hover:bg-orange-500 transition-colors duration-300">
                   <Icon className="h-5 w-5 text-orange-500 group-hover:text-white transition-colors duration-300" />
                 </div>
-                <h3 className="font-display text-lg font-bold text-gray-900 mb-2">{title}</h3>
-                <p className="font-body text-sm text-gray-500 font-light leading-relaxed">{description}</p>
+                <h3 className="font-display text-lg font-bold text-gray-900 dark:text-white mb-2">{title}</h3>
+                <p className="font-body text-sm text-gray-500 dark:text-white font-light leading-relaxed">{description}</p>
               </div>
             ))}
           </div>
@@ -196,23 +196,23 @@ export default function AboutUsPage() {
               <p className="font-body text-xs font-semibold uppercase tracking-widest text-orange-500 mb-2">
                 The People
               </p>
-              <h2 className="font-display text-4xl font-black text-gray-900">Meet the team</h2>
+              <h2 className="font-display text-4xl font-black text-gray-900 dark:text-white">Meet the team</h2>
             </div>
-            <p className="font-body text-sm text-gray-400 sm:mb-1">The hands behind your meals</p>
+            <p className="font-body text-sm text-gray-400 dark:text-white sm:mb-1">The hands behind your meals</p>
           </div>
 
           <div className="grid sm:grid-cols-3 gap-6">
             {team.map(({ name, role, initials, color }) => (
               <div
                 key={name}
-                className="flex items-center gap-4 p-5 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+                className="flex items-center gap-4 p-5 bg-card rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
               >
                 <div className={`w-12 h-12 rounded-xl ${color} flex items-center justify-center font-display font-black text-lg shrink-0`}>
                   {initials}
                 </div>
                 <div>
-                  <p className="font-display font-bold text-gray-900">{name}</p>
-                  <p className="font-body text-xs text-gray-400 font-medium">{role}</p>
+                  <p className="font-display font-bold text-gray-900 dark:text-white">{name}</p>
+                  <p className="font-body text-xs text-gray-400 dark:text-white font-medium">{role}</p>
                 </div>
               </div>
             ))}

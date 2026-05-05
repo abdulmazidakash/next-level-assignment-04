@@ -12,7 +12,7 @@ export default async function FeaturedMeals() {
 
     return (
         <>
-            <section className="container bg-[#f7f2ec] rounded-2xl mx-auto mt-8 px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+            <section className="container bg-background rounded-2xl mx-auto mt-8 px-4 sm:px-6 lg:px-8 py-16 md:py-20">
 
                 {/* Section header */}
                 <div className="flex items-end justify-between flex-wrap gap-4 mb-10">
@@ -23,9 +23,9 @@ export default async function FeaturedMeals() {
                             Featured Meals
                         </div>
 
-                        <h2 className="text-[clamp(1.8rem,4vw,2.4rem)] font-bold text-gray-900 leading-tight">
+                        <h2 className="text-[clamp(1.8rem,4vw,2.4rem)] font-bold text-gray-900 leading-tight dark:text-white">
                             Handpicked for{" "}
-                            <span className="bg-linear-to-r from-orange-500 to-rose-600 bg-clip-text text-transparent">
+                            <span className="bg-linear-to-r from-orange-500 to-rose-600 bg-clip-text text-transparent ">
                                 You
                             </span>
                         </h2>

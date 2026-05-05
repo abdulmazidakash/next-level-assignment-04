@@ -84,13 +84,13 @@ export default function Navbar() {
 
         {/* ── Desktop actions ── */}
         <div className="hidden md:flex items-center gap-2 shrink-0">
-          <ModeToggle />
+
           {user ? (
             <>
               {/* Dashboard */}
               <Link
                 href={dashRoute}
-                className="inline-flex items-center gap-1.5 h-9 px-3.5 rounded-[10px] border text-[13px] font-semibold text-gray-700 hover:border-orange-300 hover:bg-amber-50 hover:text-orange-600 transition-all border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-gray-700 dark:text-white"
+                className="inline-flex items-center gap-1.5 h-9 px-3.5 rounded-[10px] border text-[13px] font-semibold text-gray-700 hover:border-orange-300 hover:bg-amber-50 hover:text-orange-600 transition-all border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 dark:text-white"
               >
                 <LayoutDashboard className="h-3.5 w-3.5" />
                 Dashboard
@@ -114,6 +114,7 @@ export default function Navbar() {
               Login
             </Link>
           )}
+                    <ModeToggle />
         </div>
 
         {/* ── Mobile hamburger ── */}

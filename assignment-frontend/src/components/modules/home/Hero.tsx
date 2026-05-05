@@ -55,11 +55,11 @@ export default function HeroCarousel() {
   }, [emblaApi])
 
   return (
-    <div className="relative container  py-4 ">
-      <div className="container mx-auto relative ">
+    <div className="relative w-full">
+      <div className="w-full mx-auto relative ">
 
         {/* ── Carousel viewport ── */}
-        <div className="overflow-hidden rounded-[24px] shadow-[0_16px_48px_rgba(0,0,0,0.18)] h-[65vh] md:h-[90vh] lg:h-[90vh]" ref={emblaRef}>
+        <div className="overflow-hidden shadow-[0_16px_48px_rgba(0,0,0,0.18)] h-[65vh] md:h-[90vh] lg:h-[90vh]" ref={emblaRef}>
           <div className="flex touch-pan-y w-full">
             {SLIDES.map((slide, i) => (
               <div key={i} className="flex-[0_0_100%] min-w-0 relative h-105 sm:h-125 md:h-140">
@@ -71,7 +71,7 @@ export default function HeroCarousel() {
                   fill
                   className="object-cover"
                   priority={i === 0}
-                  sizes="(max-width: 1100px) 100vw, 1100px"
+                  sizes="100vw, 1100px"
                 />
 
                 {/* linear overlay — richer than plain black */}

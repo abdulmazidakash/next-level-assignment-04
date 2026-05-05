@@ -14,7 +14,7 @@ export default async function MealsPage() {
   console.log('meals page: ===>', meals)
 
   return (
-    <div className="min-h-screen rounded-2xl bg-[#f7f2ec]">
+    <div className="min-h-screen rounded-2xl bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
         {/* ── Page header ── */}
@@ -25,7 +25,7 @@ export default async function MealsPage() {
               Our Menu
             </div>
 
-            <h1 className="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-gray-900 leading-tight">
+            <h1 className="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-gray-900 dark:text-gray-300 leading-tight">
               Today&apos;s{" "}
               <span className="bg-linear-to-r from-orange-500 to-rose-600 bg-clip-text text-transparent">
                 Meals

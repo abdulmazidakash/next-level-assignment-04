@@ -36,10 +36,10 @@ export default function RootLayout({
           disableTransitionOnChange
         >
 
-                  <div className="">
-          {children}
-        </div>
-        <Toaster />
+          <div className="w-full">
+            {children}
+          </div>
+          <Toaster />
         </ThemeProvider>
 
       </body>

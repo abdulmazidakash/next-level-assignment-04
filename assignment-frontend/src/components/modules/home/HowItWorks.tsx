@@ -60,7 +60,7 @@ export default function HowItWorks() {
             How It Works
           </div>
 
-          <h2 className="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-gray-900 leading-tight mb-3">
+          <h2 className="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-gray-900 dark:text-gray-300 leading-tight mb-3">
             Order in{" "}
             <span className="bg-linear-to-r from-orange-500 to-rose-600 bg-clip-text text-transparent">
               4 Simple Steps
@@ -84,7 +84,7 @@ export default function HowItWorks() {
             {STEPS.map(({ number, icon: Icon, title, description, stat, iconStyle, bgStyle }, i) => (
               <div
                 key={number}
-                className="relative group bg-white border border-black/[0.07] rounded-4xl p-6 flex flex-col gap-4 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.09)] hover:border-orange-200/60 transition-all duration-300"
+                className="relative group bg-card border border-black/[0.07] rounded-4xl p-6 flex flex-col gap-4 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.09)] hover:border-orange-200/60 transition-all duration-300"
               >
                 {/* Step number + icon */}
                 <div className="flex items-center gap-3">
@@ -108,7 +108,7 @@ export default function HowItWorks() {
                   </div>
                 )}
 
-                <h3 className=" text-[1rem] font-bold text-gray-900 leading-snug">
+                <h3 className=" text-[1rem] font-bold text-gray-900 dark:text-gray-300 leading-snug">
                   {title}
                 </h3>
 
