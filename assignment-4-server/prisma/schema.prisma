@@ -1,10 +1,12 @@
 generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
+  previewFeatures = ["postgresqlExtensions"]
 }
 
 datasource db {
   provider = "postgresql"
+  extensions = [vector]
 }
 
 enum Role {
@@ -156,7 +158,7 @@ model DocumentEmbedding {
   content     String
   metadata    Json?
 
-  embedding Unsupported("vector()")
+  embedding Unsupported("vector(384)")
   isDeleted Boolean                 @default(false)
   deletedAt DateTime?
   createdAt DateTime                @default(now())

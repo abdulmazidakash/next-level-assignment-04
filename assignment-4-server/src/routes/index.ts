@@ -7,6 +7,7 @@ import { UserRoutes } from "../modules/User/user.route";
 import { CategoryRoutes } from "../modules/Category/category.route";
 import { ReviewRoutes } from "../modules/Review/review.route";
 import { AdminRoutes } from "../modules/Admin/admin.route";
+import { ragRoutes } from "../modules/Rag/rag.route";
 
 const router = Router();
 
@@ -42,6 +43,10 @@ const routerManager = [
     {
         path: "/admin",
         route: AdminRoutes,
+    },
+    {
+        path: "/rag",
+        route: ragRoutes,
     }
 
 ];
