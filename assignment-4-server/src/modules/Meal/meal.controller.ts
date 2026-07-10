@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import sendResponse from "../../utils/sendResponse";
 import { mealService } from "./meal.service";
+import { sendResponse } from "../../utils/sendResponse";
 
 const createMeals = async (req: Request, res: Response) => {
   try {
@@ -10,14 +10,14 @@ const createMeals = async (req: Request, res: Response) => {
     );
 
     sendResponse(res, {
-      statusCode: 201,
+      httpStatusCode: 201,
       success: true,
       message: "Meal created successfully",
       data: result,
     });
   } catch (error: any) {
     sendResponse(res, {
-      statusCode: 400,
+      httpStatusCode: 400,
       success: false,
       message: error?.message || "Failed to create meal",
       data: null,
@@ -30,14 +30,14 @@ const getAllMeals = async (req: Request, res: Response) => {
     const result = await mealService.getAllMealsIntoDB(req.user?.id);
 
     sendResponse(res, {
-      statusCode: 200,
+      httpStatusCode: 200,
       success: true,
       message: "Meals retrieved successfully",
       data: result,
     });
   } catch (error: any) {
     sendResponse(res, {
-      statusCode: 400,
+      httpStatusCode: 400,
       success: false,
       message: error?.message || "Failed to retrieve meals",
       data: null,
@@ -50,14 +50,14 @@ const getPublicMeals = async (req: Request, res: Response) => {
     const result = await mealService.getPublicMealsIntoDB();
 
     sendResponse(res, {
-      statusCode: 200,
+      httpStatusCode: 200,
       success: true,
       message: "Public Meals retrieved successfully",
       data: result,
     });
   } catch (error: any) {
     sendResponse(res, {
-      statusCode: 400,
+      httpStatusCode: 400,
       success: false,
       message: error?.message || "Failed to retrieve public meals",
       data: null,
@@ -76,14 +76,14 @@ const getSingleMeals = async (req: Request, res: Response) => {
     }
 
     sendResponse(res, {
-      statusCode: 200,
+      httpStatusCode: 200,
       success: true,
       message: "Meal Details retrieved successfully",
       data: result,
     });
   } catch (error: any) {
     sendResponse(res, {
-      statusCode: 404,
+      httpStatusCode: 404,
       success: false,
       message: error?.message || "Meal Details not found",
       data: null,
@@ -101,14 +101,14 @@ const updateMeal = async (req: Request, res: Response) => {
     );
 
     sendResponse(res, {
-      statusCode: 200,
+      httpStatusCode: 200,
       success: true,
       message: "Meal updated successfully",
       data: result,
     });
   } catch (error: any) {
     sendResponse(res, {
-      statusCode: 400,
+      httpStatusCode: 400,
       success: false,
       message: error?.message || "Failed to update meal",
       data: null,
@@ -124,14 +124,14 @@ const deleteMeal = async (req: Request, res: Response) => {
     );
 
     sendResponse(res, {
-      statusCode: 200,
+      httpStatusCode: 200,
       success: true,
       message: "Meal deleted successfully",
       data: null,
     });
   } catch (error: any) {
     sendResponse(res, {
-      statusCode: 400,
+      httpStatusCode: 400,
       success: false,
       message: error?.message || "Failed to delete meal",
       data: null,

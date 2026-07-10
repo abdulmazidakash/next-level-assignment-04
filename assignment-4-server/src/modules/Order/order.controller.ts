@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { OrderService } from "./order.service";
-import sendResponse from "../../utils/sendResponse";
+import { sendResponse } from "../../utils/sendResponse";
 
 // ✅ Create Order (Customer Only)
 const createOrder = async (req: Request, res: Response) => {
@@ -11,7 +11,7 @@ const createOrder = async (req: Request, res: Response) => {
     );
 
     sendResponse(res, {
-      statusCode: 201,
+      httpStatusCode: 201,
       success: true,
       message: "Order placed successfully",
       data: result,
@@ -19,7 +19,7 @@ const createOrder = async (req: Request, res: Response) => {
 
   } catch (error: any) {
     sendResponse(res, {
-      statusCode: 400,
+      httpStatusCode: 400,
       success: false,
       message: error?.message || "Failed to place order",
       data: null,
@@ -36,7 +36,7 @@ const getMyOrders = async (req: Request, res: Response) => {
     );
 
     sendResponse(res, {
-      statusCode: 200,
+      httpStatusCode: 200,
       success: true,
       message: "My Orders retrieved successfully",
       data: result,
@@ -44,7 +44,7 @@ const getMyOrders = async (req: Request, res: Response) => {
 
   } catch (error: any) {
     sendResponse(res, {
-      statusCode: 400,
+      httpStatusCode: 400,
       success: false,
       message: error?.message || "Failed to retrieve orders",
       data: null,
@@ -62,7 +62,7 @@ const getSingleOrder = async (req: Request, res: Response) => {
     );
 
     sendResponse(res, {
-      statusCode: 200,
+      httpStatusCode: 200,
       success: true,
       message: "Order Details retrieved successfully",
       data: result,
@@ -70,7 +70,7 @@ const getSingleOrder = async (req: Request, res: Response) => {
 
   } catch (error: any) {
     sendResponse(res, {
-      statusCode: 404,
+      httpStatusCode: 404,
       success: false,
       message: error?.message || "Order Details not found",
       data: null,
@@ -83,7 +83,7 @@ const getAllOrders = async (req: Request, res: Response) => {
     const result = await OrderService.getAllOrdersFromDB();
 
     sendResponse(res, {
-      statusCode: 200,
+      httpStatusCode: 200,
       success: true,
       message: "All Orders retrieved successfully",
       data: result,
@@ -91,7 +91,7 @@ const getAllOrders = async (req: Request, res: Response) => {
 
   } catch (error: any) {
     sendResponse(res, {
-      statusCode: 400,
+      httpStatusCode: 400,
       success: false,
       message: error?.message || "Failed to retrieve orders",
       data: null,

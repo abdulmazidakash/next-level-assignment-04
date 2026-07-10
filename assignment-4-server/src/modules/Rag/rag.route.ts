@@ -8,5 +8,6 @@ router.get(
     ragController.getStats
 );
 
+router.post("/ingest-meals", ragController.ingestDoctors);
 
 export const ragRoutes = router;

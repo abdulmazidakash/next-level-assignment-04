@@ -49,6 +49,7 @@ const auth = (...roles: UserRole[]) => {
       next();
     } catch (error: any) {
       next(error);
+      throw(error);
     }
   };
 };

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { ReviewService } from "./review.service";
-import sendResponse from "../../utils/sendResponse";
+import { sendResponse } from "../../utils/sendResponse";
 
 const createReview = async (req: Request, res: Response) => {
   try {
@@ -12,14 +12,14 @@ const createReview = async (req: Request, res: Response) => {
       userId
     );
     sendResponse(res, {
-      statusCode: 200,
+      httpStatusCode: 200,
       success: true,
       message: "Review added successfully",
       data: result,
     });
   } catch (error: any) {
     sendResponse(res, {
-      statusCode: 400,
+      httpStatusCode: 400,
       success: false,
       message: error.message || "Something went wrong",
       data: null,
@@ -33,14 +33,14 @@ const getMealReviews = async (req: Request, res: Response) => {
 
     const result = await ReviewService.getMealReviewsFromDB(mealId as string);
     sendResponse(res, {
-      statusCode: 200,
+      httpStatusCode: 200,
       success: true,
       message: "Review retrieved successfully",
       data: result,
     });
   } catch (error: any) {
     sendResponse(res, {
-      statusCode: 400,
+      httpStatusCode: 400,
       success: false,
       message: error.message || "Something went wrong",
       data: null,

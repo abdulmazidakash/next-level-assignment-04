@@ -1,21 +1,21 @@
 import { Request, Response } from "express";
-import sendResponse from "../../utils/sendResponse";
 import { Status } from "../../../generated/prisma/enums";
 import { UserService } from "./user.service";
+import { sendResponse } from "../../utils/sendResponse";
 
 const getAllUsers = async (req: Request, res: Response) => {
   try {
     const result = await UserService.getAllUsersFromDB();
 
     sendResponse(res, {
-      statusCode: 200,
+      httpStatusCode: 200,
       success: true,
       message: "Users retrieved successfully",
       data: result,
     });
   } catch (error: any) {
     sendResponse(res, {
-      statusCode: 400,
+      httpStatusCode: 400,
       success: false,
       message: error?.message || "Failed to retrieve users",
       data: null,
@@ -38,14 +38,14 @@ const updateUserStatus = async (req: Request, res: Response) => {
     );
 
     sendResponse(res, {
-      statusCode: 200,
+      httpStatusCode: 200,
       success: true,
       message: "User status updated successfully",
       data: result,
     });
   } catch (error: any) {
     sendResponse(res, {
-      statusCode: 400,
+      httpStatusCode: 400,
       success: false,
       message: error?.message || "Failed to update user status",
       data: null,
@@ -63,14 +63,14 @@ const updateUserRole = async (req: Request, res: Response) => {
     const result = await UserService.updateUserRoleIntoDB(id as string, role);
 
     sendResponse(res, {
-      statusCode: 400,
+      httpStatusCode: 400,
       success: true,
       message: "Role Updated Successfully",
       data: result,
     });
   } catch (error: any) {
     sendResponse(res, {
-      statusCode: 400,
+      httpStatusCode: 400,
       success: false,
       message: error?.message || "Failed to update user status",
       data: null,

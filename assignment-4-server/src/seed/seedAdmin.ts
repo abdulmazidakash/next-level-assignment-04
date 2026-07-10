@@ -3,11 +3,11 @@ import { UserRole } from "../middlewares/auth";
 import bcrypt from "bcryptjs";
 
 const seedAdmin = async () => {
-  const hashedPassword = await bcrypt.hash("12345", 8);
+  const hashedPassword = await bcrypt.hash("123456", 8);
 
   const adminData = {
     name: "Admin",
-    email: "admin@gmail.com",
+    email: "admin@foodhub.com",
     role: UserRole.admin,
     password: hashedPassword,
   };

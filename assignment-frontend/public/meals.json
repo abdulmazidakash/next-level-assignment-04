@@ -1,0 +1,75 @@
+{
+    "success": true,
+    "message": "Meals retrieved successfully",
+    "data": [
+        {
+            "id": "f7412a22-5875-4dc3-b781-8a5e3b84209d",
+            "name": "Beef Biryani",
+            "description": "Fragrant basmati rice cooked with tender beef, aromatic spices, and saffron.",
+            "price": 320,
+            "imageUrl": "https://i.ibb.co/5hj0pXmd/2.avif",
+            "isAvailable": true,
+            "createdAt": "2026-07-09T08:32:52.146Z",
+            "updatedAt": "2026-07-09T08:32:52.146Z",
+            "categoryId": "db8a8fd2-be38-4751-9f73-572247298150",
+            "providerId": "f4c8c14a-19a9-4d9f-9a47-9bad6a2c7b41",
+            "provider": {
+                "id": "f4c8c14a-19a9-4d9f-9a47-9bad6a2c7b41",
+                "restaurantName": "Flavor House",
+                "bio": "Authentic Bangladeshi and Indian cuisine with a modern twist.",
+                "address": "House 45, Road 12, Gulshan-1, Dhaka",
+                "cuisineType": "Bangladeshi, Indian",
+                "isApproved": false,
+                "createdAt": "2026-07-09T08:25:09.924Z",
+                "updatedAt": "2026-07-09T08:25:09.924Z",
+                "providerId": "6e21321a-4c4e-4a95-b6da-a8536f4a773a"
+            }
+        },
+        {
+            "id": "bfff66c5-c974-4575-93b1-eacb9d4d4b69",
+            "name": "Chicken Korma",
+            "description": "Mild and creamy chicken curry cooked with yogurt and cashew nuts.",
+            "price": 280,
+            "imageUrl": "https://i.ibb.co/fzfc6V7t/3.avif",
+            "isAvailable": true,
+            "createdAt": "2026-07-09T08:35:19.560Z",
+            "updatedAt": "2026-07-09T08:35:19.560Z",
+            "categoryId": "bd2964dc-5bfd-416b-8559-eff5b82a714a",
+            "providerId": "f4c8c14a-19a9-4d9f-9a47-9bad6a2c7b41",
+            "provider": {
+                "id": "f4c8c14a-19a9-4d9f-9a47-9bad6a2c7b41",
+                "restaurantName": "Flavor House",
+                "bio": "Authentic Bangladeshi and Indian cuisine with a modern twist.",
+                "address": "House 45, Road 12, Gulshan-1, Dhaka",
+                "cuisineType": "Bangladeshi, Indian",
+                "isApproved": false,
+                "createdAt": "2026-07-09T08:25:09.924Z",
+                "updatedAt": "2026-07-09T08:25:09.924Z",
+                "providerId": "6e21321a-4c4e-4a95-b6da-a8536f4a773a"
+            }
+        },
+        {
+            "id": "a64eaba5-8463-4f70-9586-191c48964421",
+            "name": "Butter Naan",
+            "description": "Soft and fluffy naan bread brushed with butter.",
+            "price": 60,
+            "imageUrl": "https://i.ibb.co/4w99RkM0/4.avif",
+            "isAvailable": true,
+            "createdAt": "2026-07-09T08:38:41.057Z",
+            "updatedAt": "2026-07-09T08:38:41.057Z",
+            "categoryId": "81087a3f-b373-4f83-94f5-86ec347f327a",
+            "providerId": "f4c8c14a-19a9-4d9f-9a47-9bad6a2c7b41",
+            "provider": {
+                "id": "f4c8c14a-19a9-4d9f-9a47-9bad6a2c7b41",
+                "restaurantName": "Flavor House",
+                "bio": "Authentic Bangladeshi and Indian cuisine with a modern twist.",
+                "address": "House 45, Road 12, Gulshan-1, Dhaka",
+                "cuisineType": "Bangladeshi, Indian",
+                "isApproved": false,
+                "createdAt": "2026-07-09T08:25:09.924Z",
+                "updatedAt": "2026-07-09T08:25:09.924Z",
+                "providerId": "6e21321a-4c4e-4a95-b6da-a8536f4a773a"
+            }
+        }
+    ]
+}

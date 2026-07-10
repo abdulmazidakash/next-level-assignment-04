@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { AuthService } from "./auth.service";
-import sendResponse from "../../utils/sendResponse";
+import { sendResponse } from "../../utils/sendResponse";
 
 const createUser = async (req: Request, res: Response) => {
   // console.log(req)
@@ -8,7 +8,7 @@ const createUser = async (req: Request, res: Response) => {
     const result = await AuthService.createUserIntoDB(req.body);
 
     sendResponse(res, {
-      statusCode: 201,
+      httpStatusCode: 201,
       success: true,
       message: "User created",
       data: result,
@@ -30,7 +30,7 @@ const loginUser = async (req: Request, res: Response) => {
     });
 
     sendResponse(res, {
-      statusCode: 201,
+      httpStatusCode: 201,
       success: true,
       message: "User logged in successfully",
       data: result,
@@ -52,7 +52,7 @@ const getMe = async (req: any, res: Response) => {
     const result = await AuthService.getMeIntoDB(req.user.id);
 
     sendResponse(res, {
-      statusCode: 200,
+      httpStatusCode: 200,
       success: true,
       message: "User fetched successfully",
       data: result,
